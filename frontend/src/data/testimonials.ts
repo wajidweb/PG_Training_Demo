@@ -1,0 +1,68 @@
+import { Testimonial } from '@/types'
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 't1',
+    name: 'Dr. Sarah Mitchell',
+    role: 'Head of Academic Affairs',
+    institution: 'University of Amsterdam',
+    content: 'PG Training transformed the way our academic staff approach teaching. The practical frameworks and real-world simulations gave our team immediately applicable skills that have measurably improved student outcomes across our faculties.',
+    rating: 5,
+  },
+  {
+    id: 't2',
+    name: 'Prof. Carlos Mendes',
+    role: 'Dean of Faculty',
+    institution: 'Lisbon Business School',
+    content: 'The Leadership and Management programme was exactly what I needed at a critical point in my career. The blend of theory, peer learning, and coaching gave me the confidence to lead institutional change effectively.',
+    rating: 5,
+  },
+  {
+    id: 't3',
+    name: 'Ms. Amara Diallo',
+    role: 'Head of International Office',
+    institution: 'University of Malta',
+    content: 'The Cultural Integration course was a revelation. Our international office team now handles diverse student needs with genuine competence. The case studies were directly relevant to our daily challenges.',
+    rating: 5,
+  },
+  {
+    id: 't4',
+    name: 'Dr. Tomasz Kowalski',
+    role: 'Research Director',
+    institution: 'Warsaw University of Technology',
+    content: 'I have attended many professional development programmes, but PG Training stands apart. The Innovation and Entrepreneurship course helped us establish two successful university spin-offs within a year.',
+    rating: 5,
+  },
+  {
+    id: 't5',
+    name: 'Prof. Elena Vassiliev',
+    role: 'Rector\'s Assistant',
+    institution: 'St. Petersburg State University',
+    content: 'The English for Administrators programme improved communication across our entire administrative team. Working with international partners has never been more productive.',
+    rating: 5,
+  },
+  {
+    id: 't6',
+    name: 'Mr. James O\'Brien',
+    role: 'Head of Student Affairs',
+    institution: 'Trinity College Dublin',
+    content: 'We enrolled our entire student affairs team in the Cultural Integration course. The results were immediate — student satisfaction scores improved by 23% in one semester. Outstanding value for money.',
+    rating: 5,
+  },
+  {
+    id: 't7',
+    name: 'Dr. Fatima Al-Rashid',
+    role: 'Academic Development Officer',
+    institution: 'Qatar University',
+    content: 'The Academic Writing Skills course gave our researchers the tools to publish in top-tier journals. Three of our participants had papers accepted within six months of completing the programme.',
+    rating: 5,
+  },
+  {
+    id: 't8',
+    name: 'Prof. Henrik Larsson',
+    role: 'Vice Rector for Academic Affairs',
+    institution: 'Uppsala University',
+    content: 'PG Training\'s team-based approach to professional development creates lasting change. We have been working with them for three years and consistently see measurable improvements in staff performance and satisfaction.',
+    rating: 5,
+  },
+]

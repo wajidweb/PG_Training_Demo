@@ -13,7 +13,7 @@ const offerTypes = [
     borderColor: 'border-green-200',
     title: 'Standard Packages',
     description: 'Our flagship ETS packages offer fixed, transparent pricing for all our core programmes. Choose individual or team enrolment.',
-    example: 'Academic Writing Skills — from $500/person',
+    example: 'Academic Writing Skills — from €497/person',
     badge: 'Always Available',
     badgeColor: 'bg-green-100 text-green-800',
     cta: 'View Packages',

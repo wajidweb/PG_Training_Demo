@@ -9,14 +9,12 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                <GraduationCap className="w-6 h-6" style={{ color: '#1D5C3A' }} />
-              </div>
-              <div>
-                <div className="font-bold text-lg">PG Training</div>
-                <div className="text-green-200 text-xs">Higher Education Excellence</div>
-              </div>
+            <div className="mb-6 bg-white inline-block rounded-xl p-3 shadow-sm">
+              <img 
+                src="/logo.jpg" 
+                alt="Paragon Global Training Academy" 
+                className="h-16 w-auto object-contain" 
+              />
             </div>
             <p className="text-green-100 text-sm leading-relaxed mb-6">
               25 years of excellence in professional development for higher education institutions worldwide.
@@ -78,10 +76,15 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
         </div>
 
         <div className="border-t border-green-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-green-300 text-sm">© 2025 PG Training. All rights reserved.</p>
+          <p className="text-green-300 text-sm">© 2025 Paragon Global Training Academy. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map(item => (
-              <a key={item} href="#" className="text-green-300 hover:text-white text-sm transition-colors">{item}</a>
+            {[
+              { name: 'Privacy Policy', href: '/privacy-policy' },
+              { name: 'GDPR', href: '/gdpr' }
+            ].map(item => (
+              <Link key={item.name} href={item.href} className="text-green-300 hover:text-white text-sm transition-colors">
+                {item.name}
+              </Link>
             ))}
           </div>
         </div>

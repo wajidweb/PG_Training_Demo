@@ -1,115 +1,176 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Building2, TrendingUp } from 'lucide-react'
-import { TrainingPath } from '@/types'
+import { ArrowRight, BookOpen, Building2, TrendingUp, Monitor, Users, Clock, CheckCircle2 } from 'lucide-react'
+import { TrainingPath, Course } from '@/types'
+import { formatPrice } from '@/lib/pricing'
 
 const pathConfig = {
   academic: {
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-    badge: 'bg-green-100 text-green-800',
-    btn: 'bg-green-700 hover:bg-green-800',
     accent: '#1D5C3A',
+    light: '#EBF5F0',
     icon: BookOpen,
+    label: 'Academic Excellence'
   },
   administrative: {
-    bg: 'bg-teal-50',
-    border: 'border-teal-200',
-    badge: 'bg-teal-100 text-teal-800',
-    btn: 'bg-teal-700 hover:bg-teal-800',
     accent: '#1A5050',
+    light: '#EBF2F2',
     icon: Building2,
+    label: 'Administrative Excellence'
   },
   leadership: {
-    bg: 'bg-orange-50',
-    border: 'border-orange-200',
-    badge: 'bg-orange-100 text-orange-800',
-    btn: 'bg-orange-700 hover:bg-orange-800',
     accent: '#7A3A1A',
+    light: '#F5EEEB',
     icon: TrendingUp,
+    label: 'Leadership & Strategy'
   },
 }
 
-export default function TrainingPaths({ paths }: { paths: TrainingPath[] }) {
+function CourseCard({ course, pathId }: { course: Course; pathId: string }) {
+  const config = pathConfig[pathId as keyof typeof pathConfig]
+  
   return (
-    <section id="courses" className="py-16 sm:py-20 bg-white">
+    <div className="group bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden">
+      {/* Card Header: Path Indicator */}
+      <div className="px-6 pt-6 pb-2">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4" 
+             style={{ backgroundColor: config.light, color: config.accent }}>
+          <config.icon className="w-3 h-3" />
+          {config.label}
+        </div>
+        <h3 className="text-xl font-bold text-gray-900 group-hover:text-black transition-colors leading-tight min-h-[3.5rem]">
+          {course.title}
+        </h3>
+      </div>
+
+      {/* Card Body */}
+      <div className="px-6 py-2 flex-1">
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6">
+          {course.shortDescription}
+        </p>
+        
+        {/* Features / Icons */}
+        <div className="flex flex-wrap gap-4 mb-6">
+          <div className="flex items-center gap-1.5 text-gray-500">
+            <Monitor className="w-4 h-4" />
+            <span className="text-xs font-medium">Online</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-gray-500">
+            <Users className="w-4 h-4" />
+            <span className="text-xs font-medium">Group</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-gray-500">
+            <Clock className="w-4 h-4" />
+            <span className="text-xs font-medium">Flexible</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Footer */}
+      <div className="px-6 pb-8 pt-4 border-t border-gray-50">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Starting from</p>
+            <p className="text-2xl font-black text-gray-900">{formatPrice(course.pricing.basePrice)}</p>
+          </div>
+          <Link 
+            href={`/courses/${course.slug}`}
+            className="flex items-center justify-center w-12 h-12 rounded-2xl transition-all group-hover:scale-110 shadow-md"
+            style={{ backgroundColor: config.accent }}
+          >
+            <ArrowRight className="w-6 h-6 text-white" />
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function TrainingPaths({ paths }: { paths: TrainingPath[] }) {
+  const [activePath, setActivePath] = useState<'all' | string>('all')
+  
+  const filteredPaths = activePath === 'all' 
+    ? paths 
+    : paths.filter(p => p.id === activePath)
+
+  return (
+    <section id="courses" className="py-20 sm:py-28 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-            Choose Your Path
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1D5C3A' }}>
-            Three Paths to Professional Excellence
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+            Explore Our <span style={{ color: '#1D5C3A' }}>Full Curriculum</span>
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            Whether you are an educator, administrator, or aspiring leader, PG Training has a structured path designed for your career stage and goals.
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Choose from 22 world-class professional development programmes designed specifically for the Higher Education sector.
           </p>
         </div>
 
-        {/* Paths grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {paths.map(path => {
-            const config = pathConfig[path.id as keyof typeof pathConfig]
-            const featured = path.courses.slice(0, 3)
-            const Icon = config?.icon ?? BookOpen
-
-            return (
-              <div
-                key={path.id}
-                id={`path-${path.id}`}
-                className={`rounded-2xl border-2 ${config?.bg} ${config?.border} p-6 sm:p-8 flex flex-col hover:shadow-xl transition-shadow`}
-              >
-                {/* Icon + title */}
-                <div className="mb-6">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: config?.accent + '18' }}
-                  >
-                    <Icon className="w-7 h-7" style={{ color: config?.accent }} />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{path.title}</h3>
-                  <p className="text-sm font-semibold" style={{ color: config?.accent }}>{path.subtitle}</p>
-                </div>
-
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">{path.description}</p>
-
-                {/* Sample courses */}
-                <div className="space-y-2 mb-6 flex-1">
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Featured Courses</p>
-                  {featured.map(course => (
-                    <Link
-                      key={course.id}
-                      href={`/courses/${course.slug}`}
-                      className={`flex items-center justify-between px-3 py-2 rounded-lg ${config?.badge} text-xs font-medium hover:opacity-80 transition-opacity`}
-                    >
-                      <span className="line-clamp-1">{course.title}</span>
-                      <ArrowRight className="w-3 h-3 flex-shrink-0 ml-2" />
-                    </Link>
-                  ))}
-                  {path.courses.length > 3 && (
-                    <p className="text-xs text-gray-400 px-3">+{path.courses.length - 3} more courses</p>
-                  )}
-                </div>
-
-                {/* Price from */}
-                <div className="border-t border-gray-200 pt-4 mb-4">
-                  <p className="text-xs text-gray-500">Starting from</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    ${Math.min(...path.courses.map(c => c.pricing.basePrice)).toLocaleString()}
-                    <span className="text-sm font-normal text-gray-500"> /person</span>
-                  </p>
-                </div>
-
-                <Link
-                  href={`/courses/${path.courses[0].slug}`}
-                  className={`${config?.btn} text-white text-center py-3 rounded-xl font-semibold text-sm transition-colors`}
-                >
-                  Explore {path.title}
-                </Link>
-              </div>
-            )
-          })}
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          <button
+            onClick={() => setActivePath('all')}
+            className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all ${activePath === 'all' ? 'bg-gray-900 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}`}
+          >
+            All Courses
+          </button>
+          {paths.map(path => (
+            <button
+              key={path.id}
+              onClick={() => setActivePath(path.id)}
+              className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all border ${
+                activePath === path.id 
+                  ? 'text-white shadow-lg' 
+                  : 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200'
+              }`}
+              style={{ 
+                backgroundColor: activePath === path.id ? pathConfig[path.id as keyof typeof pathConfig].accent : '',
+                borderColor: activePath === path.id ? pathConfig[path.id as keyof typeof pathConfig].accent : ''
+              }}
+            >
+              {path.title}
+            </button>
+          ))}
         </div>
+
+        {/* Courses Display */}
+        <div className="space-y-20">
+          {filteredPaths.map(path => (
+            <div key={path.id} id={`path-${path.id}`} className="scroll-mt-24">
+              {/* Path Header (only shown in 'all' view) */}
+              {activePath === 'all' && (
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: pathConfig[path.id as keyof typeof pathConfig].accent + '20' }}>
+                    {(() => {
+                      const Icon = pathConfig[path.id as keyof typeof pathConfig].icon
+                      return <Icon className="w-6 h-6" style={{ color: pathConfig[path.id as keyof typeof pathConfig].accent }} />
+                    })()}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">{path.title}</h3>
+                    <p className="text-sm text-gray-500 font-medium">{path.subtitle}</p>
+                  </div>
+                  <div className="flex-1 h-[1px] bg-gray-200 ml-4 hidden sm:block"></div>
+                </div>
+              )}
+
+              {/* Grid of Course Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {path.courses.map(course => (
+                  <CourseCard key={course.id} course={course} pathId={path.id} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {filteredPaths.length === 0 && (
+          <div className="text-center py-20 bg-white rounded-3xl border-2 border-dashed border-gray-200">
+            <p className="text-gray-500 font-medium">No courses found in this category.</p>
+          </div>
+        )}
       </div>
     </section>
   )

@@ -55,7 +55,7 @@ export default function CourseDescription({ course }: { course: Course }) {
             <div className="rounded-2xl p-5 sm:p-6 border-2" style={{ borderColor: '#D4890A', backgroundColor: '#FFFBF0' }}>
               <div className="text-sm text-gray-500 mb-1">Starting from</div>
               <div className="text-3xl sm:text-4xl font-bold mb-1" style={{ color: '#1D5C3A' }}>
-                ${course.pricing.basePrice.toLocaleString()}
+                €{course.pricing.basePrice.toLocaleString()}
               </div>
               <div className="text-sm text-gray-500 mb-4">per person (online)</div>
               <a

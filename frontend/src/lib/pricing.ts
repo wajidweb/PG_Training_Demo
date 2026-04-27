@@ -47,7 +47,7 @@ export function calculatePrice(
 }
 
 export function formatPrice(amount: number): string {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+  return new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(amount)
 }
 
 export function getVolumeDiscountLabel(discounts: VolumeDiscount[], qty: number): string {

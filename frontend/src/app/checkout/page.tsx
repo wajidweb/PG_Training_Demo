@@ -244,7 +244,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>Tax (0% — educational)</span>
-                  <span>$0.00</span>
+                  <span>€0.00</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>

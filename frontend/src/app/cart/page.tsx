@@ -169,7 +169,7 @@ export default function CartPage() {
               <div className="border-t pt-4 mb-6 space-y-2">
                 <div className="flex justify-between text-sm text-gray-500">
                   <span>Tax (0% — educational)</span>
-                  <span>$0.00</span>
+                  <span>€0.00</span>
                 </div>
                 <div className="flex justify-between font-bold text-xl">
                   <span>Total</span>

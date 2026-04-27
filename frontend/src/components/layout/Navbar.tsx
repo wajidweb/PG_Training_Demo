@@ -22,14 +22,12 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#1D5C3A' }}>
-              <GraduationCap className="w-5 h-5 text-white" />
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-bold text-lg leading-tight" style={{ color: '#1D5C3A' }}>PG Training</div>
-              <div className="text-xs text-gray-500 leading-tight">Higher Education Excellence</div>
-            </div>
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <img 
+              src="/logo.jpg" 
+              alt="Paragon Global Training Academy" 
+              className="h-14 w-auto object-contain" 
+            />
           </Link>
 
           {/* Desktop Nav */}

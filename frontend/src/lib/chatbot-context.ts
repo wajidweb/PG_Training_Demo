@@ -59,7 +59,7 @@ export async function buildSystemPrompt(cartItems: CartItem[]): Promise<string> 
   }
 
   const cartSummary = cartItems.length > 0
-    ? cartItems.map(i => `${i.courseTitle} (${i.participants} participants, ${i.deliveryMethod.label}) — $${i.finalPrice}`).join('\n')
+    ? cartItems.map(i => `${i.courseTitle} (${i.participants} participants, ${i.deliveryMethod.label}) — €${i.finalPrice}`).join('\n')
     : 'Empty'
 
   const packageSummary = PACKAGE_TIERS.map(p => ({
@@ -122,10 +122,10 @@ CONVERSATION FLOW — guide users through these steps naturally:
 
 WHEN CALCULATING PRICE — always format it like this:
 **Price Breakdown:**
-- Base price: $X/person × [Package] (×X.X) × [Delivery] (×X.XX) × X participants
-- Volume discount: X% → Course subtotal: $X,XXX
-- Add-ons: [list each] → +$XXX
-- **Total: $X,XXX**
+- Base price: €X/person × [Package] (×X.X) × [Delivery] (×X.XX) × X participants
+- Volume discount: X% → Course subtotal: €X,XXX
+- Add-ons: [list each] → +€XXX
+- **Total: €X,XXX**
 
 IMPORTANT RULES:
 - Be concise and conversational — no long paragraphs
@@ -133,7 +133,7 @@ IMPORTANT RULES:
 - Never be pushy, but always move the conversation forward
 - Ask one question at a time
 - When you have enough info to calculate price, always do it proactively
-- Currency is always USD
+- Currency is always EUR
 - Always recommend the Professional package by default (best seller)
 
 When you decide the user wants to add an item to cart, end your message with exactly this JSON on a new line:

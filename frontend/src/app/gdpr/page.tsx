@@ -11,7 +11,7 @@ export default function GDPRPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Hero Header */}
-      <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#1D5C3A' }}>
+      <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#223292' }}>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium mb-6">
@@ -31,7 +31,7 @@ export default function GDPRPage() {
           
           <div className="border-b border-gray-100 bg-gray-50/50 px-6 sm:px-12 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <p className="text-gray-500 font-medium text-sm">Last Updated: <span className="text-gray-900">April 2026</span></p>
-            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-green-700 transition-colors" style={{ color: '#1D5C3A' }}>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-green-700 transition-colors" style={{ color: '#223292' }}>
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </Link>
           </div>
@@ -57,19 +57,19 @@ export default function GDPRPage() {
                 <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4">We process your personal data under the following lawful bases:</p>
                 <ul className="list-none space-y-4">
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Consent:</strong> You have given clear consent for us to process your personal data for a specific purpose (e.g., subscribing to our newsletter).</span>
                   </li>
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Contract:</strong> The processing is necessary for a contract we have with you (e.g., fulfilling a course enrolment).</span>
                   </li>
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Legal Obligation:</strong> The processing is necessary for us to comply with the law.</span>
                   </li>
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Legitimate Interests:</strong> The processing is necessary for our legitimate interests or the legitimate interests of a third party, unless there is a good reason to protect your personal data which overrides those legitimate interests.</span>
                   </li>
                 </ul>
@@ -112,7 +112,7 @@ export default function GDPRPage() {
                   <p className="text-xl font-bold text-gray-900 mb-2">Data Protection Officer</p>
                   <div className="text-gray-600 space-y-1 mb-6">
                     <p>Paragon Global Training Academy</p>
-                    <p>Email: <a href="mailto:dpo@pgtraining.edu" className="font-semibold hover:underline" style={{ color: '#1D5C3A' }}>dpo@pgtraining.edu</a></p>
+                    <p>Email: <a href="mailto:dpo@pgtraining.edu" className="font-semibold hover:underline" style={{ color: '#223292' }}>dpo@pgtraining.edu</a></p>
                     <p>Phone: +356 2000 0001</p>
                   </div>
                   <div className="bg-white p-4 rounded-xl border border-gray-200">

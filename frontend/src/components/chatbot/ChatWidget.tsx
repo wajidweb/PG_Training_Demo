@@ -68,9 +68,6 @@ export default function ChatWidget() {
               .map(a => ({
                 id: a.id,
                 name: a.name,
-                unitPrice: a.unitPrice,
-                priceType: a.priceType,
-                totalPrice: a.priceType === 'per_person' ? a.unitPrice * participants : a.unitPrice,
               }))
             const breakdown = calculatePrice(course, deliveryMethod, participants, action.offerDiscount ?? 0, packageTier, selectedAddOns)
             addItem({
@@ -130,7 +127,7 @@ export default function ChatWidget() {
         id="chatbot-trigger"
         onClick={() => setOpen(true)}
         className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl text-white font-semibold shadow-2xl transition-all hover:scale-105 ${open ? 'hidden' : 'flex'}`}
-        style={{ backgroundColor: '#1D5C3A' }}
+        style={{ backgroundColor: '#223292' }}
       >
         <MessageCircle className="w-5 h-5" />
         <span className="text-sm">Chat to Order</span>
@@ -146,7 +143,7 @@ export default function ChatWidget() {
         <div className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:max-w-sm chat-slide-up">
           <div className="bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden" style={{ height: '100dvh', maxHeight: '580px' }}>
             {/* Header */}
-            <div className="flex items-center justify-between p-4 text-white flex-shrink-0" style={{ backgroundColor: '#1D5C3A' }}>
+            <div className="flex items-center justify-between p-4 text-white flex-shrink-0" style={{ backgroundColor: '#223292' }}>
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-amber-400 rounded-full flex items-center justify-center text-gray-900 font-bold text-sm flex-shrink-0">A</div>
                 <div>
@@ -185,7 +182,7 @@ export default function ChatWidget() {
                         ? 'text-white rounded-br-sm'
                         : 'bg-gray-100 text-gray-800 rounded-bl-sm'
                     }`}
-                    style={msg.role === 'user' ? { backgroundColor: '#1D5C3A' } : {}}
+                    style={msg.role === 'user' ? { backgroundColor: '#223292' } : {}}
                   >
                     {msg.role === 'assistant' ? (
                       <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1">
@@ -241,7 +238,7 @@ export default function ChatWidget() {
                   onClick={() => sendMessage()}
                   disabled={!input.trim() || loading}
                   className="p-2.5 rounded-xl text-white transition-colors disabled:opacity-50"
-                  style={{ backgroundColor: '#1D5C3A' }}
+                  style={{ backgroundColor: '#223292' }}
                 >
                   <Send className="w-4 h-4" />
                 </button>

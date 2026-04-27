@@ -16,7 +16,7 @@ const slideConfig = [
     pathIndex: 0, 
     tagline: 'Mastering Excellence in Modern Teaching and Research', 
     subtext: 'Equip yourself with advanced pedagogical skills, research writing mastery, and digital literacy to excel in higher education.', 
-    gradient: 'from-[#1D5C3A] to-[#2D7A52]',
+    gradient: 'from-[#223292] to-[#2D7A52]',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000'
   },
   { 
@@ -83,8 +83,8 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
             <div className="flex flex-col sm:flex-row gap-4 mb-14">
               <Link
                 href={`/#path-${path.id}`}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg transition-all hover:scale-105 shadow-xl hover:shadow-[#D4890A]/20"
-                style={{ backgroundColor: '#D4890A', color: '#0F1F12' }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg transition-all hover:scale-105 shadow-xl hover:shadow-[#F2D03B]/20"
+                style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
               >
                 Explore {path.title} <ArrowRight className="w-5 h-5" />
               </Link>
@@ -132,7 +132,7 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
             </div>
             
             {/* Background elements for depth */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#D4890A]/20 blur-2xl rounded-full" />
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#F2D03B]/20 blur-2xl rounded-full" />
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 blur-2xl rounded-full" />
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
             key={i}
             onClick={() => setCurrent(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all ${i === current ? 'w-8 h-3 bg-[#D4890A]' : 'w-3 h-3 bg-white/40'}`}
+            className={`rounded-full transition-all ${i === current ? 'w-8 h-3 bg-[#F2D03B]' : 'w-3 h-3 bg-white/40'}`}
           />
         ))}
       </div>

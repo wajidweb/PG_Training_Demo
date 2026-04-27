@@ -22,7 +22,7 @@ const addonIcons: Record<string, React.ElementType> = {
 }
 
 const pathColors: Record<string, string> = {
-  academic: '#1D5C3A',
+  academic: '#223292',
   administrative: '#1A5050',
   leadership: '#7A3A1A',
 }
@@ -35,7 +35,7 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
   const [added, setAdded] = useState(false)
   const { addItem } = useCartStore()
 
-  const accent = pathColors[course.pathId] ?? '#1D5C3A'
+  const accent = pathColors[course.pathId] ?? '#223292'
 
   const toggleAddOn = (id: string) =>
     setSelectedAddOns(prev => {
@@ -50,11 +50,8 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
       .map(a => ({
         id: a.id,
         name: a.name,
-        unitPrice: a.unitPrice,
-        priceType: a.priceType,
-        totalPrice: a.priceType === 'per_person' ? a.unitPrice * participants : a.unitPrice,
       })),
-    [selectedAddOns, participants]
+    [selectedAddOns]
   )
 
   const breakdown = useMemo(
@@ -82,7 +79,7 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
 
   const stepLabel = (n: number) => (
     <span
-      className="w-7 h-7 rounded-full text-white text-sm flex items-center justify-center font-bold flex-shrink-0"
+      className="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0"
       style={{ backgroundColor: accent }}
     >
       {n}
@@ -90,247 +87,187 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
   )
 
   return (
-    <section id="packages" className="py-14 sm:py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
-            Enrol Now
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Build Your Package</h2>
-          <p className="text-gray-500 mt-2 text-sm sm:text-base max-w-xl mx-auto">
-            Choose delivery, participants, and package tier. Add optional extras — the price updates live.
-          </p>
-        </div>
+    <div className="bg-white rounded-3xl p-5 sm:p-7 shadow-xl shadow-gray-200/50 border border-gray-100 lg:sticky lg:top-24 flex flex-col gap-6">
+      <div className="text-center">
+        <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-2">
+          Enrol Now
+        </span>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Build Your Package</h2>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* ── Left: 4 configuration steps ── */}
-          <div className="lg:col-span-2 space-y-6">
-
-            {/* Step 1 – Delivery */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
-              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                {stepLabel(1)} Delivery Method
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {course.deliveryMethods.map(d => {
-                  const active = delivery.type === d.type
-                  return (
-                    <button
-                      key={d.type}
-                      onClick={() => setDelivery(d)}
-                      className={`p-4 rounded-xl border-2 text-left transition-all ${active ? 'border-green-500 bg-green-50 shadow-sm' : 'border-gray-200 hover:border-gray-300'}`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        {d.type === 'onsite'
-                          ? <MapPin className="w-4 h-4" style={{ color: accent }} />
-                          : <Monitor className="w-4 h-4" style={{ color: accent }} />}
-                        <span className="font-semibold text-sm text-gray-900">{d.label}</span>
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {d.multiplier === 1 ? 'Standard rate' : d.multiplier < 1 ? `${Math.round((1 - d.multiplier) * 100)}% cheaper` : `+${Math.round((d.multiplier - 1) * 100)}% premium`}
-                      </div>
-                      {active && <Check className="w-4 h-4 text-green-500 mt-2" />}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Step 2 – Participants */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
-              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                {stepLabel(2)} Number of Participants
-              </h3>
-              <div className="flex items-center gap-5">
-                <button
-                  onClick={() => setParticipants(p => Math.max(1, p - 1))}
-                  className="w-11 h-11 rounded-xl border-2 border-gray-200 flex items-center justify-center hover:border-gray-400 transition-colors"
-                >
-                  <Minus className="w-4 h-4 text-gray-600" />
-                </button>
-                <div className="text-4xl font-bold text-gray-900 w-14 text-center">{participants}</div>
-                <button
-                  onClick={() => setParticipants(p => Math.min(course.pricing.maxParticipants, p + 1))}
-                  className="w-11 h-11 rounded-xl border-2 border-gray-200 flex items-center justify-center hover:border-gray-400 transition-colors"
-                >
-                  <Plus className="w-4 h-4 text-gray-600" />
-                </button>
-                <div className="text-sm text-gray-500">
-                  <span className="flex items-center gap-1"><Users className="w-4 h-4" /> Max {course.pricing.maxParticipants}</span>
-                  {breakdown.volumeDiscount > 0 && (
-                    <span className="text-green-600 font-semibold block mt-0.5">{breakdown.volumeDiscount}% volume discount!</span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Step 3 – Package tier */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
-              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                {stepLabel(3)} Choose Package
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {PACKAGE_TIERS.map(tier => {
-                  const tierTotal = Math.round(
-                    course.pricing.basePrice * tier.multiplier * delivery.multiplier * participants *
-                    (1 - (breakdown.volumeDiscount / 100)) * 100
-                  ) / 100
-                  const active = packageTier.id === tier.id
-                  return (
-                    <button
-                      key={tier.id}
-                      onClick={() => setPackageTier(tier)}
-                      className={`p-5 rounded-xl border-2 text-left transition-all relative ${active ? 'border-green-500 bg-green-50 shadow-md' : 'border-gray-200 hover:border-gray-300'}`}
-                    >
-                      {tier.badge && (
-                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-xs font-bold px-3 py-0.5 rounded-full whitespace-nowrap">
-                          {tier.badge}
-                        </span>
-                      )}
-                      <div className="font-bold text-gray-900 mb-0.5">{tier.name}</div>
-                      <div className="text-base font-bold mb-3" style={{ color: accent }}>{formatPrice(tierTotal)}</div>
-                      <ul className="space-y-1.5">
-                        {tier.features.map(f => (
-                          <li key={f} className="flex items-start gap-1.5 text-xs text-gray-600">
-                            <Check className="w-3.5 h-3.5 text-green-500 mt-0.5 flex-shrink-0" />
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                      {active && <div className="mt-3 text-xs font-bold text-green-600">✓ Selected</div>}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* Step 4 – Add-ons */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
-              <h3 className="font-bold text-gray-900 mb-1 flex items-center gap-2">
-                {stepLabel(4)} Optional Add-ons
-              </h3>
-              <p className="text-sm text-gray-500 mb-4 ml-9">Enhance your experience — price adds automatically</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {ADD_ONS.map(addon => {
-                  const active = selectedAddOns.has(addon.id)
-                  const price = addon.priceType === 'per_person' ? addon.unitPrice * participants : addon.unitPrice
-                  const Icon = addonIcons[addon.id] ?? BookOpen
-                  return (
-                    <button
-                      key={addon.id}
-                      onClick={() => toggleAddOn(addon.id)}
-                      className={`p-4 rounded-xl border-2 text-left transition-all ${active ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'}`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${active ? 'bg-green-100' : 'bg-gray-100'}`}>
-                          <Icon className="w-4 h-4" style={{ color: active ? '#1D5C3A' : '#9CA3AF' }} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-sm text-gray-900 mb-0.5">{addon.name}</div>
-                          <div className="text-xs text-gray-500 mb-2 leading-relaxed">{addon.description}</div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-bold" style={{ color: accent }}>+{formatPrice(price)}</span>
-                            <span className="text-xs text-gray-400">
-                              {addon.priceType === 'per_person' ? `(${formatPrice(addon.unitPrice)}/person)` : '(flat fee)'}
-                            </span>
-                          </div>
-                        </div>
-                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${active ? 'bg-green-500 border-green-500' : 'border-gray-300'}`}>
-                          {active && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                      </div>
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* ── Right: Sticky order summary ── */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-sm p-6 lg:sticky lg:top-24 border border-gray-100">
-              <h3 className="font-bold text-gray-900 mb-5">Order Summary</h3>
-
-              <div className="space-y-2.5 text-sm">
-                <div className="flex justify-between text-gray-600">
-                  <span>Base price / person</span>
-                  <span>{formatPrice(breakdown.basePrice)}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>Package ({breakdown.packageName})</span>
-                  <span>×{breakdown.packageMultiplier.toFixed(1)}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>Delivery</span>
-                  <span>×{breakdown.deliveryMultiplier.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>Participants</span>
-                  <span>×{breakdown.participants}</span>
-                </div>
-                {breakdown.volumeDiscount > 0 && (
-                  <div className="flex justify-between text-green-600 font-semibold">
-                    <span>Volume discount</span>
-                    <span>−{breakdown.volumeDiscount}%</span>
-                  </div>
-                )}
-
-                <div className="border-t pt-2.5 flex justify-between font-semibold text-gray-900">
-                  <span>Course subtotal</span>
-                  <span>{formatPrice(breakdown.courseSubtotal)}</span>
-                </div>
-
-                {cartAddOns.length > 0 && (
-                  <>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide pt-1">Add-ons</div>
-                    {cartAddOns.map(a => (
-                      <div key={a.id} className="flex justify-between text-gray-600">
-                        <span className="truncate pr-2 flex-1">{a.name}</span>
-                        <span className="flex-shrink-0">+{formatPrice(a.totalPrice)}</span>
-                      </div>
-                    ))}
-                    <div className="border-t pt-2.5 flex justify-between font-semibold text-gray-900">
-                      <span>Add-ons</span>
-                      <span>+{formatPrice(breakdown.addOnsTotal)}</span>
-                    </div>
-                  </>
-                )}
-
-                <div className="border-t-2 border-gray-200 pt-3 flex justify-between font-bold text-xl">
-                  <span>Total</span>
-                  <span style={{ color: accent }}>{formatPrice(breakdown.total)}</span>
-                </div>
-              </div>
-
+      {/* Step 1 – Delivery */}
+      <div>
+        <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm">
+          {stepLabel(1)} Delivery Method
+        </h3>
+        <div className="flex flex-col gap-2">
+          {course.deliveryMethods.map(d => {
+            const active = delivery.type === d.type
+            return (
               <button
-                onClick={handleAddToCart}
-                className="w-full mt-6 py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all hover:scale-[1.02] shadow-lg active:scale-100"
-                style={{ backgroundColor: added ? '#1D5C3A' : '#D4890A', color: added ? '#fff' : '#0F1F12' }}
+                key={d.type}
+                onClick={() => setDelivery(d)}
+                className={`p-3 rounded-xl border-2 text-left transition-all flex items-center justify-between ${active ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'}`}
               >
-                {added ? (
-                  <><Check className="w-5 h-5" /> Added to Cart!</>
-                ) : (
-                  <><ShoppingCart className="w-5 h-5" /> Add to Cart — {formatPrice(breakdown.total)}</>
-                )}
+                <div className="flex items-center gap-2">
+                  {d.type === 'onsite'
+                    ? <MapPin className="w-4 h-4" style={{ color: accent }} />
+                    : <Monitor className="w-4 h-4" style={{ color: accent }} />}
+                  <div>
+                    <div className="font-semibold text-sm text-gray-900 leading-none">{d.label}</div>
+                    <div className="text-[10px] text-gray-500 mt-1">
+                      {d.multiplier === 1 ? 'Standard rate' : d.multiplier < 1 ? `${Math.round((1 - d.multiplier) * 100)}% cheaper` : `+${Math.round((d.multiplier - 1) * 100)}% premium`}
+                    </div>
+                  </div>
+                </div>
+                <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${active ? 'border-green-500 bg-green-500' : 'border-gray-300'}`}>
+                   {active && <Check className="w-2.5 h-2.5 text-white" />}
+                </div>
               </button>
-
-              {added && (
-                <Link
-                  href="/cart"
-                  className="mt-3 flex items-center justify-center gap-1 w-full py-3 rounded-xl font-semibold text-sm text-white transition-colors"
-                  style={{ backgroundColor: '#1D5C3A' }}
-                >
-                  View Cart & Checkout →
-                </Link>
-              )}
-
-              <p className="mt-3 text-center text-xs text-gray-400">
-                30-day satisfaction guarantee · No real charge (demo)
-              </p>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </div>
-    </section>
+
+      {/* Step 2 – Participants */}
+      <div>
+        <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm">
+          {stepLabel(2)} Participants
+        </h3>
+        <div className="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
+          <button
+            onClick={() => setParticipants(p => Math.max(1, p - 1))}
+            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white"
+          >
+            <Minus className="w-4 h-4 text-gray-600" />
+          </button>
+          <div className="text-2xl font-bold text-gray-900 flex-1 text-center">{participants}</div>
+          <button
+            onClick={() => setParticipants(p => Math.min(course.pricing.maxParticipants, p + 1))}
+            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white"
+          >
+            <Plus className="w-4 h-4 text-gray-600" />
+          </button>
+        </div>
+        <div className="text-[11px] text-gray-500 mt-2 flex justify-between px-1">
+          <span>Max {course.pricing.maxParticipants} allowed</span>
+          {breakdown.volumeDiscount > 0 && (
+            <span className="text-green-600 font-bold">{breakdown.volumeDiscount}% discount active!</span>
+          )}
+        </div>
+      </div>
+
+      {/* Step 3 – Package tier */}
+      <div>
+        <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm">
+          {stepLabel(3)} Choose Package
+        </h3>
+        <div className="flex flex-col gap-3">
+          {PACKAGE_TIERS.map(tier => {
+            const active = packageTier.id === tier.id
+            return (
+              <button
+                key={tier.id}
+                onClick={() => setPackageTier(tier)}
+                className={`p-4 rounded-xl border-2 text-left transition-all relative flex gap-3 ${active ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'}`}
+              >
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${active ? 'border-green-500 bg-green-500' : 'border-gray-300'}`}>
+                  {active && <Check className="w-3 h-3 text-white" />}
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-gray-900 text-sm mb-1">{tier.name}</div>
+                  <div className="text-xs text-gray-500 mb-2 leading-relaxed">{tier.description}</div>
+                  <ul className="space-y-1">
+                    {tier.features.slice(0, 3).map(f => (
+                      <li key={f} className="flex items-start gap-1.5 text-[11px] text-gray-600">
+                        <Check className="w-3 h-3 text-green-500 flex-shrink-0" />
+                        <span className="line-clamp-1">{f}</span>
+                      </li>
+                    ))}
+                    {tier.features.length > 3 && (
+                      <li className="text-[10px] text-gray-400 pl-4.5">+{tier.features.length - 3} more features</li>
+                    )}
+                  </ul>
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Step 4 – Add-ons */}
+      <div>
+        <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm">
+          {stepLabel(4)} Add-ons <span className="text-[10px] font-normal text-gray-400">(Free)</span>
+        </h3>
+        <div className="flex flex-col gap-2">
+          {ADD_ONS.slice(0, 3).map(addon => {
+            const active = selectedAddOns.has(addon.id)
+            const Icon = addonIcons[addon.id] ?? BookOpen
+            return (
+              <button
+                key={addon.id}
+                onClick={() => toggleAddOn(addon.id)}
+                className={`p-3 rounded-xl border-2 text-left transition-all flex items-start gap-3 ${active ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-gray-300'}`}
+              >
+                <div className={`w-7 h-7 rounded flex items-center justify-center flex-shrink-0 mt-0.5 ${active ? 'bg-green-100' : 'bg-gray-100'}`}>
+                  <Icon className="w-3.5 h-3.5" style={{ color: active ? accent : '#9CA3AF' }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-xs text-gray-900 leading-tight mb-0.5 truncate">{addon.name}</div>
+                  <div className="text-[10px] text-gray-500 line-clamp-1">{addon.description}</div>
+                </div>
+                <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 mt-1 ${active ? 'bg-green-500 border-green-500' : 'border-gray-300'}`}>
+                  {active && <Check className="w-2.5 h-2.5 text-white" />}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Order Summary */}
+      <div className="border-t border-gray-200 pt-5">
+        <div className="space-y-2 text-sm mb-4">
+          <div className="flex justify-between text-gray-600">
+            <span>Course Subtotal</span>
+            <span>{formatPrice(breakdown.courseSubtotal)}</span>
+          </div>
+          {cartAddOns.length > 0 && (
+            <div className="flex justify-between text-gray-600">
+              <span>{cartAddOns.length} Add-ons</span>
+              <span className="text-green-600 font-bold">FREE</span>
+            </div>
+          )}
+        </div>
+        
+        <div className="flex justify-between items-end mb-4">
+          <span className="text-sm font-bold text-gray-900">Total</span>
+          <span className="text-3xl font-black" style={{ color: accent }}>{formatPrice(breakdown.total)}</span>
+        </div>
+
+        <button
+          onClick={handleAddToCart}
+          className="w-full py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all hover:scale-[1.02] shadow-md active:scale-100"
+          style={{ backgroundColor: added ? accent : '#F2D03B', color: added ? '#fff' : '#0F1F12' }}
+        >
+          {added ? (
+            <><Check className="w-5 h-5" /> Added to Cart!</>
+          ) : (
+            <><ShoppingCart className="w-5 h-5" /> Add to Cart</>
+          )}
+        </button>
+
+        {added && (
+          <Link
+            href="/cart"
+            className="mt-3 flex items-center justify-center w-full py-3 rounded-xl font-bold text-sm text-white transition-colors"
+            style={{ backgroundColor: accent }}
+          >
+            Checkout Now →
+          </Link>
+        )}
+      </div>
+    </div>
   )
 }

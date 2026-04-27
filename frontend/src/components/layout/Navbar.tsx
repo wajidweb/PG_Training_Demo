@@ -36,15 +36,15 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
               <a
                 key={path.id}
                 href={`/#path-${path.id}`}
-                className="text-sm font-medium text-gray-600 hover:text-[#1D5C3A] transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-[#223292] transition-colors"
               >
                 {path.title}
               </a>
             ))}
-            <a href="/#offers" className="text-sm font-medium text-gray-600 hover:text-[#1D5C3A] transition-colors">
+            <a href="/#offers" className="text-sm font-medium text-gray-600 hover:text-[#223292] transition-colors">
               Offers
             </a>
-            <a href="/#about" className="text-sm font-medium text-gray-600 hover:text-[#1D5C3A] transition-colors">
+            <a href="/#about" className="text-sm font-medium text-gray-600 hover:text-[#223292] transition-colors">
               About
             </a>
           </div>
@@ -58,7 +58,7 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
             >
               <ShoppingCart className="w-5 h-5 text-gray-700" />
               {count > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold" style={{ backgroundColor: '#D4890A' }}>
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold" style={{ backgroundColor: '#F2D03B' }}>
                   {count > 99 ? '99+' : count}
                 </span>
               )}
@@ -67,7 +67,7 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
             <Link
               href="/#courses"
               className="hidden sm:inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white transition-colors"
-              style={{ backgroundColor: '#1D5C3A' }}
+              style={{ backgroundColor: '#223292' }}
             >
               Browse Courses
             </Link>
@@ -106,7 +106,7 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
             <Link
               href="/#courses"
               className="flex items-center justify-center py-2.5 px-4 rounded-lg text-sm font-semibold text-white w-full"
-              style={{ backgroundColor: '#1D5C3A' }}
+              style={{ backgroundColor: '#223292' }}
               onClick={() => setMenuOpen(false)}
             >
               Browse Courses

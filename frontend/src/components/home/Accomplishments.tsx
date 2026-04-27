@@ -41,7 +41,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
 export default function Accomplishments() {
   return (
-    <section id="about" className="py-16 sm:py-20" style={{ backgroundColor: '#1D5C3A' }}>
+    <section id="about" className="py-16 sm:py-20" style={{ backgroundColor: '#223292' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block bg-amber-400/20 text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
@@ -50,7 +50,7 @@ export default function Accomplishments() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Trusted by Higher Education Leaders Worldwide
           </h2>
-          <p className="text-green-200 text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-blue-200 text-base sm:text-lg max-w-2xl mx-auto">
             For over two decades, PG Training has been the partner of choice for institutions committed to staff excellence and institutional success.
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Accomplishments() {
                   <Counter target={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-white font-semibold mb-1 text-sm sm:text-base">{stat.label}</div>
-                <div className="text-green-300 text-xs sm:text-sm">{stat.description}</div>
+                <div className="text-blue-300 text-xs sm:text-sm">{stat.description}</div>
               </div>
             )
           })}

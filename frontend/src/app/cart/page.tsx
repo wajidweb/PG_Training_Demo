@@ -64,8 +64,7 @@ export default function CartPage() {
           {/* ── Cart items ── */}
           <div className="lg:col-span-2 space-y-5">
             {items.map(item => {
-              const addonTotal = item.addOns?.reduce((s, a) => s + a.totalPrice, 0) ?? 0
-              const coursePrice = item.finalPrice - addonTotal
+              const coursePrice = item.finalPrice
               return (
                 <div key={item.cartId} className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
 
@@ -128,11 +127,9 @@ export default function CartPage() {
                       <div key={addon.id} className="flex justify-between text-sm text-gray-600">
                         <span className="flex items-center gap-1.5">
                           <Plus className="w-3 h-3 text-gray-400" />{addon.name}
-                          <span className="text-xs text-gray-400">
-                            ({addon.priceType === 'per_person' ? `${item.participants}×${formatPrice(addon.unitPrice)}` : 'flat'})
-                          </span>
+                          <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full ml-1">FREE</span>
                         </span>
-                        <span>+{formatPrice(addon.totalPrice)}</span>
+                        <span></span>
                       </div>
                     ))}
                     <div className="flex justify-between font-bold text-base pt-2 border-t">

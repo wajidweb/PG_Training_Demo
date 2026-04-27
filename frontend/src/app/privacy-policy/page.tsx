@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Hero Header */}
-      <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#1D5C3A' }}>
+      <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#223292' }}>
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium mb-6">
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
           
           <div className="border-b border-gray-100 bg-gray-50/50 px-6 sm:px-12 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <p className="text-gray-500 font-medium text-sm">Last Updated: <span className="text-gray-900">April 2026</span></p>
-            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-green-700 transition-colors" style={{ color: '#1D5C3A' }}>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-green-700 transition-colors" style={{ color: '#223292' }}>
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </Link>
           </div>
@@ -50,15 +50,15 @@ export default function PrivacyPolicyPage() {
                 <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4">We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
                 <ul className="list-none space-y-4">
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Personal Data:</strong> Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information that you voluntarily give to us when registering for a course or contacting us.</span>
                   </li>
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Professional Data:</strong> Information related to your employment, such as your job title, department, and the higher education institution you represent.</span>
                   </li>
                   <li className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4890A' }} />
+                    <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#F2D03B' }} />
                     <span><strong className="text-gray-900">Financial Data:</strong> Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase, order, or request information about our services.</span>
                   </li>
                 </ul>
@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
                     'Fulfill and manage purchases, orders, payments, and other transactions.'
                   ].map((item, idx) => (
                     <li key={idx} className="flex gap-3 text-gray-600 text-base sm:text-lg leading-relaxed">
-                      <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#1D5C3A' }} />
+                      <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#223292' }} />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
                   <p className="text-xl font-bold text-gray-900 mb-2">Paragon Global Training Academy</p>
                   <div className="text-gray-600 space-y-1">
                     <p>Malta, European Union</p>
-                    <p>Email: <a href="mailto:privacy@pgtraining.edu" className="font-semibold hover:underline" style={{ color: '#1D5C3A' }}>privacy@pgtraining.edu</a></p>
+                    <p>Email: <a href="mailto:privacy@pgtraining.edu" className="font-semibold hover:underline" style={{ color: '#223292' }}>privacy@pgtraining.edu</a></p>
                     <p>Phone: +356 2000 0000</p>
                   </div>
                 </div>

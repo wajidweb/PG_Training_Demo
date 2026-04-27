@@ -18,7 +18,7 @@ export default function AboutUs() {
             <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
               About PG Training
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1D5C3A' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#223292' }}>
               A Proven Leader in Higher Education Development
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
@@ -40,10 +40,10 @@ export default function AboutUs() {
           {/* Visual cards */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { label: 'Our Mission', text: 'Equip higher education professionals with the skills, confidence, and frameworks to excel in an ever-evolving academic landscape.', color: 'bg-[#1D5C3A]' },
+              { label: 'Our Mission', text: 'Equip higher education professionals with the skills, confidence, and frameworks to excel in an ever-evolving academic landscape.', color: 'bg-[#223292]' },
               { label: 'Our Approach', text: 'Scenario-based learning, real-world simulations, and expert mentorship that translate directly into day-to-day institutional impact.', color: 'bg-[#1A5050]' },
               { label: 'Our Reach', text: 'From Malta to the world, serving over 4,000 partner institutions across Europe, the Middle East, and beyond.', color: 'bg-[#7A3A1A]' },
-              { label: 'Our Commitment', text: 'Every programme is designed with measurable outcomes. We do not just train — we transform careers and institutions.', color: 'bg-[#D4890A]' },
+              { label: 'Our Commitment', text: 'Every programme is designed with measurable outcomes. We do not just train — we transform careers and institutions.', color: 'bg-[#F2D03B]' },
             ].map((card, i) => (
               <div key={i} className={`${card.color} rounded-2xl p-5 sm:p-6 text-white`}>
                 <div className="font-bold mb-2 text-xs uppercase tracking-wide opacity-80">{card.label}</div>

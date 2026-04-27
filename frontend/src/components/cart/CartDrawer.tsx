@@ -21,7 +21,7 @@ export default function CartDrawer() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 sm:p-6 border-b" style={{ backgroundColor: '#1D5C3A' }}>
+        <div className="flex items-center justify-between p-5 sm:p-6 border-b" style={{ backgroundColor: '#223292' }}>
           <div className="flex items-center gap-2 text-white">
             <ShoppingBag className="w-5 h-5" />
             <h2 className="font-bold text-lg">Your Cart</h2>
@@ -46,7 +46,7 @@ export default function CartDrawer() {
               <button
                 onClick={closeCart}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold text-sm"
-                style={{ backgroundColor: '#1D5C3A' }}
+                style={{ backgroundColor: '#223292' }}
               >
                 Browse Courses <ArrowRight className="w-4 h-4" />
               </button>
@@ -54,13 +54,12 @@ export default function CartDrawer() {
           ) : (
             <div className="space-y-4">
               {items.map(item => {
-                const addonTotal = item.addOns?.reduce((s, a) => s + a.totalPrice, 0) ?? 0
-                const coursePrice = item.finalPrice - addonTotal
+                const coursePrice = item.finalPrice
                 return (
                   <div key={item.cartId} className="bg-gray-50 rounded-2xl p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
-                        <div className="text-xs font-semibold mb-1" style={{ color: '#1D5C3A' }}>{item.courseCode}</div>
+                        <div className="text-xs font-semibold mb-1" style={{ color: '#223292' }}>{item.courseCode}</div>
                         <h4 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-2 mb-2">
                           {item.courseTitle}
                         </h4>
@@ -94,12 +93,12 @@ export default function CartDrawer() {
                       <div className="mt-3 pt-3 border-t border-gray-200 space-y-1">
                         <div className="flex justify-between text-xs text-gray-500">
                           <span>Course</span>
-                          <span>{formatPrice(coursePrice)}</span>
+                          <span>{formatPrice(item.finalPrice)}</span>
                         </div>
                         {item.addOns.map(a => (
                           <div key={a.id} className="flex justify-between text-xs text-gray-500">
                             <span className="flex items-center gap-1"><Plus className="w-2.5 h-2.5" />{a.name}</span>
-                            <span>+{formatPrice(a.totalPrice)}</span>
+                            <span className="font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">FREE</span>
                           </div>
                         ))}
                       </div>
@@ -121,13 +120,13 @@ export default function CartDrawer() {
           <div className="border-t p-5 sm:p-6 space-y-3">
             <div className="flex items-center justify-between text-lg">
               <span className="font-bold text-gray-900">Total</span>
-              <span className="font-bold text-2xl" style={{ color: '#1D5C3A' }}>{formatPrice(total)}</span>
+              <span className="font-bold text-2xl" style={{ color: '#223292' }}>{formatPrice(total)}</span>
             </div>
             <Link
               href="/cart"
               onClick={closeCart}
               className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-lg transition-all hover:scale-[1.02]"
-              style={{ backgroundColor: '#D4890A', color: '#0F1F12' }}
+              style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
             >
               View Cart & Checkout <ArrowRight className="w-5 h-5" />
             </Link>

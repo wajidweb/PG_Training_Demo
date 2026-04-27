@@ -40,7 +40,7 @@ export default function ETSPackages({ course }: { course: Course }) {
           <span className="inline-block bg-green-100 text-green-800 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
             ETS Packages
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#1D5C3A' }}>Choose Your Package</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#223292' }}>Choose Your Package</h2>
           <p className="text-gray-600 mt-2 text-sm sm:text-base">Transparent, fixed pricing for every team size.</p>
         </div>
 
@@ -112,7 +112,7 @@ export default function ETSPackages({ course }: { course: Course }) {
                 </div>
                 <div className="flex justify-between font-bold text-gray-900 border-t border-gray-200 pt-1 mt-1">
                   <span>Total</span>
-                  <span style={{ color: '#1D5C3A' }}>{formatPrice(breakdown.total)}</span>
+                  <span style={{ color: '#223292' }}>{formatPrice(breakdown.total)}</span>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function ETSPackages({ course }: { course: Course }) {
               )}
               <h3 className="font-bold text-gray-900 text-lg mb-1">{offer.title}</h3>
               <p className="text-gray-500 text-sm mb-4">{offer.description}</p>
-              <div className="text-3xl font-bold mb-1" style={{ color: '#1D5C3A' }}>{formatPrice(offer.pricePerPerson)}</div>
+              <div className="text-3xl font-bold mb-1" style={{ color: '#223292' }}>{formatPrice(offer.pricePerPerson)}</div>
               <div className="text-sm text-gray-500 mb-4">per person</div>
               <ul className="space-y-2 mb-6">
                 {offer.features.map((f, j) => (
@@ -143,7 +143,7 @@ export default function ETSPackages({ course }: { course: Course }) {
               <button
                 onClick={() => handleAdd(i)}
                 className="w-full py-3 rounded-xl font-bold text-sm transition-colors text-white"
-                style={{ backgroundColor: i === 1 ? '#D4890A' : '#1D5C3A' }}
+                style={{ backgroundColor: i === 1 ? '#F2D03B' : '#223292' }}
               >
                 Add to Cart — {formatPrice(breakdown.total)}
               </button>

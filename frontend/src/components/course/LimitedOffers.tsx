@@ -24,10 +24,10 @@ function Countdown({ expiresAt }: { expiresAt: string }) {
     <div className="flex gap-2">
       {[{ v: t.d, l: 'Days' }, { v: t.h, l: 'Hrs' }, { v: t.m, l: 'Min' }, { v: t.s, l: 'Sec' }].map(({ v, l }) => (
         <div key={l} className="text-center">
-          <div className="w-12 h-12 bg-white text-red-600 rounded-lg flex items-center justify-center text-xl font-bold shadow-sm">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white text-[#C85A43] rounded-lg flex items-center justify-center text-lg sm:text-xl font-bold shadow-sm">
             {String(v).padStart(2, '0')}
           </div>
-          <div className="text-red-200 text-xs mt-1">{l}</div>
+          <div className="text-white/80 text-[10px] sm:text-xs mt-1">{l}</div>
         </div>
       ))}
     </div>
@@ -57,17 +57,15 @@ export default function LimitedOffers({ course }: { course: Course }) {
   }
 
   return (
-    <section className="py-14 sm:py-16" style={{ backgroundColor: '#1D5C3A' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 bg-red-500 text-white text-sm font-bold px-4 py-1.5 rounded-full mb-4">
-            <Clock className="w-4 h-4" /> Limited Time Offers
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Act Fast — These Deals Expire Soon</h2>
-          <p className="text-green-200 text-sm sm:text-base">Time-sensitive savings on this course. Once gone, these prices won&apos;t return.</p>
+    <div className="bg-gradient-to-br from-[#C85A43] to-[#9b402e] rounded-3xl p-6 sm:p-10 shadow-lg border border-[#a34734] overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      
+      <div className="relative z-10">
+        <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full w-fit mb-6 border border-white/20">
+          <Clock className="w-3.5 h-3.5" /> Limited Time Offers
         </div>
-
-        <div className="space-y-5 sm:space-y-6 max-w-3xl mx-auto">
+        
+        <div className="space-y-6">
           {course.offers.limited.map(offer => {
             const delivery = course.deliveryMethods[0]
             const original = calculatePrice(course, delivery, 1)
@@ -75,27 +73,23 @@ export default function LimitedOffers({ course }: { course: Course }) {
 
             return (
               <div key={offer.id} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 sm:p-6">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6">
                   <div className="flex-1">
-                    <div className="inline-block bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">
-                      SAVE {offer.discountPercent}%
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-1">{offer.title}</h3>
-                    <p className="text-green-200 text-sm mb-3">{offer.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{offer.title}</h3>
+                    <p className="text-white/80 text-sm sm:text-base mb-4">{offer.description}</p>
                     <div className="flex items-center gap-3 flex-wrap">
-                      <span className="text-white/50 line-through text-lg">{formatPrice(original.total)}</span>
-                      <span className="text-2xl sm:text-3xl font-bold text-amber-400">{formatPrice(discounted.total)}</span>
-                      <span className="text-white/70 text-sm">per person</span>
+                      <span className="text-white/50 line-through text-lg font-medium">{formatPrice(original.total)}</span>
+                      <span className="text-2xl sm:text-3xl font-black text-[#F2D03B] drop-shadow-sm">{formatPrice(discounted.total)}</span>
                     </div>
                   </div>
-                  <div className="flex flex-col items-start md:items-center gap-4">
+                  <div className="flex flex-col sm:flex-row xl:flex-col items-start sm:items-center gap-4 w-full xl:w-auto">
                     <Countdown expiresAt={offer.expiresAt} />
                     <button
                       onClick={() => handleClaim(offer.discountPercent)}
-                      className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105"
-                      style={{ backgroundColor: '#D4890A', color: '#0F1F12' }}
+                      className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm w-full transition-all hover:scale-105 shadow-md"
+                      style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
                     >
-                      Claim This Offer <ArrowRight className="w-4 h-4" />
+                      Claim {offer.discountPercent}% Off <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -104,6 +98,6 @@ export default function LimitedOffers({ course }: { course: Course }) {
           })}
         </div>
       </div>
-    </section>
+    </div>
   )
 }

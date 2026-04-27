@@ -74,8 +74,6 @@ export async function buildSystemPrompt(cartItems: CartItem[]): Promise<string> 
     id: a.id,
     name: a.name,
     description: a.description,
-    unitPrice: a.unitPrice,
-    priceType: a.priceType,
   }))
 
   return `You are Alex, a professional and friendly sales assistant for PG Training — a leading higher education professional development company with 25 years of experience.

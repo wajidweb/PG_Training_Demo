@@ -45,10 +45,10 @@ export default function CheckoutPage() {
             ))}
             <div className="border-t mt-2 pt-2 flex justify-between font-bold">
               <span>Total Paid</span>
-              <span style={{ color: '#1D5C3A' }}>{formatPrice(total)}</span>
+              <span style={{ color: '#223292' }}>{formatPrice(total)}</span>
             </div>
           </div>
-          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold" style={{ backgroundColor: '#1D5C3A' }}>
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold" style={{ backgroundColor: '#223292' }}>
             Back to Home
           </Link>
         </div>
@@ -61,7 +61,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen flex items-center justify-center pt-16 px-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold" style={{ backgroundColor: '#1D5C3A' }}>
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold" style={{ backgroundColor: '#223292' }}>
             <ArrowLeft className="w-4 h-4" /> Browse Courses
           </Link>
         </div>
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
               {/* Contact */}
               <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
                 <h2 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
-                  <Building2 className="w-5 h-5" style={{ color: '#1D5C3A' }} /> Contact Information
+                  <Building2 className="w-5 h-5" style={{ color: '#223292' }} /> Contact Information
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
               {/* Payment */}
               <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm">
                 <h2 className="font-bold text-gray-900 text-lg mb-1 flex items-center gap-2">
-                  <CreditCard className="w-5 h-5" style={{ color: '#1D5C3A' }} /> Payment Details
+                  <CreditCard className="w-5 h-5" style={{ color: '#223292' }} /> Payment Details
                 </h2>
                 <div className="flex items-center gap-1 text-xs text-gray-500 mb-4">
                   <Lock className="w-3 h-3" /> Secured by 256-bit SSL encryption (demo — no real charge)
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 className="w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all hover:scale-[1.01] shadow-lg"
-                style={{ backgroundColor: '#D4890A', color: '#0F1F12' }}
+                style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
               >
                 <Lock className="w-5 h-5" />
                 Complete Order — {formatPrice(total)}
@@ -226,7 +226,7 @@ export default function CheckoutPage() {
               <div className="space-y-3 mb-4">
                 {items.map(item => (
                   <div key={item.cartId} className="flex gap-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#1D5C3A' }}>
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style={{ backgroundColor: '#223292' }}>
                       {item.courseCode.replace('CPD_', '').replace('ETS_', '').slice(0, 2)}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -248,7 +248,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span style={{ color: '#1D5C3A' }}>{formatPrice(total)}</span>
+                  <span style={{ color: '#223292' }}>{formatPrice(total)}</span>
                 </div>
               </div>
 

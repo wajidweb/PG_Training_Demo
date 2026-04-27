@@ -8,20 +8,20 @@ import { formatPrice } from '@/lib/pricing'
 
 const pathConfig = {
   academic: {
-    accent: '#1D5C3A',
-    light: '#EBF5F0',
+    accent: '#223292', // Paragon Royal Blue
+    light: '#EBEFFF',
     icon: BookOpen,
     label: 'Academic Excellence'
   },
   administrative: {
-    accent: '#1A5050',
-    light: '#EBF2F2',
+    accent: '#45A29E', // Academy Teal
+    light: '#E6F4F3',
     icon: Building2,
     label: 'Administrative Excellence'
   },
   leadership: {
-    accent: '#7A3A1A',
-    light: '#F5EEEB',
+    accent: '#C85A43', // Global Terracotta
+    light: '#FDF1EE',
     icon: TrendingUp,
     label: 'Leadership & Strategy'
   },
@@ -100,7 +100,7 @@ export default function TrainingPaths({ paths }: { paths: TrainingPath[] }) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight">
-            Explore Our <span style={{ color: '#1D5C3A' }}>Full Curriculum</span>
+            Explore Our <span style={{ color: '#223292' }}>Full Curriculum</span>
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             Choose from 22 world-class professional development programmes designed specifically for the Higher Education sector.

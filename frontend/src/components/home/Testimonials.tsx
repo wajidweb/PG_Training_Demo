@@ -20,7 +20,7 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
           <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
             Testimonials
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1D5C3A' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#223292' }}>
             What Our Participants Say
           </h2>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
@@ -40,7 +40,7 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
                 </div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">&ldquo;{t.content}&rdquo;</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0" style={{ backgroundColor: '#1D5C3A' }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0" style={{ backgroundColor: '#223292' }}>
                     {t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                   </div>
                   <div>

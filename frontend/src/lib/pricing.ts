@@ -28,8 +28,7 @@ export function calculatePrice(
   const afterOffer = afterVolume * (1 - offerDiscount)
   const courseSubtotal = Math.round(afterOffer * participants * 100) / 100
 
-  const addOnsTotal = Math.round(addOns.reduce((sum, a) => sum + a.totalPrice, 0) * 100) / 100
-  const total = Math.round((courseSubtotal + addOnsTotal) * 100) / 100
+  const total = courseSubtotal
 
   return {
     basePrice,
@@ -41,7 +40,6 @@ export function calculatePrice(
     volumeDiscount: volumeDiscount * 100,
     offerDiscount: offerDiscountPercent,
     courseSubtotal,
-    addOnsTotal,
     total,
   }
 }

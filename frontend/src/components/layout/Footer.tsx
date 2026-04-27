@@ -4,7 +4,7 @@ import { TrainingPath } from '@/types'
 
 export default function Footer({ paths }: { paths: TrainingPath[] }) {
   return (
-    <footer className="text-white" style={{ backgroundColor: '#1D5C3A' }}>
+    <footer className="text-white" style={{ backgroundColor: '#223292' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
@@ -16,7 +16,7 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
                 className="h-16 w-auto object-contain" 
               />
             </div>
-            <p className="text-green-100 text-sm leading-relaxed mb-6">
+            <p className="text-blue-100 text-sm leading-relaxed mb-6">
               25 years of excellence in professional development for higher education institutions worldwide.
             </p>
             <div className="flex gap-3">
@@ -34,12 +34,12 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
             <ul className="space-y-2">
               {paths.map(path => (
                 <li key={path.id}>
-                  <a href={`/#path-${path.id}`} className="text-green-200 hover:text-white text-sm transition-colors">
+                  <a href={`/#path-${path.id}`} className="text-blue-200 hover:text-white text-sm transition-colors">
                     {path.title}
                   </a>
                 </li>
               ))}
-              <li><Link href="/courses/cultural-integration-diverse-environment" className="text-green-200 hover:text-white text-sm transition-colors">Featured: Cultural Integration</Link></li>
+              <li><Link href="/courses/cultural-integration-diverse-environment" className="text-blue-200 hover:text-white text-sm transition-colors">Featured: Cultural Integration</Link></li>
             </ul>
           </div>
 
@@ -49,7 +49,7 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
             <ul className="space-y-2">
               {['About Us', 'All Courses', 'Current Offers', 'ETS Programme', 'Testimonials', 'Contact'].map(item => (
                 <li key={item}>
-                  <a href="#" className="text-green-200 hover:text-white text-sm transition-colors">{item}</a>
+                  <a href="#" className="text-blue-200 hover:text-white text-sm transition-colors">{item}</a>
                 </li>
               ))}
             </ul>
@@ -59,15 +59,15 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
           <div>
             <h4 className="font-semibold text-white mb-4">Contact Us</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-green-200 text-sm">
+              <li className="flex items-start gap-2 text-blue-200 text-sm">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>info@pgtraining.edu</span>
               </li>
-              <li className="flex items-start gap-2 text-green-200 text-sm">
+              <li className="flex items-start gap-2 text-blue-200 text-sm">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>+356 2000 0000</span>
               </li>
-              <li className="flex items-start gap-2 text-green-200 text-sm">
+              <li className="flex items-start gap-2 text-blue-200 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>Malta, European Union</span>
               </li>
@@ -75,14 +75,14 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
           </div>
         </div>
 
-        <div className="border-t border-green-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-green-300 text-sm">© 2025 Paragon Global Training Academy. All rights reserved.</p>
+        <div className="border-t border-blue-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-blue-300 text-sm">© 2025 Paragon Global Training Academy. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { name: 'Privacy Policy', href: '/privacy-policy' },
               { name: 'GDPR', href: '/gdpr' }
             ].map(item => (
-              <Link key={item.name} href={item.href} className="text-green-300 hover:text-white text-sm transition-colors">
+              <Link key={item.name} href={item.href} className="text-blue-300 hover:text-white text-sm transition-colors">
                 {item.name}
               </Link>
             ))}

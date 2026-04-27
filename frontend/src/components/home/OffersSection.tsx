@@ -116,7 +116,7 @@ export default function OffersSection() {
           <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
             Special Offers
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1D5C3A' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#223292' }}>
             Ways to Enrol &amp; Save
           </h2>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
@@ -156,7 +156,7 @@ export default function OffersSection() {
                 <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{offer.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-3">{offer.description}</p>
                 <p className="text-xs font-semibold text-gray-500 mb-4 italic">e.g. {offer.example}</p>
-                <Link href={offer.href} className="flex items-center gap-1 text-sm font-semibold hover:gap-2 transition-all" style={{ color: '#1D5C3A' }}>
+                <Link href={offer.href} className="flex items-center gap-1 text-sm font-semibold hover:gap-2 transition-all" style={{ color: '#223292' }}>
                   {offer.cta} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

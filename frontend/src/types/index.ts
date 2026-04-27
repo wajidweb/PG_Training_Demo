@@ -116,17 +116,12 @@ export interface AddOn {
   id: string
   name: string
   description: string
-  unitPrice: number
-  priceType: 'flat' | 'per_person'
   category: 'materials' | 'support' | 'assessment' | 'extras'
 }
 
 export interface CartAddon {
   id: string
   name: string
-  unitPrice: number
-  priceType: 'flat' | 'per_person'
-  totalPrice: number
 }
 
 export interface CartItem {
@@ -154,7 +149,6 @@ export interface PriceBreakdown {
   volumeDiscount: number
   offerDiscount: number
   courseSubtotal: number
-  addOnsTotal: number
   total: number
 }
 

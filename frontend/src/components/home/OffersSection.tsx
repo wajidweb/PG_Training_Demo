@@ -7,71 +7,56 @@ import { Clock, Package, Layers, Gift, ArrowRight, Zap, Flame } from 'lucide-rea
 const offerTypes = [
   {
     icon: Package,
-    label: 'ETS Packages',
-    color: 'bg-green-700',
-    lightBg: 'bg-green-50',
-    borderColor: 'border-green-200',
-    title: 'Standard Packages',
-    description: 'Our flagship ETS packages offer fixed, transparent pricing for all our core programmes. Choose individual or team enrolment.',
-    example: 'Academic Writing Skills — from €497/person',
+    label: 'Standard Packages',
+    theme: 'blue',
+    title: 'Transparent ETS Packages',
+    description: 'Our flagship packages offer fixed, transparent pricing for all core programmes. Choose individual or team enrolment based on your department\'s needs.',
+    example: 'Leadership Essentials — from €747/person',
     badge: 'Always Available',
-    badgeColor: 'bg-green-100 text-green-800',
     cta: 'View Packages',
-    href: '/courses/academic-writing-skills',
+    href: '/courses/leadership-management',
   },
   {
     icon: Clock,
     label: 'Limited Time',
-    color: 'bg-red-500',
-    lightBg: 'bg-red-50',
-    borderColor: 'border-red-200',
-    title: 'Limited Time Offers',
-    description: 'Time-sensitive discounts on selected courses. Act fast — these offers expire and won\'t be repeated at this price.',
+    theme: 'teal',
+    title: 'Flash Discounts',
+    description: 'Time-sensitive discounts on selected high-demand courses. Act fast — these early-bird offers expire before the cohort begins.',
     example: 'Save 15% on any course — offer ends soon!',
     badge: 'Ends Soon',
-    badgeColor: 'bg-red-100 text-red-700',
     cta: 'Claim Offer',
     href: '/courses/cultural-integration-diverse-environment',
   },
   {
     icon: Layers,
     label: 'Combo Offers',
-    color: 'bg-teal-600',
-    lightBg: 'bg-teal-50',
-    borderColor: 'border-teal-200',
-    title: 'Combo Offers',
-    description: 'Bundle two complementary courses together and save 10% on both. Perfect for a holistic professional development plan.',
+    theme: 'blue',
+    title: 'Dual Programme Savings',
+    description: 'Bundle two complementary courses together and automatically save 10% on both. Perfect for a holistic professional development plan.',
     example: 'Cultural Integration + Team Building — 10% off',
     badge: '10% Savings',
-    badgeColor: 'bg-teal-100 text-teal-800',
     cta: 'See Combos',
     href: '/courses/cultural-integration-diverse-environment',
   },
   {
     icon: Zap,
     label: 'Bundle Offers',
-    color: 'bg-amber-600',
-    lightBg: 'bg-amber-50',
-    borderColor: 'border-amber-200',
-    title: 'Bundle Offers',
-    description: 'Train 10+ participants and unlock up to 20% group discounts. Ideal for departments and institutions.',
+    theme: 'terracotta',
+    title: 'Departmental Group Rates',
+    description: 'Train 10+ participants and unlock up to 20% group discounts. The ideal solution for upskilling entire departments or faculties at once.',
     example: 'Train 20+ people — save up to 20%',
     badge: 'Best Value',
-    badgeColor: 'bg-amber-100 text-amber-800',
     cta: 'Group Enrolment',
     href: '/courses/leadership-management',
   },
   {
     icon: Gift,
     label: 'Celebration',
-    color: 'bg-orange-600',
-    lightBg: 'bg-orange-50',
-    borderColor: 'border-orange-200',
-    title: 'Celebration Offers',
-    description: 'Seasonal and special occasion discounts throughout the year. Academic year, holidays, and international awareness days.',
+    theme: 'teal',
+    title: 'Seasonal Celebrations',
+    description: 'Special occasion discounts throughout the year honoring the Academic year kickoff, holidays, and international awareness days.',
     example: 'Academic Year 2025 — 12% off selected courses',
     badge: 'Seasonal',
-    badgeColor: 'bg-orange-100 text-orange-800',
     cta: 'See Celebrations',
     href: '/courses/academic-writing-skills',
   },
@@ -99,9 +84,9 @@ function CountdownTimer({ expiresAt }: { expiresAt: string }) {
   return (
     <div className="flex gap-2 text-center">
       {[{ v: timeLeft.d, l: 'Days' }, { v: timeLeft.h, l: 'Hrs' }, { v: timeLeft.m, l: 'Min' }, { v: timeLeft.s, l: 'Sec' }].map(({ v, l }) => (
-        <div key={l} className="bg-red-500 text-white rounded-lg px-2 py-1 min-w-[44px]">
-          <div className="text-lg font-bold leading-none">{String(v).padStart(2, '0')}</div>
-          <div className="text-xs opacity-80">{l}</div>
+        <div key={l} className="bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-xl px-2 sm:px-3 py-1.5 min-w-[50px] sm:min-w-[60px] shadow-sm">
+          <div className="text-xl sm:text-2xl font-black leading-none tracking-tight">{String(v).padStart(2, '0')}</div>
+          <div className="text-[10px] sm:text-xs font-medium uppercase tracking-wider mt-0.5 opacity-90">{l}</div>
         </div>
       ))}
     </div>
@@ -110,55 +95,106 @@ function CountdownTimer({ expiresAt }: { expiresAt: string }) {
 
 export default function OffersSection() {
   return (
-    <section id="offers" className="py-16 sm:py-20 bg-gray-50">
+    <section id="offers" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gray-50 rounded-bl-full -z-10" />
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-[#EBEFFF] rounded-tr-full -z-10 opacity-50" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-            Special Offers
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
+            Special Pricing
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#223292' }}>
-            Ways to Enrol &amp; Save
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 text-gray-900 tracking-tight">
+            Ways to Enrol <span style={{ color: '#223292' }}>&amp; Save</span>
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            From standard packages to time-limited deals, we have flexible options designed to fit every budget and team size.
+          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+            From standard packages to time-limited deals, we have flexible pricing options designed to fit every institutional budget and team size.
           </p>
         </div>
 
-        {/* Limited Time highlighted */}
-        <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-5 sm:p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <div className="text-white">
-            <div className="font-bold text-lg sm:text-xl mb-1 flex items-center gap-2">
-              <Flame className="w-5 h-5 text-orange-200" />
-              Early Bird Special — 15% Off Any Course
+        {/* Highlighted Master Offer */}
+        <div className="bg-gradient-to-br from-[#C85A43] to-[#a34734] rounded-3xl p-6 sm:p-10 mb-10 shadow-2xl shadow-[#C85A43]/20 relative overflow-hidden group">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000" />
+          
+          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
+            <div className="text-white max-w-2xl">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-5 tracking-wide uppercase">
+                <Flame className="w-3.5 h-3.5 text-[#F2D03B]" />
+                Featured Deal
+              </div>
+              <h3 className="text-3xl sm:text-4xl font-black mb-3 leading-tight text-white drop-shadow-sm">
+                Early Bird Special — <span className="text-[#F2D03B]">15% Off</span>
+              </h3>
+              <p className="text-white/85 text-base sm:text-lg leading-relaxed">
+                Book before the deadline and lock in your discount on any upcoming cohort. 
+                Limited availability per programme to ensure high-quality faculty interaction.
+              </p>
             </div>
-            <div className="text-red-100 text-sm sm:text-base">Book before the deadline and lock in your discount. Limited availability per cohort.</div>
-          </div>
-          <div className="flex flex-col items-start sm:items-center gap-3 flex-shrink-0">
-            <CountdownTimer expiresAt="2025-06-30T23:59:59Z" />
-            <Link href="/courses/cultural-integration-diverse-environment" className="bg-white text-red-600 font-bold px-5 py-2 rounded-xl hover:bg-red-50 transition-colors text-sm whitespace-nowrap">
-              Claim 15% Off →
-            </Link>
+            
+            <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center gap-6 flex-shrink-0 w-full lg:w-auto">
+              <CountdownTimer expiresAt="2025-06-30T23:59:59Z" />
+              <Link 
+                href="/courses/cultural-integration-diverse-environment" 
+                className="w-full sm:w-auto text-center font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-xl text-sm"
+                style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
+              >
+                Claim 15% Off Now →
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Offer cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* Offer Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {offerTypes.map((offer) => {
             const Icon = offer.icon
+            
+            // Map theme to exact brand colors
+            let accentColor = '#223292' // Royal Blue default
+            let bgLight = '#EBEFFF'
+            if (offer.theme === 'teal') {
+              accentColor = '#45A29E'
+              bgLight = '#E6F4F3'
+            } else if (offer.theme === 'terracotta') {
+              accentColor = '#C85A43'
+              bgLight = '#FDF1EE'
+            }
+
             return (
-              <div key={offer.label} className={`${offer.lightBg} border-2 ${offer.borderColor} rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-shadow`}>
-                <div className={`inline-flex items-center justify-center w-11 h-11 ${offer.color} rounded-xl mb-4`}>
-                  <Icon className="w-5 h-5 text-white" />
+              <div 
+                key={offer.label} 
+                className="bg-white border border-gray-100 rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div 
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner transition-transform group-hover:scale-110 duration-300"
+                    style={{ backgroundColor: bgLight }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: accentColor }} />
+                  </div>
+                  <span className="text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-gray-100 text-gray-600">
+                    {offer.badge}
+                  </span>
                 </div>
-                <div className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full ${offer.badgeColor} mb-3`}>
-                  {offer.badge}
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{offer.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
+                  {offer.description}
+                </p>
+                
+                <div className="border-t border-gray-100 pt-5 mt-auto">
+                  <p className="text-[11px] font-medium text-gray-400 mb-3 uppercase tracking-wide">
+                    Example: <span className="text-gray-600 normal-case tracking-normal font-semibold">{offer.example}</span>
+                  </p>
+                  <Link 
+                    href={offer.href} 
+                    className="inline-flex items-center gap-2 text-sm font-bold transition-all hover:gap-3" 
+                    style={{ color: accentColor }}
+                  >
+                    {offer.cta} <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{offer.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-3">{offer.description}</p>
-                <p className="text-xs font-semibold text-gray-500 mb-4 italic">e.g. {offer.example}</p>
-                <Link href={offer.href} className="flex items-center gap-1 text-sm font-semibold hover:gap-2 transition-all" style={{ color: '#223292' }}>
-                  {offer.cta} <ArrowRight className="w-4 h-4" />
-                </Link>
               </div>
             )
           })}

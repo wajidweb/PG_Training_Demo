@@ -25,7 +25,7 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const { items, addItem, openCart } = useCartStore()
+  const { items, addItem, openCart, isOpen: isCartOpen } = useCartStore()
   const router = useRouter()
 
   useEffect(() => {
@@ -35,6 +35,8 @@ export default function ChatWidget() {
   useEffect(() => {
     if (open) inputRef.current?.focus()
   }, [open])
+
+  if (isCartOpen) return null
 
   const sendMessage = async (text?: string) => {
     const userText = text ?? input.trim()
@@ -185,7 +187,7 @@ export default function ChatWidget() {
                     style={msg.role === 'user' ? { backgroundColor: '#223292' } : {}}
                   >
                     {msg.role === 'assistant' ? (
-                      <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1">
+                      <div className="prose prose-sm max-w-none prose-p:leading-relaxed prose-p:mb-3 prose-p:mt-0 prose-ul:my-2 prose-li:my-0">
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     ) : (

@@ -47,9 +47,16 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
           <div>
             <h4 className="font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['About Us', 'All Courses', 'Current Offers', 'ETS Programme', 'Testimonials', 'Contact'].map(item => (
-                <li key={item}>
-                  <a href="#" className="text-blue-200 hover:text-white text-sm transition-colors">{item}</a>
+              {[
+                { name: 'About Us', href: '/#about' },
+                { name: 'All Courses', href: '/#courses' },
+                { name: 'Current Offers', href: '/#offers' },
+                { name: 'ETS Programme', href: '/courses/general-english-programme' },
+                { name: 'Testimonials', href: '/#testimonials' },
+                { name: 'Contact', href: 'mailto:info@pgtraining.edu' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-blue-200 hover:text-white text-sm transition-colors">{item.name}</Link>
                 </li>
               ))}
             </ul>

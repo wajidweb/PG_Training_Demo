@@ -39,7 +39,6 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
                   </a>
                 </li>
               ))}
-              <li><Link href="/courses/cultural-integration-diverse-environment" className="text-blue-200 hover:text-white text-sm transition-colors">Featured: Cultural Integration</Link></li>
             </ul>
           </div>
 

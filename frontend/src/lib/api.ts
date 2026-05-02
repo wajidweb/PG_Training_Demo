@@ -119,3 +119,10 @@ export async function fetchCampaignEmails(): Promise<any[]> {
   const data = await res.json()
   return data.data || []
 }
+
+export async function fetchOrders(): Promise<any[]> {
+  const res = await fetch(`${API_URL}/api/orders`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch orders')
+  const data = await res.json()
+  return data.data || []
+}

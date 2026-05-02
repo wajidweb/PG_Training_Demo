@@ -16,6 +16,10 @@ app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
   credentials: true,
 }))
+
+// Use raw body for Stripe webhook before express.json()
+app.use('/api/orders/webhook', express.raw({ type: 'application/json' }))
+
 app.use(express.json())
 
 app.get('/api/health', (_req, res) => {

@@ -9,6 +9,8 @@ export interface IOrderItem {
     label: string
     multiplier: number
   }
+  selectedDate?: string
+  addOns?: Array<{ id: string, name: string }>
   participants: number
   basePrice: number
   discountPercent: number
@@ -31,8 +33,10 @@ export interface IOrder extends Document {
   items: IOrderItem[]
   subtotal: number
   total: number
-  status: 'pending' | 'confirmed' | 'cancelled'
+  status: 'pending' | 'paid' | 'cancelled'
   paymentMethod: string
+  stripeSessionId?: string
+  stripePaymentIntentId?: string
   notes?: string
   createdAt: Date
   updatedAt: Date
@@ -47,6 +51,8 @@ const OrderItemSchema = new Schema<IOrderItem>({
     label: { type: String, required: true },
     multiplier: { type: Number, required: true },
   },
+  selectedDate: String,
+  addOns: [{ id: String, name: String }],
   participants: { type: Number, required: true, min: 1 },
   basePrice: { type: Number, required: true },
   discountPercent: { type: Number, default: 0 },
@@ -69,10 +75,12 @@ const OrderSchema = new Schema<IOrder>({
   total: { type: Number, required: true },
   status: {
     type: String,
-    enum: ['pending', 'confirmed', 'cancelled'],
-    default: 'confirmed',
+    enum: ['pending', 'paid', 'cancelled'],
+    default: 'pending',
   },
   paymentMethod: { type: String, default: 'card' },
+  stripeSessionId: String,
+  stripePaymentIntentId: String,
   notes: String,
 }, { timestamps: true })
 

@@ -7,6 +7,7 @@ import {
   LayoutDashboard, 
   BookOpen, 
   Mail, 
+  Users,
   LogOut, 
   Menu, 
   X,
@@ -18,6 +19,7 @@ import { cn } from '@/lib/utils'
 const navItems = [
   { name: 'Courses', href: '/admin/courses', icon: BookOpen },
   { name: 'Campaign Emails', href: '/admin/emails', icon: Mail },
+  { name: 'Orders', href: '/admin/orders', icon: Users },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

@@ -6,6 +6,7 @@ import Testimonials from '@/components/home/Testimonials'
 import AboutUs from '@/components/home/AboutUs'
 import LegacyBanner from '@/components/home/LegacyBanner'
 import { fetchPaths, fetchTestimonials } from '@/lib/api'
+import { CampaignPopup } from '@/components/home/CampaignPopup'
 
 export const revalidate = 60
 
@@ -24,6 +25,7 @@ export default async function HomePage() {
       <Testimonials testimonials={testimonials} />
       <AboutUs />
       <LegacyBanner />
+      <CampaignPopup />
     </>
   )
 }

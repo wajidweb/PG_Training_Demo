@@ -60,3 +60,13 @@ export async function createOrder(body: Record<string, unknown>): Promise<{ orde
   const data = await res.json()
   return data.data
 }
+
+export async function subscribeToCampaign(email: string, campaignName: string = 'ebook_download'): Promise<any> {
+  const res = await fetch(`${API_URL}/api/campaign/subscribe`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, campaignName }),
+  })
+  if (!res.ok) throw new Error('Subscription failed')
+  return res.json()
+}

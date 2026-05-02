@@ -40,4 +40,15 @@ router.post('/subscribe', async (req, res) => {
   }
 })
 
+// GET /api/campaign/emails
+router.get('/emails', async (req, res) => {
+  try {
+    const emails = await CampaignEmail.find().sort({ createdAt: -1 })
+    res.json({ success: true, data: emails })
+  } catch (error) {
+    console.error('Fetch campaign emails error:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+})
+
 export default router

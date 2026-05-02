@@ -77,6 +77,7 @@ export interface ICourse extends Document {
   targetAudience: string[]
   deliveryMethods: IDeliveryMethod[]
   upcomingDates: string[]
+  addOnIds?: string[]
   pathId: string
   pricing: ICoursePricing
   offers: IOfferSet
@@ -147,6 +148,7 @@ const CourseSchema = new Schema<ICourse>({
   targetAudience: [String],
   deliveryMethods: [DeliveryMethodSchema],
   upcomingDates: [String],
+  addOnIds: [String],
   pathId: { type: String, required: true },
   pricing: {
     basePrice: Number,

@@ -26,6 +26,48 @@ export async function fetchCourses(): Promise<Course[]> {
   }
 }
 
+export async function fetchAllCourses(): Promise<Course[]> {
+  try {
+    const res = await fetch(`${API_URL}/api/courses?all=true`, { cache: 'no-store' })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    return (data.data ?? []) as Course[]
+  } catch {
+    const { COURSES } = await import('@/data/courses')
+    return COURSES
+  }
+}
+
+export async function createCourse(courseData: Partial<Course>): Promise<Course> {
+  const res = await fetch(`${API_URL}/api/courses`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(courseData),
+  })
+  if (!res.ok) throw new Error('Failed to create course')
+  const data = await res.json()
+  return data.data
+}
+
+export async function updateCourse(id: string, updates: Partial<Course>): Promise<Course> {
+  const res = await fetch(`${API_URL}/api/courses/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updates),
+  })
+  if (!res.ok) throw new Error('Failed to update course')
+  const data = await res.json()
+  return data.data
+}
+
+export async function deleteCourse(id: string): Promise<boolean> {
+  const res = await fetch(`${API_URL}/api/courses/${id}`, {
+    method: 'DELETE',
+  })
+  if (!res.ok) throw new Error('Failed to delete course')
+  return true
+}
+
 export async function fetchCourse(slug: string): Promise<Course | null> {
   try {
     const res = await fetch(`${API_URL}/api/courses/${slug}`, { cache: 'no-store' })
@@ -69,4 +111,11 @@ export async function subscribeToCampaign(email: string, campaignName: string = 
   })
   if (!res.ok) throw new Error('Subscription failed')
   return res.json()
+}
+
+export async function fetchCampaignEmails(): Promise<any[]> {
+  const res = await fetch(`${API_URL}/api/campaign/emails`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch emails')
+  const data = await res.json()
+  return data.data || []
 }

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Building2, TrendingUp, Monitor, Users, Clock, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, BookOpen, Building2, TrendingUp, Monitor, Users, Clock, CheckCircle2, Calendar, MapPin, Laptop } from 'lucide-react'
 import { TrainingPath, Course } from '@/types'
 import { formatPrice } from '@/lib/pricing'
 
@@ -30,6 +30,26 @@ const pathConfig = {
 function CourseCard({ course, pathId }: { course: Course; pathId: string }) {
   const config = pathConfig[pathId as keyof typeof pathConfig]
   
+  // Format upcoming date if available
+  const hasDates = course.upcomingDates && course.upcomingDates.length > 0
+  let dateDisplay = 'Flexible Schedule'
+  if (hasDates) {
+    const firstDate = course.upcomingDates[0]
+    if (firstDate.includes('|')) {
+      const [start] = firstDate.split('|')
+      dateDisplay = `Starts ${new Date(start).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`
+    } else {
+      dateDisplay = new Date(firstDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+    }
+  }
+
+  // Delivery Icons Map
+  const deliveryIcons: Record<string, { icon: React.ElementType, label: string }> = {
+    'online-instructor': { icon: Monitor, label: 'Live Online' },
+    'self-paced': { icon: Laptop, label: 'Self-Paced' },
+    'onsite': { icon: MapPin, label: 'Onsite' }
+  }
+  
   return (
     <div className="group bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden">
       {/* Card Header: Path Indicator */}
@@ -45,30 +65,44 @@ function CourseCard({ course, pathId }: { course: Course; pathId: string }) {
       </div>
 
       {/* Card Body */}
-      <div className="px-6 py-2 flex-1">
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6">
+      <div className="px-6 py-2 flex-1 flex flex-col">
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-6 flex-1">
           {course.shortDescription}
         </p>
         
-        {/* Features / Icons */}
-        <div className="flex flex-wrap gap-4 mb-6">
-          <div className="flex items-center gap-1.5 text-gray-500">
-            <Monitor className="w-4 h-4" />
-            <span className="text-xs font-medium">Online</span>
+        {/* Dynamic Features / Icons */}
+        <div className="flex flex-wrap gap-4 mt-auto">
+          {/* Upcoming Date */}
+          <div className="flex items-center gap-1.5 text-gray-600 bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-100 w-full mb-1">
+            <Calendar className="w-4 h-4 text-[#223292]" />
+            <span className="text-xs font-bold text-gray-700">{dateDisplay}</span>
+            {course.upcomingDates?.length > 1 && (
+              <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-md ml-auto">
+                +{course.upcomingDates.length - 1} more
+              </span>
+            )}
           </div>
-          <div className="flex items-center gap-1.5 text-gray-500">
-            <Users className="w-4 h-4" />
-            <span className="text-xs font-medium">Group</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-gray-500">
-            <Clock className="w-4 h-4" />
-            <span className="text-xs font-medium">Flexible</span>
+          
+          {/* Delivery Methods */}
+          <div className="flex flex-wrap gap-2 w-full">
+            {course.deliveryMethods?.map(method => {
+              const deliveryData = deliveryIcons[method.type]
+              if (!deliveryData) return null
+              const Icon = deliveryData.icon
+              return (
+                <div key={method.type} className="flex items-center gap-1.5 text-gray-500 bg-white border border-gray-100 px-2 py-1 rounded-md shadow-sm">
+                  <Icon className="w-3.5 h-3.5" style={{ color: config.accent }} />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">{deliveryData.label}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
 
       {/* Card Footer */}
-      <div className="px-6 pb-8 pt-4 border-t border-gray-50">
+      <div className="px-6 pb-8 pt-6 mt-4 border-t border-gray-50">
+
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Starting from</p>

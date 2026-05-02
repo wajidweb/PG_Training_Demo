@@ -77,6 +77,7 @@ export interface Course {
   targetAudience: string[]
   deliveryMethods: DeliveryMethod[]
   upcomingDates: string[]
+  addOnIds?: string[]
   pathId: string
   pricing: CoursePricing
   offers: OfferSet
@@ -130,6 +131,7 @@ export interface CartItem {
   courseTitle: string
   courseCode: string
   deliveryMethod: DeliveryMethod
+  selectedDate?: string
   participants: number
   basePrice: number
   packageTier?: PackageTier

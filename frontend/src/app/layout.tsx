@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import CartDrawer from '@/components/cart/CartDrawer'
-import ChatWidget from '@/components/chatbot/ChatWidget'
+import { ClientLayoutWrapper } from '@/components/layout/ClientLayoutWrapper'
 import { fetchPaths } from '@/lib/api'
 import { TrainingPath } from '@/types'
 
@@ -27,11 +24,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar paths={paths} />
-        <main>{children}</main>
-        <Footer paths={paths} />
-        <CartDrawer />
-        <ChatWidget />
+        <ClientLayoutWrapper paths={paths}>
+          {children}
+        </ClientLayoutWrapper>
       </body>
     </html>
   )

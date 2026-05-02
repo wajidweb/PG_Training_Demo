@@ -59,11 +59,22 @@ export default function ChatWidget() {
       if (data.action) {
         const action = data.action
         if (action.type === 'ADD_TO_CART') {
-          const course = COURSES.find(c => c.id === action.courseId)
+          let course = COURSES.find(c => c.id === action.courseId)
+          if (!course) {
+            try {
+              const res = await fetch(`/api/courses`)
+              const data = await res.json()
+              const dbCourses = data.data || []
+              course = dbCourses.find((c: any) => c.id === action.courseId)
+            } catch (e) {
+              console.error(e)
+            }
+          }
+
           if (course) {
-            const deliveryMethod = course.deliveryMethods.find(d => d.type === action.deliveryType) ?? course.deliveryMethods[0]
-            const packageTier = PACKAGE_TIERS.find(p => p.id === action.packageTierId) ?? PACKAGE_TIERS[1]
+            const deliveryMethod = course.deliveryMethods.find((d: any) => d.type === action.deliveryType) ?? course.deliveryMethods[0]
             const participants = action.participants as number
+            const selectedDate = action.selectedDate as string | undefined
             const selectedAddOns: CartAddon[] = ((action.addOnIds as string[]) ?? [])
               .map(id => ADD_ONS.find(a => a.id === id))
               .filter((a): a is NonNullable<typeof a> => Boolean(a))
@@ -71,16 +82,16 @@ export default function ChatWidget() {
                 id: a.id,
                 name: a.name,
               }))
-            const breakdown = calculatePrice(course, deliveryMethod, participants, action.offerDiscount ?? 0, packageTier, selectedAddOns)
+            const breakdown = calculatePrice(course, deliveryMethod, participants, action.offerDiscount ?? 0, undefined, selectedAddOns)
             addItem({
               cartId: nanoid(),
               courseId: course.id,
               courseTitle: course.title,
               courseCode: course.code,
               deliveryMethod,
+              selectedDate,
               participants,
               basePrice: course.pricing.basePrice,
-              packageTier,
               addOns: selectedAddOns,
               discountPercent: action.offerDiscount ?? 0,
               finalPrice: breakdown.total,

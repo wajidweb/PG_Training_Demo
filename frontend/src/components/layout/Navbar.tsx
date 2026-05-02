@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCart, Menu, X, GraduationCap, BookOpen, Building2, TrendingUp } from 'lucide-react'
-import { useState } from 'react'
+import { ShoppingCart, Menu, X, GraduationCap, BookOpen, Building2, TrendingUp, ShieldCheck } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { useCartStore } from '@/store/cart'
 import { TrainingPath } from '@/types'
 
@@ -14,8 +14,23 @@ const pathIcons: Record<string, React.ElementType> = {
 
 export default function Navbar({ paths }: { paths: TrainingPath[] }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  
   const { totalItems, toggleCart } = useCartStore()
   const count = totalItems()
+
+  useEffect(() => {
+    setMounted(true)
+    setIsAdmin(localStorage.getItem('admin_auth') === 'true')
+    
+    // Optional: listen for storage changes across tabs
+    const handleStorageChange = () => {
+      setIsAdmin(localStorage.getItem('admin_auth') === 'true')
+    }
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -41,16 +56,22 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
                 {path.title}
               </a>
             ))}
-            <a href="/#offers" className="text-sm font-medium text-gray-600 hover:text-[#223292] transition-colors">
-              Offers
-            </a>
-            <a href="/#about" className="text-sm font-medium text-gray-600 hover:text-[#223292] transition-colors">
-              About
-            </a>
+            
+           
           </div>
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {mounted && (
+              <Link
+                href={isAdmin ? '/admin/dashboard' : '/admin/login'}
+                className="hidden lg:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-[#223292] bg-blue-50 hover:bg-blue-100 transition-colors border border-blue-200"
+              >
+                <ShieldCheck className="h-4 w-4" />
+                {isAdmin ? 'Dashboard' : 'Admin Login'}
+              </Link>
+            )}
+
             <button
               onClick={toggleCart}
               className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -102,7 +123,18 @@ export default function Navbar({ paths }: { paths: TrainingPath[] }) {
           })}
           <a href="/#offers" className="flex items-center gap-2 py-2.5 px-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50" onClick={() => setMenuOpen(false)}>Offers</a>
           <a href="/#about" className="flex items-center gap-2 py-2.5 px-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50" onClick={() => setMenuOpen(false)}>About</a>
-          <div className="pt-2">
+          
+          <div className="pt-2 flex flex-col gap-2">
+            {mounted && (
+              <Link
+                href={isAdmin ? '/admin/dashboard' : '/admin/login'}
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[#223292] bg-blue-50 border border-blue-200 w-full"
+                onClick={() => setMenuOpen(false)}
+              >
+                <ShieldCheck className="h-4 w-4" />
+                {isAdmin ? 'Admin Dashboard' : 'Admin Login'}
+              </Link>
+            )}
             <Link
               href="/#courses"
               className="flex items-center justify-center py-2.5 px-4 rounded-lg text-sm font-semibold text-white w-full"

@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react'
 import { TrainingPath } from '@/types'
+import { FooterSubscription } from './FooterSubscription'
 
 export default function Footer({ paths }: { paths: TrainingPath[] }) {
   return (
     <footer className="text-white" style={{ backgroundColor: '#223292' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-6 bg-white inline-block rounded-xl p-3 shadow-sm">
@@ -50,7 +51,6 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
                 { name: 'About Us', href: '/#about' },
                 { name: 'All Courses', href: '/#courses' },
                 { name: 'Current Offers', href: '/#offers' },
-                { name: 'ETS Programme', href: '/courses/general-english-programme' },
                 { name: 'Testimonials', href: '/#testimonials' },
                 { name: 'Contact', href: 'mailto:info@pgtraining.edu' }
               ].map(item => (
@@ -79,10 +79,15 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
               </li>
             </ul>
           </div>
+
+          {/* E-Book Subscription */}
+          <div className="sm:col-span-2 lg:col-span-1 border-t border-white/10 lg:border-none pt-10 lg:pt-0">
+            <FooterSubscription />
+          </div>
         </div>
 
         <div className="border-t border-blue-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-blue-300 text-sm">© 2025 Paragon Global Training Academy. All rights reserved.</p>
+          <p className="text-blue-300 text-sm">© 2026 Paragon Global Training Academy. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { name: 'Privacy Policy', href: '/privacy-policy' },

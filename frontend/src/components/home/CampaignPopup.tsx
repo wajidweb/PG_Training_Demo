@@ -60,7 +60,12 @@ export function CampaignPopup() {
     link.click()
     document.body.removeChild(link)
     
-    setTimeout(() => setIsOpen(false), 3000)
+    // Reset state after a delay before closing, so it's fresh if opened again
+    setTimeout(() => {
+      setIsOpen(false)
+      setIsSubmitted(false)
+      setEmail('')
+    }, 2000)
   }
 
   return (

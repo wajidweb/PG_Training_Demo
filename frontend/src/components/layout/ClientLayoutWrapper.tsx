@@ -30,7 +30,7 @@ export function ClientLayoutWrapper({ children, paths }: ClientLayoutWrapperProp
   return (
     <>
       <Navbar paths={paths} />
-      <main className="pt-16"> {/* Add padding top to account for fixed navbar */}
+      <main className="pt-20"> {/* Add padding top to account for fixed navbar */}
         {children}
       </main>
       <Footer paths={paths} />

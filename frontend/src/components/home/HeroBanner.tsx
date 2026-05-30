@@ -14,22 +14,22 @@ const pathIcons: Record<string, React.ElementType> = {
 const slideConfig = [
   { 
     pathIndex: 0, 
-    tagline: 'Training That Transforms Careers, Institutions, and Lives', 
-    subtext: 'Empowering professionals for more than 25 years. Unlock your potential, strengthen your capabilities, and achieve meaningful growth.', 
+    tagline: 'Transforming Careers, Institutions, and Lives', 
+    subtext: 'Empowering professionals for over 25 years. Unlock your potential, strengthen capabilities, and achieve lasting growth.', 
     gradient: 'from-[#223292] to-[#2D7A52]',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 1, 
-    tagline: 'Build Efficient, Resilient, and High-Performing Institutions', 
-    subtext: 'Develop the skills necessary to improve organisational effectiveness, service quality, and stakeholder satisfaction.', 
+    tagline: 'Building Resilient, High-Performing Institutions', 
+    subtext: 'Develop essential skills to enhance organisational effectiveness, elevate service quality, and drive stakeholder success.', 
     gradient: 'from-[#1A5050] to-[#247870]',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 2, 
-    tagline: 'Develop Strategic Leaders for Today and Tomorrow', 
-    subtext: 'Strengthen your leadership capabilities through influence, vision, adaptability, and the ability to inspire others.', 
+    tagline: 'Developing Strategic Leaders for Tomorrow', 
+    subtext: 'Strengthen leadership capabilities through dynamic vision, deep adaptability, and the power to inspire high-performing teams.', 
     gradient: 'from-[#7A3A1A] to-[#C46030]',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000'
   },

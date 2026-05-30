@@ -82,6 +82,7 @@ export interface Course {
   pricing: CoursePricing
   offers: OfferSet
   imageUrl?: string
+  isActive?: boolean
 }
 
 export interface TrainingPath {

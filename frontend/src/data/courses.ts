@@ -593,9 +593,9 @@ export const COURSES: Course[] = [
 export const TRAINING_PATHS: TrainingPath[] = [
   {
     id: 'academic',
-    title: 'Academic Excellence',
-    subtitle: 'Master the Art of Effective Teaching and Research',
-    description: 'Enhance your academic career with comprehensive programmes covering teaching methodologies, research skills, language proficiency, and digital literacy.',
+    title: 'Academic & Research Excellence',
+    subtitle: 'Advancing Teaching, Research, and Scholarly Impact',
+    description: 'Designed to help educators and researchers thrive in a rapidly evolving landscape. Gain practical skills in teaching, research methodology, academic writing, and digital innovation.',
     color: '#223292',
     bgColor: '#EBEFFF',
     icon: '🎓',
@@ -603,9 +603,9 @@ export const TRAINING_PATHS: TrainingPath[] = [
   },
   {
     id: 'administrative',
-    title: 'Administrative Excellence',
-    subtitle: 'Navigate the Complexities of Higher Education Administration',
-    description: 'Equip yourself with skills for managing diverse student populations, data protection, internationalization, and creating inclusive institutional environments.',
+    title: 'Administrative & Operations Excellence',
+    subtitle: 'Building Efficient, Resilient, and High-Performing Institutions',
+    description: 'Develop the skills necessary to improve organisational effectiveness, service quality, and operational efficiency. Practical frameworks for strategic planning and digital transformation.',
     color: '#45A29E',
     bgColor: '#E6F4F3',
     icon: '⚙️',
@@ -613,9 +613,9 @@ export const TRAINING_PATHS: TrainingPath[] = [
   },
   {
     id: 'leadership',
-    title: 'Leadership & Strategic Management',
-    subtitle: 'Transform Your Career into Leadership',
-    description: 'Aspire to leadership roles in higher education? Develop the vision, strategic capabilities, and governance expertise to drive institutional success.',
+    title: 'Leadership Excellence',
+    subtitle: 'Developing Leaders for Today and Tomorrow',
+    description: 'Leadership is defined by influence, vision, and adaptability. Strengthen your capabilities to lead effectively in complex environments through emotional intelligence and strategic decision-making.',
     color: '#C85A43',
     bgColor: '#FDF1EE',
     icon: '🏛️',

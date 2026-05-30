@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Award, Users, BookOpen, Globe, Shield, Star } from 'lucide-react'
 
 const stats = [
-  { icon: Award, value: 25, suffix: '+', label: 'Years of Excellence', description: 'Serving higher education since 1999' },
-  { icon: Users, value: 3000, suffix: '+', label: 'Staff Trained', description: 'Academic and administrative professionals' },
-  { icon: BookOpen, value: 500, suffix: '+', label: 'Programmes', description: 'Tailored to institutional needs' },
-  { icon: Globe, value: 50, suffix: '+', label: 'Countries', description: 'Global reach across Europe and beyond' },
-  { icon: Shield, value: 4000, suffix: '+', label: 'Partner Institutions', description: 'Universities and colleges worldwide' },
-  { icon: Star, value: 98, suffix: '%', label: 'Satisfaction Rate', description: 'Participants recommend PG Training' },
+  { icon: Award, value: 25, suffix: '+', label: 'Years of Excellence', description: 'Empowering professionals since 1999' },
+  { icon: Users, value: 6000, suffix: '+', label: 'Professionals Trained', description: 'Academic, administrative, and leadership' },
+  { icon: BookOpen, value: 500, suffix: '+', label: 'Bespoke Programmes', description: 'Tailored to specific institutional needs' },
+  { icon: Globe, value: 25, suffix: '+', label: 'Years of Impact', description: 'International delivery and global reach' },
+  { icon: Shield, value: 100, suffix: '%', label: 'Erasmus+ Alignment', description: 'Supporting European funding goals' },
+  { icon: Star, value: 99, suffix: '%', label: 'Success Rate', description: 'Measurable impact on career growth' },
 ]
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {

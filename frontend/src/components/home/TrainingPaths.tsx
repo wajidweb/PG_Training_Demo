@@ -11,19 +11,19 @@ const pathConfig = {
     accent: '#223292', // Paragon Royal Blue
     light: '#EBEFFF',
     icon: BookOpen,
-    label: 'Academic Excellence'
+    label: 'Academic & Research'
   },
   administrative: {
     accent: '#45A29E', // Academy Teal
     light: '#E6F4F3',
     icon: Building2,
-    label: 'Administrative Excellence'
+    label: 'Administrative & Operations'
   },
   leadership: {
     accent: '#C85A43', // Global Terracotta
     light: '#FDF1EE',
     icon: TrendingUp,
-    label: 'Leadership & Strategy'
+    label: 'Leadership Excellence'
   },
 }
 

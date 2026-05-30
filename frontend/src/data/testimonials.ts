@@ -2,6 +2,14 @@ import { Testimonial } from '@/types'
 
 export const TESTIMONIALS: Testimonial[] = [
   {
+    id: 't-lucia',
+    name: 'Lucia Carlomagno',
+    role: 'International Training Participant',
+    institution: 'Success Stories',
+    content: 'Thanks to this learning journey, I return home with new skills, fresh insights, and the motivation to continue learning.',
+    rating: 5,
+  },
+  {
     id: 't1',
     name: 'Dr. Sarah Mitchell',
     role: 'Head of Academic Affairs',

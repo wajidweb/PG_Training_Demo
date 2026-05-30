@@ -14,22 +14,22 @@ const pathIcons: Record<string, React.ElementType> = {
 const slideConfig = [
   { 
     pathIndex: 0, 
-    tagline: 'Mastering Excellence in Modern Teaching and Research', 
-    subtext: 'Equip yourself with advanced pedagogical skills, research writing mastery, and digital literacy to excel in higher education.', 
+    tagline: 'Training That Transforms Careers, Institutions, and Lives', 
+    subtext: 'Empowering professionals for more than 25 years. Unlock your potential, strengthen your capabilities, and achieve meaningful growth.', 
     gradient: 'from-[#223292] to-[#2D7A52]',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 1, 
-    tagline: 'Leading Excellence in Institutional Administration', 
-    subtext: 'Build the skills to manage diverse student populations, protect institutional data, and drive international engagement.', 
+    tagline: 'Build Efficient, Resilient, and High-Performing Institutions', 
+    subtext: 'Develop the skills necessary to improve organisational effectiveness, service quality, and stakeholder satisfaction.', 
     gradient: 'from-[#1A5050] to-[#247870]',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 2, 
-    tagline: 'Developing Excellence in Strategic Academic Leadership', 
-    subtext: 'Develop the strategic vision, governance expertise, and innovation mindset needed to lead higher education institutions.', 
+    tagline: 'Develop Strategic Leaders for Today and Tomorrow', 
+    subtext: 'Strengthen your leadership capabilities through influence, vision, adaptability, and the ability to inspire others.', 
     gradient: 'from-[#7A3A1A] to-[#C46030]',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000'
   },
@@ -100,9 +100,9 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-t border-white/10">
               {[
                 { value: '25+', label: 'Years Experience' },
-                { value: '3,000+', label: 'Staff Trained' },
-                { value: '500+', label: 'Programmes' },
-                { value: '50+', label: 'Countries' },
+                { value: '6,000+', label: 'Professionals Trained' },
+                { value: '500+', label: 'Bespoke Programmes' },
+                { value: 'International', label: 'Delivery' },
               ].map(stat => (
                 <div key={stat.label}>
                   <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">{stat.value}</div>

@@ -82,6 +82,8 @@ export interface ICourse extends Document {
   pricing: ICoursePricing
   offers: IOfferSet
   isActive: boolean
+  language?: string
+  location?: string
   createdAt: Date
   updatedAt: Date
 }
@@ -164,6 +166,8 @@ const CourseSchema = new Schema<ICourse>({
     celebration: [CelebrationOfferSchema],
   },
   isActive: { type: Boolean, default: true },
+  language: { type: String },
+  location: { type: String },
 }, { timestamps: true })
 
 CourseSchema.index({ slug: 1 })

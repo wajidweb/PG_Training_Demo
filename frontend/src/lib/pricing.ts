@@ -19,7 +19,8 @@ export function calculatePrice(
   const packageMultiplier = packageTier?.multiplier ?? 1.0
   const packageName = packageTier?.name ?? 'Essentials'
 
-  const deliveryMultiplier = delivery.multiplier
+  // Delivery multiplier is ignored for pricing per user request
+  const deliveryMultiplier = 1.0
   const volumeDiscount = getVolumeDiscount(volumeDiscounts, participants) / 100
   const offerDiscount = offerDiscountPercent / 100
 
@@ -35,7 +36,7 @@ export function calculatePrice(
     packageName,
     packageMultiplier,
     participants,
-    deliveryMultiplier,
+    deliveryMultiplier, // keeping this in the return type so it doesn't break interfaces, but it's 1.0
     deliveryLabel: delivery.label,
     volumeDiscount: volumeDiscount * 100,
     offerDiscount: offerDiscountPercent,

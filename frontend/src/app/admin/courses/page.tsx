@@ -95,7 +95,9 @@ export default function AdminCoursesPage() {
       upcomingDates: [],
       outcomes: [],
       targetAudience: [],
-      addOnIds: []
+      addOnIds: [],
+      language: 'English',
+      location: 'London, UK / Online'
     })
     setNewStartDate('')
     setNewEndDate('')
@@ -113,7 +115,9 @@ export default function AdminCoursesPage() {
       upcomingDates: course.upcomingDates || [],
       outcomes: course.outcomes || [],
       targetAudience: course.targetAudience || [],
-      addOnIds: course.addOnIds || []
+      addOnIds: course.addOnIds || [],
+      language: course.language || '',
+      location: course.location || ''
     })
     setNewStartDate('')
     setNewEndDate('')
@@ -445,7 +449,31 @@ export default function AdminCoursesPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border-2 border-slate-100">
+              {/* Course Info Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700">Language of Instruction</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 bg-slate-50 border-2 rounded-lg focus:outline-none focus:border-[#223292]"
+                    value={formData.language || ''}
+                    onChange={(e) => setFormData({...formData, language: e.target.value})}
+                    placeholder="e.g. English"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700">Location</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 bg-slate-50 border-2 rounded-lg focus:outline-none focus:border-[#223292]"
+                    value={formData.location || ''}
+                    onChange={(e) => setFormData({...formData, location: e.target.value})}
+                    placeholder="e.g. London, UK"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border-2 border-slate-100 mt-2">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
                     <Users className="h-4 w-4" /> Min Participants

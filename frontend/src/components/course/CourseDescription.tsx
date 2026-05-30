@@ -1,11 +1,40 @@
 'use client'
 
 import { Course } from '@/types'
-import { CheckCircle2, Users, Monitor, MapPin, Target } from 'lucide-react'
+import { CheckCircle2, Users, Target, Globe, MapPin } from 'lucide-react'
 
 export default function CourseDescription({ course }: { course: Course }) {
   return (
     <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
+      
+      {/* Quick Facts Section */}
+      {(course.language || course.location) && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          {course.language && (
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+              <div className="bg-[#EBEFFF] p-2 rounded-xl text-[#223292]">
+                <Globe className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Language</div>
+                <div className="font-semibold text-gray-900 text-sm">{course.language}</div>
+              </div>
+            </div>
+          )}
+          {course.location && (
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+              <div className="bg-[#EBEFFF] p-2 rounded-xl text-[#223292]">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Location</div>
+                <div className="font-semibold text-gray-900 text-sm">{course.location}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900">About This Course</h2>
       <div className="prose prose-blue max-w-none text-gray-600 mb-10 leading-relaxed text-base sm:text-lg">
         <p>{course.fullDescription}</p>

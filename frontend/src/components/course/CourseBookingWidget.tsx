@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { Course, CartAddon } from '@/types'
 import { ADD_ONS } from '@/data/packages'
 import { calculatePrice, formatPrice } from '@/lib/pricing'
@@ -8,10 +8,9 @@ import { useCartStore } from '@/store/cart'
 import { nanoid } from 'nanoid'
 import {
   Users, Monitor, MapPin, Check, Plus, Minus,
-  ShoppingCart, BookOpen, Play, MessageCircle, Award, ClipboardCheck, Calendar, CheckCircle2, ChevronLeft, ChevronRight
+  ShoppingCart, BookOpen, Play, MessageCircle, Award, ClipboardCheck
 } from 'lucide-react'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 const addonIcons: Record<string, React.ElementType> = {
   printed_kit: BookOpen,
@@ -31,71 +30,11 @@ const pathColors: Record<string, string> = {
 export default function CourseBookingWidget({ course }: { course: Course }) {
   const [delivery, setDelivery] = useState(course.deliveryMethods[0])
   const [participants, setParticipants] = useState(1)
-  const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [selectedAddOns, setSelectedAddOns] = useState<Set<string>>(new Set())
   const [added, setAdded] = useState(false)
-  const [showError, setShowError] = useState(false)
-  
-  // Calendar State
-  const [currentMonth, setCurrentMonth] = useState(new Date())
   
   const { addItem } = useCartStore()
   const accent = pathColors[course.pathId] ?? '#223292'
-
-  // Parse ranges from course data
-  const dateRanges = useMemo(() => {
-    return (course.upcomingDates || []).map(rangeStr => {
-      if (rangeStr.includes('|')) {
-        const [start, end] = rangeStr.split('|')
-        return { start: new Date(start), end: new Date(end) }
-      }
-      const date = new Date(rangeStr)
-      return { start: date, end: date }
-    })
-  }, [course.upcomingDates])
-
-  // Reset selected date if delivery method changes to self-paced
-  useEffect(() => {
-    if (delivery.type === 'self-paced') {
-      setSelectedDate(null)
-      setShowError(false)
-    } else if (dateRanges.length > 0 && !selectedDate) {
-      // Set calendar to show the first available date's month
-      setCurrentMonth(new Date(dateRanges[0].start))
-    }
-  }, [delivery.type, dateRanges, selectedDate])
-
-  // Calendar Logic
-  const daysInMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-  const firstDayOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1).getDay()
-  
-  const calendarDays = useMemo(() => {
-    const days = []
-    const count = daysInMonth(currentMonth)
-    const offset = firstDayOfMonth(currentMonth)
-    
-    // Previous month padding
-    for (let i = 0; i < offset; i++) days.push(null)
-    
-    // Current month days
-    for (let i = 1; i <= count; i++) {
-      const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i)
-      
-      // Check if this date is within any available range
-      const isAvailable = dateRanges.some(range => {
-        const d = new Date(date).setHours(0,0,0,0)
-        const s = new Date(range.start).setHours(0,0,0,0)
-        const e = new Date(range.end).setHours(23,59,59,999)
-        return d >= s && d <= e
-      })
-      
-      days.push({ day: i, date, isAvailable })
-    }
-    return days
-  }, [currentMonth, dateRanges])
-
-  const nextMonth = () => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1))
-  const prevMonth = () => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1))
 
   const toggleAddOn = (id: string) =>
     setSelectedAddOns(prev => {
@@ -120,19 +59,12 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
   )
 
   const handleAddToCart = () => {
-    if ((delivery.type === 'online-instructor' || delivery.type === 'onsite') && !selectedDate && course.upcomingDates.length > 0) {
-      setShowError(true)
-      document.getElementById('date-selection')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      return
-    }
-
     addItem({
       cartId: nanoid(),
       courseId: course.id,
       courseTitle: course.title,
       courseCode: course.code,
       deliveryMethod: delivery,
-      selectedDate: selectedDate || undefined,
       participants,
       basePrice: course.pricing.basePrice,
       addOns: cartAddOns,
@@ -183,9 +115,6 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
                       : <BookOpen className="w-4 h-4" style={{ color: accent }} />}
                   <div>
                     <div className="font-semibold text-sm text-gray-900 leading-none">{d.label}</div>
-                    <div className="text-[10px] text-gray-500 mt-1">
-                      {d.multiplier === 1 ? 'Standard rate' : d.multiplier < 1 ? `${Math.round((1 - d.multiplier) * 100)}% cheaper` : `+${Math.round((d.multiplier - 1) * 100)}% premium`}
-                    </div>
                   </div>
                 </div>
                 <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${active ? 'border-green-500 bg-green-500' : 'border-gray-300'}`}>
@@ -197,81 +126,6 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
         </div>
       </div>
 
-      {/* Step Date – Selection (Conditional) */}
-      {(delivery.type === 'online-instructor' || delivery.type === 'onsite') && course.upcomingDates.length > 0 && (
-        <div id="date-selection" className={cn("p-5 rounded-3xl border-2 transition-all", showError && !selectedDate ? "border-red-300 bg-red-50" : "border-slate-100 bg-slate-50")}>
-          <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-sm">
-            {stepLabel('D')} Select Your Session Date
-          </h3>
-          
-          <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-            {/* Calendar Header */}
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="font-bold text-sm text-slate-800">
-                {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
-              </h4>
-              <div className="flex gap-1">
-                <button onClick={prevMonth} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"><ChevronLeft className="h-4 w-4" /></button>
-                <button onClick={nextMonth} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"><ChevronRight className="h-4 w-4" /></button>
-              </div>
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1 text-center mb-2">
-              {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => (
-                <span key={d} className="text-[10px] font-bold text-slate-400 uppercase">{d}</span>
-              ))}
-            </div>
-            <div className="grid grid-cols-7 gap-1">
-              {calendarDays.map((d, i) => {
-                if (!d) return <div key={`empty-${i}`} />
-                
-                const isSelected = selectedDate === d.date.toISOString()
-                
-                return (
-                  <button
-                    key={i}
-                    disabled={!d.isAvailable}
-                    onClick={() => {
-                      setSelectedDate(d.date.toISOString())
-                      setShowError(false)
-                    }}
-                    className={cn(
-                      "aspect-square flex items-center justify-center text-xs rounded-lg transition-all font-bold",
-                      d.isAvailable 
-                        ? isSelected 
-                          ? "bg-blue-600 text-white shadow-md ring-2 ring-blue-100 scale-105" 
-                          : "bg-blue-50 text-blue-700 hover:bg-blue-100 cursor-pointer"
-                        : "text-slate-300 bg-transparent cursor-not-allowed opacity-50"
-                    )}
-                  >
-                    {d.day}
-                  </button>
-                )
-              })}
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-               <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-blue-100 border border-blue-300" />
-                  <span className="text-[10px] font-medium text-slate-500">Available Session</span>
-               </div>
-               {selectedDate && (
-                 <span className="text-[10px] font-bold text-blue-700">
-                    Selected: {new Date(selectedDate).toLocaleDateString()}
-                 </span>
-               )}
-            </div>
-          </div>
-
-          {showError && !selectedDate && (
-            <p className="text-[10px] text-red-600 font-bold mt-3 text-center bg-red-100/50 py-1 rounded-full">
-              Please click an available date on the calendar
-            </p>
-          )}
-        </div>
-      )}
-
       {/* Step 2 – Participants */}
       <div>
         <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm">
@@ -280,14 +134,14 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
         <div className="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
           <button
             onClick={() => setParticipants(p => Math.max(1, p - 1))}
-            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white"
+            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white cursor-pointer"
           >
             <Minus className="w-4 h-4 text-gray-600" />
           </button>
           <div className="text-2xl font-bold text-gray-900 flex-1 text-center">{participants}</div>
           <button
             onClick={() => setParticipants(p => Math.min(course.pricing.maxParticipants, p + 1))}
-            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white"
+            className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-white hover:shadow-sm transition-all bg-white cursor-pointer"
           >
             <Plus className="w-4 h-4 text-gray-600" />
           </button>
@@ -341,14 +195,6 @@ export default function CourseBookingWidget({ course }: { course: Course }) {
             <span>Course Subtotal</span>
             <span>{formatPrice(breakdown.courseSubtotal)}</span>
           </div>
-          {selectedDate && (
-            <div className="flex justify-between text-gray-600">
-              <span>Selected Date</span>
-              <span className="font-bold text-blue-700 text-right max-w-[150px] truncate">
-                {new Date(selectedDate).toLocaleDateString()}
-              </span>
-            </div>
-          )}
           {cartAddOns.length > 0 && (
             <div className="flex justify-between text-gray-600">
               <span>{cartAddOns.length} Add-ons</span>

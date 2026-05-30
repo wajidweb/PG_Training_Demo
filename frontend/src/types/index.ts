@@ -83,6 +83,8 @@ export interface Course {
   offers: OfferSet
   imageUrl?: string
   isActive?: boolean
+  language?: string
+  location?: string
 }
 
 export interface TrainingPath {

@@ -87,7 +87,7 @@ router.post('/webhook', async (req: Request, res: Response) => {
   const sig = req.headers['stripe-signature'] as string
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || ''
 
-  let event: Stripe.Event
+  let event: any
 
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret)
@@ -99,7 +99,7 @@ router.post('/webhook', async (req: Request, res: Response) => {
 
   // Handle the event
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session
+    const session = event.data.object as any
     
     // Update order status to paid
     try {

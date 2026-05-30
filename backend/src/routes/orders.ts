@@ -2,10 +2,9 @@ import { Router, Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
 import { Order } from '../models/Order'
 import Stripe from 'stripe'
+import { sendOrderConfirmationEmail } from '../lib/email'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2026-04-22.dahlia',
-})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '')
 
 const router = Router()
 
@@ -103,16 +102,22 @@ router.post('/webhook', async (req: Request, res: Response) => {
     
     // Update order status to paid
     try {
-      await Order.findOneAndUpdate(
+      const updatedOrder = await Order.findOneAndUpdate(
         { stripeSessionId: session.id },
         { 
           status: 'paid',
           stripePaymentIntentId: session.payment_intent as string
-        }
+        },
+        { new: true } // Return the updated document
       )
       console.log(`Order paid: ${session.id}`)
+
+      // Send the confirmation email
+      if (updatedOrder) {
+        await sendOrderConfirmationEmail(updatedOrder)
+      }
     } catch (dbErr) {
-      console.error('Database update error in webhook:', dbErr)
+      console.error('Database update or email error in webhook:', dbErr)
     }
   }
 

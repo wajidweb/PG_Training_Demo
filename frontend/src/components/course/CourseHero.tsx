@@ -1,7 +1,7 @@
 'use client'
 
 import { Course } from '@/types'
-import { Clock, Users, Monitor, MapPin, Award, CheckCircle2, ChevronRight, Calendar } from 'lucide-react'
+import { Users, Monitor, Award, CheckCircle2, ChevronRight, Calendar } from 'lucide-react'
 import Link from 'next/link'
 
 const pathConfig: Record<string, { bg: string, text: string, gradient: string }> = {
@@ -25,62 +25,62 @@ export default function CourseHero({ course }: { course: Course }) {
   }
 
   return (
-    <section className={`relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden bg-gradient-to-br ${config.gradient}`}>
+    <section className={`relative pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden bg-gradient-to-r ${config.gradient}`}>
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-white/70 text-sm font-medium mb-8 flex-wrap">
+          <div className="flex items-center gap-2 text-white/60 text-[11px] font-bold uppercase tracking-wider mb-6 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3 h-3" />
             <Link href="/#courses" className="hover:text-white transition-colors">Courses</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3 h-3" />
             <span className="text-white">{course.code}</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md rounded-full px-4 py-1.5 text-white text-xs font-bold tracking-wider uppercase border border-white/20 shadow-sm">
-              <Award className="w-4 h-4" />
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm rounded-md px-2.5 py-1 text-white text-[10px] font-bold tracking-widest uppercase border border-white/10">
+              <Award className="w-3 h-3" />
               Professional Certificate
             </div>
             {nextDateStr && (
-              <div className="inline-flex items-center gap-1.5 bg-[#F2D03B] rounded-full px-4 py-1.5 text-[#0F1F12] text-xs font-black tracking-wider uppercase shadow-lg border-2 border-white/20">
-                <Calendar className="w-4 h-4" />
+              <div className="inline-flex items-center gap-1.5 bg-[#F2D03B] rounded-md px-2.5 py-1 text-[#0F1F12] text-[10px] font-bold tracking-widest uppercase">
+                <Calendar className="w-3 h-3" />
                 Starts: {nextDateStr}
               </div>
             )}
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter drop-shadow-sm">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 tracking-tight drop-shadow-sm">
             {course.title}
           </h1>
 
-          <p className="text-lg sm:text-2xl text-white/90 leading-relaxed mb-12 max-w-3xl font-medium drop-shadow-sm">
+          <p className="text-sm sm:text-base text-white/80 leading-relaxed mb-8 max-w-3xl font-medium">
             {course.shortDescription}
           </p>
 
           {/* Key Selling Points */}
-          <div className="flex flex-wrap gap-x-10 gap-y-6 pt-6 border-t border-white/10">
-            <div className="flex items-center gap-3 text-white font-bold">
-              <div className="bg-white/10 p-2 rounded-lg">
-                <CheckCircle2 className="w-6 h-6 text-[#F2D03B]" />
+          <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-white/10">
+            <div className="flex items-center gap-2.5 text-white/90 text-sm font-semibold">
+              <div className="bg-white/10 p-1.5 rounded-md">
+                <CheckCircle2 className="w-4 h-4 text-[#F2D03B]" />
               </div>
               Expert Facilitators
             </div>
             {course.pricing?.maxParticipants > 0 && (
-              <div className="flex items-center gap-3 text-white font-bold">
-                <div className="bg-white/10 p-2 rounded-lg">
-                   <Users className="w-6 h-6 text-[#F2D03B]" />
+              <div className="flex items-center gap-2.5 text-white/90 text-sm font-semibold">
+                <div className="bg-white/10 p-1.5 rounded-md">
+                   <Users className="w-4 h-4 text-[#F2D03B]" />
                 </div>
                 Up to {course.pricing.maxParticipants} participants
               </div>
             )}
-            <div className="flex items-center gap-3 text-white font-bold">
-              <div className="bg-white/10 p-2 rounded-lg">
-                <Monitor className="w-6 h-6 text-[#F2D03B]" />
+            <div className="flex items-center gap-2.5 text-white/90 text-sm font-semibold">
+              <div className="bg-white/10 p-1.5 rounded-md">
+                <Monitor className="w-4 h-4 text-[#F2D03B]" />
               </div>
               {course.deliveryMethods?.length > 1 ? 'Multiple Delivery Options' : course.deliveryMethods?.[0]?.label}
             </div>

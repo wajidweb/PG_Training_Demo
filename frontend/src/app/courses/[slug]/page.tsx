@@ -4,12 +4,10 @@ import CourseHero from '@/components/course/CourseHero'
 import CourseDescription from '@/components/course/CourseDescription'
 import WhyChooseUs from '@/components/course/WhyChooseUs'
 import CourseBookingWidget from '@/components/course/CourseBookingWidget'
-import LimitedOffers from '@/components/course/LimitedOffers'
 import ComboAndBundleOffers from '@/components/course/ComboAndBundleOffers'
 import Testimonials from '@/components/home/Testimonials'
 import { fetchTestimonials } from '@/lib/api'
 import { COURSES } from '@/data/courses'
-import { Target, Lightbulb } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,21 +45,19 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
     <>
       <CourseHero course={course} />
       
-      <div className="bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
+      <div className="bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
             
             {/* Left Content Column */}
-            <div className="flex-1 w-full space-y-12">
+            <div className="flex-1 w-full space-y-8">
               <CourseDescription course={course} />
-
               <WhyChooseUs course={course} />
-              {/* <LimitedOffers course={course} /> */}
               <ComboAndBundleOffers course={course} allCourses={allCourses} />
             </div>
 
             {/* Right Sticky Sidebar */}
-            <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
+            <div className="w-full lg:w-[360px] xl:w-[400px] flex-shrink-0">
               <CourseBookingWidget course={course} />
             </div>
 

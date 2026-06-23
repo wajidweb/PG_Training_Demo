@@ -22,6 +22,29 @@ app.use('/api/orders/webhook', express.raw({ type: 'application/json' }))
 
 app.use(express.json())
 
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'Paragon Global Training Academy API is active and running',
+    environment: process.env.NODE_ENV || 'development',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  })
+})
+
+app.get('/api', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'Welcome to the Paragon Global Training Academy API Endpoint',
+    endpoints: {
+      health: '/api/health',
+      courses: '/api/courses',
+      paths: '/api/paths',
+      testimonials: '/api/testimonials'
+    }
+  })
+})
+
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
 })

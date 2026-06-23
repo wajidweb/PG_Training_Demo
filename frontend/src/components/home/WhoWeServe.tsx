@@ -4,25 +4,25 @@ const segments = [
   {
     title: 'Academic Professionals',
     icon: GraduationCap,
-    items: ['University lecturers', 'Professors', 'Researchers', 'PhD candidates', 'Academic leaders', 'Faculty members'],
+    items: ['Lecturers', 'Researchers', 'Faculty members', 'Academic leaders'],
     color: '#223292' // Royal Blue
   },
   {
     title: 'Administrative Professionals',
     icon: Briefcase,
-    items: ['Registry teams', 'Student services staff', 'Operations managers', 'Quality assurance personnel', 'Human resources', 'Institutional support'],
+    items: ['Operations teams', 'Student services', 'Quality teams', 'Management staff'],
     color: '#45A29E' // Teal
   },
   {
-    title: 'Leadership Professionals',
+    title: 'Leadership Teams',
     icon: UserCircle2,
-    items: ['Department heads', 'Directors', 'Senior managers', 'Institutional leaders', 'Project leaders', 'Emerging leaders'],
+    items: ['Directors', 'Managers', 'Department heads'],
     color: '#C85A43' // Terracotta
   },
   {
-    title: 'Organisations & Institutions',
+    title: 'Organizations & Institutions',
     icon: Building2,
-    items: ['Universities', 'Higher education institutions', 'Research centres', 'Government agencies', 'Public sector', 'Private enterprises'],
+    items: ['Universities', 'Government organizations', 'Private institutions'],
     color: '#F2D03B' // Gold
   }
 ]
@@ -40,13 +40,13 @@ export default function WhoWeServe() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#F2D03B] animate-pulse" />
-            <span className="text-gray-300 text-xs font-bold uppercase tracking-widest">Our Global Reach</span>
+            <span className="text-gray-300 text-xs font-bold uppercase tracking-widest">Who We Support</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-8 tracking-tight">
-            Who We <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Serve</span>
+            Supporting Professionals & Institutions <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Worldwide</span>
           </h2>
           <p className="text-gray-400 text-lg sm:text-xl leading-relaxed">
-            PG Training proudly supports a diverse range of professionals and institutions across the global higher education landscape, delivering bespoke solutions for every layer of academia.
+            Our comprehensive curriculum is engineered to empower specialized roles across every level of academia and administrative operations, helping you instantly identify if our programmes fit your path.
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function WhoWeServe() {
                     className="w-16 h-16 sm:w-20 sm:h-20 rounded-[1.25rem] flex items-center justify-center flex-shrink-0 shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
                     style={{ backgroundColor: segment.color }}
                   >
-                    <segment.icon className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: segment.title.includes('Organisations') ? '#0F1F12' : '#FFFFFF' }} />
+                    <segment.icon className="w-8 h-8 sm:w-10 sm:h-10" style={{ color: segment.title.includes('Organizations') ? '#0F1F12' : '#FFFFFF' }} />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight tracking-tight">
                     {segment.title}

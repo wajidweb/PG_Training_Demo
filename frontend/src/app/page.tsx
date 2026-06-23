@@ -1,6 +1,6 @@
 import HeroBanner from '@/components/home/HeroBanner'
-import TrainingPaths from '@/components/home/TrainingPaths'
-import Accomplishments from '@/components/home/Accomplishments'
+import WhoWeAre from '@/components/home/WhoWeAre'
+import WhatWeDo from '@/components/home/WhatWeDo'
 import Testimonials from '@/components/home/Testimonials'
 import AboutUs from '@/components/home/AboutUs'
 import { fetchPaths, fetchTestimonials } from '@/lib/api'
@@ -9,11 +9,10 @@ import { CampaignPopup } from '@/components/home/CampaignPopup'
 // New Components
 import VisionMission from '@/components/home/VisionMission'
 import WhoWeServe from '@/components/home/WhoWeServe'
-import BespokeLearning from '@/components/home/BespokeLearning'
-import ErasmusFriendly from '@/components/home/ErasmusFriendly'
+import OurApproach from '@/components/home/OurApproach'
 import WhyChooseUs from '@/components/home/WhyChooseUs'
+import ErasmusFriendly from '@/components/home/ErasmusFriendly'
 import CallToAction from '@/components/home/CallToAction'
-import LegacyBanner from '@/components/home/LegacyBanner'
 
 export const revalidate = 60
 
@@ -26,14 +25,13 @@ export default async function HomePage() {
   return (
     <>
       <HeroBanner paths={paths} />
+      <WhoWeAre />
+      <WhatWeDo />
       <VisionMission />
       <WhoWeServe />
-      <TrainingPaths paths={paths} />
-      <LegacyBanner />
-      <Accomplishments />
-      <BespokeLearning />
-      <ErasmusFriendly />
+      <OurApproach />
       <WhyChooseUs />
+      <ErasmusFriendly />
       <Testimonials testimonials={testimonials} />
       <AboutUs />
       <CallToAction />

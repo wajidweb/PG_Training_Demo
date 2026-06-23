@@ -36,7 +36,7 @@ export default function CourseHero({ course }: { course: Course }) {
           <div className="flex items-center gap-2 text-white/60 text-[11px] font-bold uppercase tracking-wider mb-6 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link href="/#courses" className="hover:text-white transition-colors">Courses</Link>
+            <Link href="/programmes" className="hover:text-white transition-colors">Programmes</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-white">{course.code}</span>
           </div>

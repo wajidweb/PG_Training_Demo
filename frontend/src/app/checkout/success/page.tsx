@@ -50,7 +50,7 @@ function SuccessContent() {
             Back to Home
           </Link>
           <Link 
-            href="/#courses" 
+            href="/programmes" 
             className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-white bg-[#223292] font-bold hover:opacity-90 shadow-lg transition-all"
           >
             <ShoppingBag className="w-5 h-5" />

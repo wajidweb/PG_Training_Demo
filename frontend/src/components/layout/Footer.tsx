@@ -1,9 +1,23 @@
 import Link from 'next/link'
-import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
 import { TrainingPath } from '@/types'
 import { FooterSubscription } from './FooterSubscription'
 
-export default function Footer({ paths }: { paths: TrainingPath[] }) {
+export default function Footer({}: { paths: TrainingPath[] }) {
+  const programmes = [
+    { name: 'Academic Excellence', href: '/programmes#path-academic' },
+    { name: 'Administrative Excellence', href: '/programmes#path-administrative' },
+    { name: 'Leadership & Strategic Management', href: '/programmes#path-leadership' }
+  ]
+
+  const quickLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Our Programmes', href: '/programmes' },
+    { name: 'About Us', href: '/#who-we-are' },
+    { name: 'Why Choose Us', href: '/#why-choose-us' },
+    { name: 'Contact Us', href: '/contact-us' }
+  ]
+
   return (
     <footer className="text-white" style={{ backgroundColor: '#223292' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
@@ -29,15 +43,15 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
             </div>
           </div>
 
-          {/* Training Paths */}
+          {/* Our Programmes */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Training Paths</h4>
+            <h4 className="font-semibold text-white mb-4">Our Programmes</h4>
             <ul className="space-y-2">
-              {paths.map(path => (
-                <li key={path.id}>
-                  <a href={`/#path-${path.id}`} className="text-blue-200 hover:text-white text-sm transition-colors">
-                    {path.title}
-                  </a>
+              {programmes.map(prog => (
+                <li key={prog.name}>
+                  <Link href={prog.href} className="text-blue-200 hover:text-white text-sm transition-colors">
+                    {prog.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -47,22 +61,18 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
           <div>
             <h4 className="font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {[
-                { name: 'About Us', href: '/#about' },
-                { name: 'All Courses', href: '/#courses' },
-                { name: 'Current Offers', href: '/#offers' },
-                { name: 'Testimonials', href: '/#testimonials' },
-                { name: 'Contact', href: 'mailto:info@pgtraining.edu' }
-              ].map(item => (
+              {quickLinks.map(item => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-blue-200 hover:text-white text-sm transition-colors">{item.name}</Link>
+                  <Link href={item.href} className="text-blue-200 hover:text-white text-sm transition-colors">
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Contact */}
-          <div>
+          <div id="contact" className="scroll-mt-24">
             <h4 className="font-semibold text-white mb-4">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-blue-200 text-sm">
@@ -73,9 +83,10 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>+356 2000 0000</span>
               </li>
-              <li className="flex items-start gap-2 text-blue-200 text-sm">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Malta, European Union</span>
+              <li className="flex items-start gap-2 text-[#223292] text-sm">
+                {/* Keep Malta EU text clean and readable */}
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-200" />
+                <span className="text-blue-200">Malta, European Union</span>
               </li>
             </ul>
           </div>
@@ -87,7 +98,20 @@ export default function Footer({ paths }: { paths: TrainingPath[] }) {
         </div>
 
         <div className="border-t border-blue-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-blue-300 text-sm">© 2026 Paragon Global Training Academy. All rights reserved.</p>
+          <div className="text-center sm:text-left space-y-1">
+            <p className="text-blue-300 text-sm">© 2026 Paragon Global Training Academy. All rights reserved.</p>
+            <p className="text-blue-400 text-xs font-semibold">
+              Developed by{' '}
+              <a 
+                href="https://wajidalikhan-portfolio.vercel.app/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-300 hover:text-white transition-colors underline decoration-dotted underline-offset-4"
+              >
+                Wajid Ali Khan
+              </a>
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             {[
               { name: 'Privacy Policy', href: '/privacy-policy' },

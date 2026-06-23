@@ -15,21 +15,21 @@ const slideConfig = [
   { 
     pathIndex: 0, 
     tagline: 'Transforming Careers, Institutions, and Lives', 
-    subtext: 'Empowering professionals for over 25 years. Unlock your potential, strengthen capabilities, and achieve lasting growth.', 
+    subtext: 'Empowering professional growth over decades. Unlock your potential, strengthen core capabilities, and achieve lasting success.', 
     gradient: 'from-[#223292] to-[#2D7A52]',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 1, 
-    tagline: 'Building Resilient, High-Performing Institutions', 
-    subtext: 'Develop essential skills to enhance organisational effectiveness, elevate service quality, and drive stakeholder success.', 
+    tagline: 'Building Resilient and Efficient Institutions', 
+    subtext: 'Develop essential skills to enhance operational efficiency, elevate administrative quality, and drive organizational success.', 
     gradient: 'from-[#1A5050] to-[#247870]',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000'
   },
   { 
     pathIndex: 2, 
-    tagline: 'Developing Strategic Leaders for Tomorrow', 
-    subtext: 'Strengthen leadership capabilities through dynamic vision, deep adaptability, and the power to inspire high-performing teams.', 
+    tagline: 'Developing Strategic Leaders for the Future', 
+    subtext: 'Strengthen leadership capabilities through strategic vision, deep adaptability, and the power to inspire outstanding teams.', 
     gradient: 'from-[#7A3A1A] to-[#C46030]',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000'
   },
@@ -82,31 +82,31 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-14">
               <Link
-                href={`/#path-${path.id}`}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg transition-all hover:scale-105 shadow-xl hover:shadow-[#F2D03B]/20"
+                href={`/programmes#path-${path.id}`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all hover:scale-105 shadow-xl hover:shadow-[#F2D03B]/20 uppercase tracking-wider whitespace-nowrap"
                 style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
               >
-                Explore {path.title} <ArrowRight className="w-5 h-5" />
+                Explore Programme <ArrowRight className="w-4 h-4" />
               </Link>
               <button
                 onClick={() => document.getElementById('chatbot-trigger')?.click()}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-extrabold text-xs sm:text-sm bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-all uppercase tracking-wider whitespace-nowrap"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-4 h-4" />
                 Chat to Order
               </button>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-t border-white/10">
               {[
-                { value: '25+', label: 'Years Experience' },
-                { value: '6,000+', label: 'Professionals Trained' },
-                { value: '500+', label: 'Bespoke Programmes' },
-                { value: 'International', label: 'Delivery' },
+                { value: 'Decades', label: 'Of Legacy' },
+                { value: 'Thousands', label: 'Staff Empowered' },
+                { value: 'Bespoke', label: 'Curriculums' },
+                { value: 'Global', label: 'Delivery Network' },
               ].map(stat => (
                 <div key={stat.label}>
-                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-white/60 text-[10px] sm:text-xs uppercase tracking-widest font-medium">{stat.label}</div>
+                  <div className="text-sm sm:text-base font-extrabold text-white mb-1 uppercase tracking-wider leading-none">{stat.value}</div>
+                  <div className="text-white/70 text-[9px] sm:text-[10px] uppercase tracking-widest font-bold leading-tight">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -126,7 +126,7 @@ export default function HeroBanner({ paths }: { paths: TrainingPath[] }) {
               {/* Floating Decorative Element */}
               <div className="absolute bottom-6 left-6 right-6 p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/10 hidden sm:block">
                 <p className="text-white/90 text-sm font-medium italic">
-                  "Empowering the next generation of higher education leaders and educators."
+                  &ldquo;Empowering the next generation of higher education leaders and educators.&rdquo;
                 </p>
               </div>
             </div>

@@ -27,7 +27,7 @@ export default function LegacyBanner() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link
-            href="/#courses"
+            href="/programmes"
             className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-bold text-base sm:text-lg transition-all hover:scale-105"
             style={{ backgroundColor: '#F2D03B', color: '#0F1F12' }}
           >

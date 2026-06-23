@@ -22,7 +22,7 @@ export default function CallToAction() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link 
-                href="/#courses"
+                href="/programmes"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#F2D03B] text-[#0F1F12] font-black text-lg rounded-2xl hover:scale-105 transition-all shadow-xl shadow-[#F2D03B]/20"
               >
                 Explore Programmes <ArrowRight className="w-5 h-5" />

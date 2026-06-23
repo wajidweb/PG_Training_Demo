@@ -4,7 +4,18 @@ const nextConfig: NextConfig = {
   async rewrites() {
     // API_URL is used to proxy client-side API requests to the Express backend.
     // In development, this defaults to http://localhost:5000.
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+    let apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+    // Auto-heal the URL if the user omitted http:// or https:// protocol in Vercel settings
+    if (
+      apiBaseUrl && 
+      !apiBaseUrl.startsWith('http://') && 
+      !apiBaseUrl.startsWith('https://') && 
+      !apiBaseUrl.startsWith('/')
+    ) {
+      apiBaseUrl = `https://${apiBaseUrl}`;
+    }
+
     return [
       {
         source: '/api/courses/:path*',

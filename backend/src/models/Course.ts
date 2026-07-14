@@ -170,7 +170,6 @@ const CourseSchema = new Schema<ICourse>({
   location: { type: String },
 }, { timestamps: true })
 
-CourseSchema.index({ slug: 1 })
 CourseSchema.index({ pathId: 1 })
 
 export const Course = model<ICourse>('Course', CourseSchema)

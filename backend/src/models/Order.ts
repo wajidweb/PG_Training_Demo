@@ -84,7 +84,6 @@ const OrderSchema = new Schema<IOrder>({
   notes: String,
 }, { timestamps: true })
 
-OrderSchema.index({ orderNumber: 1 })
 OrderSchema.index({ 'contact.email': 1 })
 OrderSchema.index({ createdAt: -1 })
 

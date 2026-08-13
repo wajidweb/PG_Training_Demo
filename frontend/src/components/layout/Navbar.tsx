@@ -50,6 +50,13 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
               Home
             </Link>
 
+            <Link
+              href="/about"
+              className="text-xs font-black tracking-wider text-primary hover:text-accent transition-colors uppercase"
+            >
+              About
+            </Link>
+
             {/* Our Schools Dropdown */}
             <div className="relative group py-2">
               <button
@@ -126,13 +133,6 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
             </Link>
 
             <Link
-              href="/about"
-              className="text-xs font-black tracking-wider text-primary hover:text-accent transition-colors uppercase"
-            >
-              About
-            </Link>
-
-            <Link
               href="/contact"
               className="text-xs font-black tracking-wider text-primary hover:text-accent transition-colors uppercase"
             >
@@ -185,6 +185,14 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
             onClick={() => setMenuOpen(false)}
           >
             Home
+          </Link>
+
+          <Link
+            href="/about"
+            className="flex items-center gap-2 py-2.5 px-2 text-xs font-black tracking-wider text-primary rounded-lg hover:bg-secondary/40 uppercase"
+            onClick={() => setMenuOpen(false)}
+          >
+            About us
           </Link>
 
           {/* Our Schools Accordion */}
@@ -249,14 +257,6 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
             onClick={() => setMenuOpen(false)}
           >
             Journal
-          </Link>
-
-          <Link
-            href="/about"
-            className="flex items-center gap-2 py-2.5 px-2 text-xs font-black tracking-wider text-primary rounded-lg hover:bg-secondary/40 uppercase"
-            onClick={() => setMenuOpen(false)}
-          >
-            About us
           </Link>
 
           <Link

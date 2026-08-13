@@ -233,7 +233,6 @@ export default function AboutPage() {
       {/* Philosophy */}
       <section className="bg-[#0B1B3D] text-white py-16 mb-16 border-y border-slate-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-[9px] font-bold tracking-widest text-[#B89047] uppercase block mb-3">// PGT THEORY</span>
           <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">OUR PHILOSOPHY</h2>
           <p className="text-base font-light italic text-[#B89047] mt-1 mb-6">"People Create Performance"</p>
           <p className="text-xs text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-light">

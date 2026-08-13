@@ -147,7 +147,6 @@ export default function LearningPathwaysPage() {
                     <Icon className="w-5 h-5" />
                   </div>
                   
-                  <span className="text-[9px] font-bold text-[#B89047] tracking-widest block mb-2">// PATHWAY 0{path.id}</span>
                   <h3 className="text-base font-bold text-[#0B1B3D] mb-3 uppercase tracking-wide leading-tight">
                     {path.title}
                   </h3>

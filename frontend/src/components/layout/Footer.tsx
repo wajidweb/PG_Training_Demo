@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { TrainingPath } from '@/types'
-import { FooterSubscription } from './FooterSubscription'
 
 export default function Footer({}: { paths?: TrainingPath[] }) {
   const aboutLinks = [
@@ -51,18 +50,6 @@ export default function Footer({}: { paths?: TrainingPath[] }) {
             <p className="text-slate-400 text-xs leading-relaxed italic font-light">
               Developing Exceptional People. Building Stronger Organisations. Creating Lasting Impact.
             </p>
-            <div className="flex gap-3">
-              {[['in', 'LinkedIn'], ['yt', 'YouTube']].map(([label, name]) => (
-                <a 
-                  key={name} 
-                  href="#" 
-                  aria-label={name} 
-                  className="w-8 h-8 bg-white/5 hover:bg-white/10 border border-slate-800 rounded-lg flex items-center justify-center transition-colors text-white text-[10px] font-bold uppercase tracking-wider"
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Column 2 (About Links Column - span 2) */}
@@ -120,11 +107,6 @@ export default function Footer({}: { paths?: TrainingPath[] }) {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Embedded Lead subscription / Ebook box */}
-            <div className="border-t border-slate-800 pt-6">
-              <FooterSubscription />
             </div>
           </div>
 

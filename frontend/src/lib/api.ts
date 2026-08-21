@@ -126,3 +126,20 @@ export async function fetchOrders(): Promise<any[]> {
   const data = await res.json()
   return data.data || []
 }
+
+export async function createEnquiry(enquiryData: { name: string, email: string, org: string, category: string, message: string }): Promise<any> {
+  const res = await fetch(`${API_URL}/api/enquiries`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(enquiryData),
+  })
+  if (!res.ok) throw new Error('Enquiry submission failed')
+  return res.json()
+}
+
+export async function fetchEnquiries(): Promise<any[]> {
+  const res = await fetch(`${API_URL}/api/enquiries`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch enquiries')
+  const data = await res.json()
+  return data.data || []
+}

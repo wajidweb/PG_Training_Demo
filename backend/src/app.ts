@@ -9,6 +9,7 @@ import ordersRouter from './routes/orders'
 import chatRouter from './routes/chat'
 import testimonialsRouter from './routes/testimonials'
 import campaignRouter from './routes/campaign'
+import enquiriesRouter from './routes/enquiries'
 
 const app = express()
 
@@ -55,6 +56,7 @@ app.use('/api/orders', ordersRouter)
 app.use('/api/chat', chatRouter)
 app.use('/api/testimonials', testimonialsRouter)
 app.use('/api/campaign', campaignRouter)
+app.use('/api/enquiries', enquiriesRouter)
 
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Server error:', err)

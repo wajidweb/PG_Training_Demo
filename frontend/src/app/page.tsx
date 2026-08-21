@@ -54,7 +54,7 @@ export default function HomePage() {
 
             <div className="space-y-6">
               {/* Massive bold uppercase header - properly visible text */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold leading-none text-[#0B1B3D] tracking-tighter uppercase font-sans">
+              <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold leading-tight text-[#0B1B3D] tracking-tighter uppercase font-sans">
                 Building Exceptional People. <br />
                 Transforming Organisations. <br />
                 Shaping the Future.
@@ -98,16 +98,16 @@ export default function HomePage() {
         </div>
 
         {/* Bottom Strip (3 Brand Cards with metallic Gold ↗ buttons) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 relative z-10">
           
           {/* Card 1: School of Executive Success Outcome */}
-          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all">
+          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all text-left">
             <div className="space-y-2 pr-10">
               <h3 className="text-xs font-extrabold text-[#0B1B3D] uppercase tracking-wider font-sans">
                 School of Executive Success
               </h3>
-              <p className="text-[11px] text-[#64748B] leading-relaxed font-light">
-                Develop the strategic capability to lead with confidence, make better decisions and build organisations that outperform.
+              <p className="text-[11px] text-[#0B1B3D] leading-relaxed font-normal">
+                Develop the strategic thinking and mental clarity to lead with total confidence, make better decisions, and build enduring value.
               </p>
             </div>
             <Link 
@@ -120,13 +120,13 @@ export default function HomePage() {
           </div>
 
           {/* Card 2: School of Academic & Workforce Excellence Outcome */}
-          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all">
+          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all text-left">
             <div className="space-y-2 pr-10">
               <h3 className="text-xs font-extrabold text-[#0B1B3D] uppercase tracking-wider font-sans">
-                School of Academic & Workforce Excellence
+                School of Academic Excellence
               </h3>
-              <p className="text-[11px] text-[#64748B] leading-relaxed font-light">
-                Equip learners, professionals and teams with the capabilities needed to excel in today's workplace and tomorrow's economy.
+              <p className="text-[11px] text-[#0B1B3D] leading-relaxed font-normal">
+                Equip students, professionals, and corporate teams with the essential capabilities needed to excel in modern global workplaces.
               </p>
             </div>
             <Link 
@@ -139,13 +139,13 @@ export default function HomePage() {
           </div>
 
           {/* Card 3: Schools of Thought Alignment */}
-          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all">
+          <div className="bg-white border border-[#E2E8F0] rounded-2xl p-6 relative flex flex-col justify-between min-h-[140px] group shadow-sm hover:shadow-md hover:border-[#B89047]/30 transition-all text-left">
             <div className="space-y-2 pr-10">
               <h3 className="text-xs font-extrabold text-[#0B1B3D] uppercase tracking-wider font-sans">
                 Measurable Impact
               </h3>
-              <p className="text-[11px] text-[#64748B] leading-relaxed font-light">
-                Through two specialist Schools of Thought, we deliver practical learning experiences that create measurable organisational impact.
+              <p className="text-[11px] text-[#0B1B3D] leading-relaxed font-normal">
+                Deliver certified and practical learning experiences through specialized frameworks that create measurable group performance.
               </p>
             </div>
             <Link 
@@ -185,32 +185,31 @@ export default function HomePage() {
           <div className="h-1 w-12 bg-[#B89047] mx-auto mt-3 rounded" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+        <div className="space-y-16 relative z-10">
           
-          {/* Left Column (5 Cols): Sticky Brand Narrative Anchor (No boxes, pure typographic elegance) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6 text-left">
-            <div className="space-y-2">
-              <span className="text-[10px] font-bold tracking-[0.3em] text-[#B89047] uppercase block">
-                01 / THE CORE PHILOSOPHY
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none">
-                The Foundation of Adaptability.
-              </h3>
-            </div>
+          {/* Row 1: The Core Philosophy (With Side-by-Side Image) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            
+            {/* Left Column (7 Cols): The Philosophy Text Content */}
+            <div className="lg:col-span-7 space-y-6 text-left flex flex-col justify-center">
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none">
+                  The Foundation of Adaptability.
+                </h3>
+              </div>
 
-            {/* Fused Realities Paragraph - extremely elegant and smooth */}
-            <div className="space-y-4 text-sm text-[#64748B] leading-relaxed font-light">
-              <p>
-                Markets evolve constantly. Technology changes overnight. Artificial Intelligence is actively redefining how modern organisations operate.
-              </p>
-              <p>
-                Yet, through every cycle of technological disruption and industrial shift, one competitive advantage remains absolute and constant.
-              </p>
-            </div>
+              {/* Fused Realities Paragraph - extremely elegant and smooth */}
+              <div className="space-y-4 text-sm text-[#0B1B3D] leading-relaxed font-normal">
+                <p>
+                  Markets evolve constantly as global consumer demands shift, and technology changes overnight to redefine operational standards. Today, Artificial Intelligence is actively transforming how modern organisations operate, restructure workflows, and optimize administrative efficiency.
+                </p>
+                <p>
+                  Yet, through every cycle of rapid technological disruption, market scaling, and industrial change, one competitive advantage remains absolute and constant. The single most valuable factor determining whether your institutional strategies succeed or fail is human capability.
+                </p>
+              </div>
 
-            {/* Typographic Pivot: PEOPLE (Serif High-contrast Statement) */}
-            <div className="pt-5 border-t border-[#E2E8F0]/80 space-y-5">
-              <div>
+              {/* Typographic Pivot: PEOPLE (Serif High-contrast Statement) */}
+              <div className="pt-5 border-t border-[#E2E8F0]/80">
                 <span className="text-[9px] font-mono text-[#B89047] font-bold tracking-widest block uppercase mb-1">
                   The Constant Benchmark
                 </span>
@@ -218,78 +217,76 @@ export default function HomePage() {
                   People.
                 </div>
                 <p className="text-xs text-[#0B1B3D]/80 leading-relaxed">
-                  When you invest in human development, you build the capacity, confidence, and strategic thinking that drive long-term institutional performance.
-                </p>
-              </div>
-
-              {/* Seamless Ultimate Outcome Integration */}
-              <div className="bg-[#B89047]/10 border border-[#B89047]/20 rounded-xl p-4 relative overflow-hidden">
-                <span className="text-[9px] font-mono text-[#B89047] font-bold tracking-widest uppercase block mb-1">
-                  THE ULTIMATE OUTCOME
-                </span>
-                <p className="text-xs text-[#0B1B3D] leading-relaxed font-medium">
-                  That is why every programme we design focuses on one outcome: <span className="font-bold text-[#B89047]">Helping people create measurable value for their organisation.</span>
+                  When you invest in human development, you build the capacity, confidence, and strategic thinking that drive long term institutional performance.
                 </p>
               </div>
             </div>
+
+            {/* Right Column (5 Cols): The Philosophy Visual Anchor Image */}
+            <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[220px] lg:h-auto border border-[#E2E8F0]/80 shadow-md">
+              <Image
+                src="/development.png"
+                alt="Whiteboard strategic drawing workshop"
+                fill
+                className="object-cover select-none"
+                sizes="(max-width: 1024px) 100vw, 30vw"
+              />
+            </div>
+
           </div>
 
-          {/* Right Column (7 Cols): The Scrolling Growth Cascade Experience */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          {/* Row 2: The Growth Cascade (Symmetric Full-Width Horizontal Grid - No Image) */}
+          <div className="space-y-8 pt-8 border-t border-[#E2E8F0]/60">
             
-            <div className="space-y-2 border-b border-[#E2E8F0] pb-4">
-              <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">
-                02 / THE GROWTH CASCADE
-              </span>
-              <h3 className="text-lg font-bold text-[#0B1B3D] uppercase tracking-wide">
+            <div className="text-center space-y-2">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#0B1B3D] uppercase tracking-wide">
                 When people grow...
               </h3>
             </div>
 
-            {/* Cascade Cards (Borderless, Floating Flat Glassmorphism Style) */}
-            <div className="space-y-1">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Card 1 */}
-              <div className="group border-b border-[#E2E8F0]/80 hover:border-[#B89047] pb-6 pt-2 transition-all duration-300 relative flex gap-5 sm:gap-6 items-start">
-                <div className="w-10 h-10 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 mt-0.5 group-hover:bg-[#B89047]/15 transition-colors">
-                  <Lightbulb className="w-5 h-5" />
+              <div className="group bg-[#FAF9F6] p-6 rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#B89047]/20 transition-all duration-300 flex flex-col gap-4 text-left">
+                <div className="w-8 h-8 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 group-hover:bg-[#B89047]/15 transition-colors">
+                  <Lightbulb className="w-4 h-4" />
                 </div>
-                <div className="space-y-2 flex-1">
-                  <h4 className="text-base sm:text-lg font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
+                <div className="space-y-1.5">
+                  <h4 className="text-sm font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
                     Organisations innovate.
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-light">
-                    Fresh ideas, creative problem-solving, and advanced strategic frameworks emerge naturally from a highly skilled, confident and inspired workforce.
+                  <p className="text-xs text-[#64748B] leading-relaxed font-light">
+                    Fresh ideas, creative problem solving, and advanced strategic frameworks emerge naturally from a highly skilled, confident and inspired workforce.
                   </p>
                 </div>
               </div>
 
               {/* Card 2 */}
-              <div className="group border-b border-[#E2E8F0]/80 hover:border-[#B89047] pb-6 pt-4 transition-all duration-300 relative flex gap-5 sm:gap-6 items-start">
-                <div className="w-10 h-10 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 mt-0.5 group-hover:bg-[#B89047]/15 transition-colors">
-                  <Users className="w-5 h-5" />
+              <div className="group bg-[#FAF9F6] p-6 rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#B89047]/20 transition-all duration-300 flex flex-col gap-4 text-left">
+                <div className="w-8 h-8 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 group-hover:bg-[#B89047]/15 transition-colors">
+                  <Users className="w-4 h-4" />
                 </div>
-                <div className="space-y-2 flex-1">
-                  <h4 className="text-base sm:text-lg font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
+                <div className="space-y-1.5">
+                  <h4 className="text-sm font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
                     Teams perform.
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-light">
+                  <p className="text-xs text-[#64748B] leading-relaxed font-light">
                     Collaboration standards rise, operational friction drops, and complex projects are executed with speed and absolute alignment under expert guidance.
                   </p>
                 </div>
               </div>
 
               {/* Card 3 */}
-              <div className="group border-b border-[#E2E8F0]/80 hover:border-[#B89047] pb-6 pt-4 transition-all duration-300 relative flex gap-5 sm:gap-6 items-start">
-                <div className="w-10 h-10 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 mt-0.5 group-hover:bg-[#B89047]/15 transition-colors">
-                  <TrendingUp className="w-5 h-5" />
+              <div className="group bg-[#FAF9F6] p-6 rounded-xl border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#B89047]/20 transition-all duration-300 flex flex-col gap-4 text-left">
+                <div className="w-8 h-8 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 group-hover:bg-[#B89047]/15 transition-colors">
+                  <TrendingUp className="w-4 h-4" />
                 </div>
-                <div className="space-y-2 flex-1">
-                  <h4 className="text-base sm:text-lg font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
+                <div className="space-y-1.5">
+                  <h4 className="text-sm font-extrabold text-[#0B1B3D] uppercase tracking-wider group-hover:text-[#B89047] transition-colors">
                     Opportunities expand.
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-light">
-                    Higher capability levels drive scalable solutions, opening doors to international collaborations, structural funding, and resilient long-term expansion.
+                  <p className="text-xs text-[#64748B] leading-relaxed font-light">
+                    Higher capability levels drive scalable solutions, opening doors to international collaborations, structural funding, and resilient long term expansion.
                   </p>
                 </div>
               </div>

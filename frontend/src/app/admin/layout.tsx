@@ -12,7 +12,8 @@ import {
   Menu, 
   X,
   ChevronRight,
-  GraduationCap
+  GraduationCap,
+  MessageSquare
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -20,6 +21,7 @@ const navItems = [
   { name: 'Courses', href: '/admin/courses', icon: BookOpen },
   { name: 'Campaign Emails', href: '/admin/emails', icon: Mail },
   { name: 'Orders', href: '/admin/orders', icon: Users },
+  { name: 'Enquiries', href: '/admin/enquiries', icon: MessageSquare },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

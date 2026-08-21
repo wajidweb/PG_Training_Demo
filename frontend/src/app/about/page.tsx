@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Check, Compass, Target, Award, Users, Globe } from 'lucide-react'
 
 export const metadata = {
@@ -11,28 +12,51 @@ export default function AboutPage() {
     <main className="pt-28 pb-20 bg-[#FAF9F6] text-[#0B1B3D] min-h-screen font-sans selection:bg-[#B89047]/30 selection:text-[#0B1B3D]">
       
       {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-8 text-center mb-16 lg:mb-24">
-        <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase bg-[#B89047]/10 border border-[#B89047]/20 px-3.5 py-1 rounded-full inline-block mb-4">
-          OUR PURPOSE & APPROACH
-        </span>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0B1B3D] leading-tight max-w-4xl mx-auto mb-6">
-          Developing People. Strengthening Organisations. Creating Lasting Impact.
-        </h1>
-        <div className="text-xs sm:text-sm text-[#64748B] max-w-2xl mx-auto leading-relaxed space-y-4 font-normal">
-          <p>
-            We believe every organisation can achieve more by investing in its people.
-          </p>
-          <p>
-            Technology evolves. Markets shift. Business models change. Yet one truth remains constant.
-            People remain the greatest driver of organisational performance.
-          </p>
-          <p>
-            That belief has guided Paragon Global Training for more than 25 years.
-            Today, we partner with CEOs, educational institutions, public organisations and employers to develop the capability, confidence and practical skills that create measurable results.
-          </p>
-          <p className="font-bold text-[#0B1B3D] pt-2">
-            Because stronger people build stronger organisations.
-          </p>
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-4 sm:pt-6 pb-16 sm:pb-20 relative">
+        {/* Row 1: Centered Majestic Heading Block */}
+        <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 lg:mb-16 space-y-4">
+          <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase bg-[#B89047]/10 border border-[#B89047]/20 px-3.5 py-1 rounded-full inline-block">
+            OUR PURPOSE & APPROACH
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0B1B3D] leading-tight max-w-5xl mx-auto">
+            Developing People. Strengthening Organisations. Creating Lasting Impact.
+          </h1>
+          <div className="h-1 w-12 bg-[#B89047] mx-auto mt-4 rounded" />
+        </div>
+
+        {/* Row 2: Symmetric Columns Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          {/* Left Column (7 Cols): Editorial Text Content */}
+          <div className="lg:col-span-7 space-y-6 text-left flex flex-col justify-center">
+            <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-4 font-normal">
+              <p>
+                We believe every organisation can achieve more by investing in its people.
+              </p>
+              <p>
+                As global technologies evolve, market parameters shift, and business models continually change, one core truth remains absolute and constant. Human capital remains the ultimate and greatest driver of long term organisational performance.
+              </p>
+              <p>
+                That fundamental belief has guided Paragon Global Training for more than twenty five years. Today, we partner with chief executive officers, educational institutions, public organisations, and employers across Europe to develop the capability, confidence, and practical skills that create measurable results.
+              </p>
+            </div>
+            <p className="font-extrabold text-sm sm:text-base text-[#0B1B3D] uppercase tracking-wide border-t border-[#E2E8F0]/80 pt-4">
+              Because stronger people build stronger organisations.
+            </p>
+          </div>
+
+          {/* Right Column (5 Cols): Class Environment Visual Image */}
+          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[240px] lg:h-auto border border-[#E2E8F0]/80 shadow-md">
+            <Image
+              src="/erasmus.png"
+              alt="Paragon Global Training classroom environment"
+              fill
+              className="object-cover select-none"
+              sizes="(max-width: 1024px) 100vw, 30vw"
+              priority
+            />
+          </div>
+
         </div>
       </section>
 
@@ -47,12 +71,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-[10px] font-bold text-[#B89047] uppercase tracking-widest mb-1.5 font-sans">VISION SUMMARY</h2>
               <h3 className="text-lg font-bold text-[#0B1B3D] mb-3 uppercase tracking-wide">OUR PURPOSE: Helping People Perform at Their Best</h3>
-              <div className="text-xs text-[#64748B] space-y-3 leading-relaxed font-light">
+              <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-3 font-normal">
                 <p>
-                  Learning should do more than transfer knowledge. It should improve decision-making. Strengthen capability. Build confidence. Create opportunity.
-                </p>
-                <p>
-                  And deliver results that continue long after the programme has ended.
+                  Learning should do more than transfer knowledge. It should improve decision making, strengthen capability, build confidence, and create opportunity. We ensure that our educational strategies deliver results that continue long after the programme has ended. Everything we design is built around one essential question: How will this improve the people and organisations we serve?
                 </p>
               </div>
             </div>
@@ -69,12 +90,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-[10px] font-bold text-[#B89047] uppercase tracking-widest mb-1.5 font-sans">METHODOLOGY</h2>
               <h3 className="text-lg font-bold text-[#0B1B3D] mb-3 uppercase tracking-wide">OUR APPROACH: Learning Designed Around Outcomes</h3>
-              <div className="text-xs text-[#64748B] space-y-3 leading-relaxed font-light">
+              <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-3 font-normal">
                 <p>
-                  Every organisation is different. Every challenge is different. That is why we don't deliver off-the-shelf programmes.
-                </p>
-                <p>
-                  We work with every client to understand their objectives before designing learning experiences that produce measurable impact.
+                  Every organisation is different and every challenge is unique. That is why we do not deliver standard programmes. We work with every client to understand their objectives before designing learning experiences that produce measurable impact. Our programmes combine international best practice with practical application, ensuring participants leave ready to implement what they have learned.
                 </p>
               </div>
             </div>
@@ -92,60 +110,82 @@ export default function AboutPage() {
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0B1B3D] uppercase">
             OUR TWO SCHOOLS OF THOUGHT
           </h2>
-          <p className="text-xs text-[#64748B] max-w-md mx-auto mt-2 font-light">
-            Specialist Expertise. One Shared Philosophy. Every client has different priorities.
+          <p className="text-xs text-[#0B1B3D] max-w-2xl mx-auto mt-2 font-normal">
+            Specialist Expertise. One Shared Philosophy. Every client has different priorities. That is why PGT brings together two specialist Schools of Thought, each focused on a distinct area of development.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* School of Executive Success */}
-          <div className="bg-[#0E1629] text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-md flex flex-col justify-between group">
+          <div className="bg-white text-[#0B1B3D] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0]/80 shadow-md flex flex-col justify-between group text-left">
             <div>
-              <span className="text-[9px] font-bold tracking-widest text-[#B89047] uppercase bg-[#B89047]/10 px-2.5 py-1 rounded-full">
-                PREMIUM EXECUTIVE ACADEMY
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold mt-4 mb-2 text-white uppercase tracking-wide">
+              <div className="flex justify-between items-start mb-4">
+                <span className="text-[9px] font-bold tracking-widest text-[#B89047] uppercase bg-[#B89047]/10 px-2.5 py-1 rounded-full">
+                  PREMIUM EXECUTIVE ACADEMY
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold mt-2 mb-2 text-[#0B1B3D] uppercase tracking-wide">
                 School of Executive Success
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed mb-6 font-light">
-                Supporting CEOs and executive teams to strengthen strategic thinking, executive decision-making and organisational performance.
+              <p className="text-xs text-[#64748B] leading-relaxed mb-6 font-light">
+                Supporting chief executive officers and executive teams to strengthen strategic thinking, executive decision making, and organisational performance.
               </p>
-              <h4 className="text-[9px] font-bold text-[#B89047] tracking-wider uppercase mb-2">Focus Areas:</h4>
-              <ul className="grid grid-cols-1 gap-1.5 mb-6">
-                {['Executive Coaching', 'Executive Mentoring', 'CEO Masterclasses', 'Strategic Growth', 'Organisational Transformation'].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
-                    <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0" />
-                    <span>{item}</span>
+              <h4 className="text-[9px] font-bold text-[#B89047] tracking-wider uppercase mb-3">Focus Areas:</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6 font-sans">
+                {[
+                  { title: 'Executive Coaching', desc: 'Personal strategic guidance to accelerate leadership impact.' },
+                  { title: 'Executive Mentoring', desc: 'Expert real-world insights to navigate complex decisions.' },
+                  { title: 'CEO Masterclasses', desc: 'High-impact cohorts focused on corporate transformation.' },
+                  { title: 'Strategic Growth', desc: 'Tactical planning and structures for sustainable growth.' },
+                  { title: 'Organisational Change', desc: 'Support corporate adjustments through aligned team actions.' }
+                ].map(item => (
+                  <li key={item.title} className="flex items-start gap-2.5 text-xs text-[#64748B]">
+                    <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold text-[#0B1B3D] block">{item.title}</span>
+                      <span className="font-light text-[11px] leading-tight block mt-0.5">{item.desc}</span>
+                    </div>
                   </li>
                 ))}
               </ul>
             </div>
             <Link
               href="/executive-success"
-              className="inline-flex items-center justify-center px-4 py-2.5 border border-[#B89047] hover:bg-[#B89047]/10 text-[#B89047] font-bold rounded-lg transition-colors text-center uppercase tracking-wider text-[10px]"
+              className="inline-flex items-center justify-center px-4 py-2.5 bg-[#B89047] hover:bg-[#B89047]/90 text-white font-bold rounded-lg transition-colors text-center uppercase tracking-wider text-[10px]"
             >
               Explore Executive Success
             </Link>
           </div>
 
           {/* School of Academic & Workforce Excellence */}
-          <div className="bg-white text-[#0B1B3D] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0]/80 shadow-sm flex flex-col justify-between group">
+          <div className="bg-white text-[#0B1B3D] rounded-2xl p-6 sm:p-8 border border-[#E2E8F0]/80 shadow-md flex flex-col justify-between group text-left">
             <div>
-              <span className="text-[9px] font-bold tracking-widest text-[#0B1B3D] uppercase bg-[#0B1B3D]/5 px-2.5 py-1 rounded-full">
-                ACADEMIC & WORKFORCE DEVELOPMENT
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold mt-4 mb-2 text-[#0B1B3D] uppercase tracking-wide">
-                School of Academic & Workforce Excellence
+              <div className="flex justify-between items-start mb-4">
+                <span className="text-[9px] font-bold tracking-widest text-[#0B1B3D] uppercase bg-[#0B1B3D]/5 px-2.5 py-1 rounded-full">
+                  ACADEMIC EXCELLENCE TRACK
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold mt-2 mb-2 text-[#0B1B3D] uppercase tracking-wide">
+                School of Academic Excellence
               </h3>
-              <p className="text-[#64748B] text-xs leading-relaxed mb-6 font-light">
-                Partnering with universities, VET providers, schools, employers and public organisations to prepare future-ready learners, strengthen workforce capability and maximise educational impact.
+              <p className="text-xs text-[#64748B] leading-relaxed mb-6 font-light">
+                Partnering with universities, schools, and public employers to prepare future ready learners, strengthen workforce skills, and maximize educational impact.
               </p>
-              <h4 className="text-[9px] font-bold text-[#B89047] tracking-wider uppercase mb-2">Focus Areas:</h4>
-              <ul className="grid grid-cols-1 gap-1.5 mb-6">
-                {['Erasmus+ Professional Development', 'Artificial Intelligence', 'Workforce Capability', 'International Learning', 'Professional Development'].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-xs text-[#64748B] font-semibold">
-                    <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0" />
-                    <span>{item}</span>
+              <h4 className="text-[9px] font-bold text-[#B89047] tracking-wider uppercase mb-3">Focus Areas:</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6 font-sans">
+                {[
+                  { title: 'Erasmus+ Training', desc: 'Certified professional courses for European educators.' },
+                  { title: 'Artificial Intelligence', desc: 'Practical AI skills to automate and raise productivity.' },
+                  { title: 'Workforce Capability', desc: 'Modern skill development built for industrial excellence.' },
+                  { title: 'International Learning', desc: 'Enriching academic standards through global partnerships.' },
+                  { title: 'Professional Growth', desc: 'Accredited training programs designed for actual impact.' }
+                ].map(item => (
+                  <li key={item.title} className="flex items-start gap-2.5 text-xs text-[#64748B]">
+                    <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold text-[#0B1B3D] block">{item.title}</span>
+                      <span className="font-light text-[11px] leading-tight block mt-0.5">{item.desc}</span>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -160,69 +200,97 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Organisations Choose PGT */}
-      <section className="bg-white py-16 mb-16 border-y border-[#E2E8F0]/60">
+      {/* Why Organisations Choose PGT (Centered & Full Content Grid) */}
+      <section className="bg-white py-16 mb-16 border-y border-[#E2E8F0]/60 relative">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block">PARTNERSHIP QUALITY</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1B3D] uppercase tracking-tight">
-                WHY ORGANISATIONS CHOOSE PGT
-              </h2>
-              <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed font-light">
-                A Partner, Not Just a Training Provider
-              </p>
-              <p className="text-xs text-[#64748B] leading-relaxed font-light">
-                Clients work with us because they want more than a course. They want outcomes.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { title: 'Tailored Solutions', desc: 'Aligned with your specific goals' },
-                { title: 'Practical Application', desc: 'Programmes apply immediately to your work' },
-                { title: 'International Expertise', desc: 'Across European education & organisations' },
-                { title: 'Measurable Improvements', desc: 'Empirical capability & performance growth' },
-                { title: 'Flexible Delivery', desc: 'Scaled for organisations of every size' },
-                { title: 'Long-Term Partnerships', desc: 'Built on trust and continuous results' },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-[#FAF9F6] p-4 rounded-xl border border-[#E2E8F0]/40 flex gap-3 shadow-sm">
-                  <div className="w-4 h-4 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047] mt-0.5 flex-shrink-0">
-                    <Check className="w-2.5 h-2.5" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-[#0B1B3D] text-xs uppercase tracking-wide">{item.title}</h4>
-                    <p className="text-[10px] text-[#64748B] mt-0.5 font-light">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          
+          {/* Centered Header Block */}
+          <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 lg:mb-16 space-y-3 relative z-10">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">PARTNERSHIP QUALITY</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none whitespace-normal lg:whitespace-nowrap">
+              Why Organisations Choose PGT
+            </h2>
+            <p className="text-xs sm:text-sm text-[#0B1B3D] max-w-2xl mx-auto font-normal">
+              Clients work with us because they want more than a course. They want outcomes. Partner with PGT and benefit from:
+            </p>
           </div>
+
+          {/* Full Content Grid (3 Columns on desktop, 2 on tablet, 1 on mobile) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            {[
+              {
+                title: 'Tailored Solutions',
+                desc: 'Customized educational tracks aligned with your specific institutional goals.'
+              },
+              {
+                title: 'Practical Application',
+                desc: 'Actionable courses that apply immediately to elevate your daily operations.'
+              },
+              {
+                title: 'International Expertise',
+                desc: 'Global capabilities spanning European schools and professional organisations.'
+              },
+              {
+                title: 'Measurable Progress',
+                desc: 'Empirical verification of skill growth, operational speed, and performance.'
+              },
+              {
+                title: 'Flexible Delivery',
+                desc: 'Scalable learning models designed for institutions and employers of all sizes.'
+              },
+              {
+                title: 'Long Term Partnerships',
+                desc: 'Sustainable alliances built on trust, continuous collaboration, and results.'
+              }
+            ].map((item, idx) => (
+              <div 
+                key={idx} 
+                className="bg-[#FAF9F6] p-6 rounded-xl border border-[#E2E8F0]/40 shadow-sm flex items-start gap-4 hover:shadow-md hover:border-[#B89047]/20 transition-all duration-300 text-left"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0 mt-0.5">
+                  <Check className="w-4 h-4" />
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-extrabold text-[#0B1B3D] uppercase tracking-wide">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-[#64748B] leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
       {/* Results That Matter */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 mb-20">
-        <div className="text-center mb-12">
-          <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block mb-1">METRICS OF TRUST</span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1B3D] uppercase tracking-tight">
-            RESULTS THAT MATTER
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 mb-20 relative">
+        
+        {/* Centered Header Block */}
+        <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 space-y-3 relative z-10">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-[#B89047] uppercase block">METRICS OF TRUST</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none whitespace-normal lg:whitespace-nowrap">
+            Results That Matter
           </h2>
-          <p className="text-xs text-[#64748B] max-w-md mx-auto mt-2 font-light">
-            More Than 25 Years of Building Capability
+          <p className="text-xs sm:text-sm text-[#0B1B3D] max-w-2xl mx-auto font-normal">
+            More than twenty five years of building exceptional human capability.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center relative z-10">
           {[
-            { metric: '25+ Years', label: 'Supporting organisations across Europe' },
-            { metric: '6,000+', label: 'Professionals developed through practical learning' },
-            { metric: '500+', label: 'Programmes delivered across fields' },
-            { metric: 'Europe-wide', label: 'Working with organisations, universities and public institutions' },
+            { metric: '25+', label: 'Years supporting organisations to develop their people' },
+            { metric: '6,000+', label: 'Professionals developed through practical programs' },
+            { metric: '500+', label: 'Accredited learning experiences delivered by experts' },
+            { metric: 'Europe-wide', label: 'International partnerships with leading institutions' },
           ].map((stat, idx) => (
-            <div key={idx} className="bg-white p-5 rounded-xl border border-[#E2E8F0]/60 shadow-sm">
-              <p className="text-2xl sm:text-3xl font-bold text-[#B89047] tracking-tight mb-1">{stat.metric}</p>
-              <p className="text-[10px] text-[#64748B] font-semibold uppercase tracking-wider max-w-[150px] mx-auto leading-relaxed">
+            <div key={idx} className="bg-white p-5 rounded-xl border border-[#E2E8F0]/60 shadow-sm flex flex-col justify-between hover:bg-[#FAF9F6]/50 transition-colors">
+              <div>
+                <p className="text-3xl sm:text-4xl font-extrabold text-[#B89047] tracking-tight mb-2 leading-none">{stat.metric}</p>
+              </div>
+              <p className="text-[10px] text-[#0B1B3D] font-bold uppercase tracking-wider leading-relaxed pt-3 border-t border-[#E2E8F0]/40">
                 {stat.label}
               </p>
             </div>
@@ -234,12 +302,17 @@ export default function AboutPage() {
       <section className="bg-[#0B1B3D] text-white py-16 mb-16 border-y border-slate-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">OUR PHILOSOPHY</h2>
-          <p className="text-base font-light italic text-[#B89047] mt-1 mb-6">"People Create Performance"</p>
-          <p className="text-xs text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-light">
-            When people develop... Teams become stronger. Leaders make better decisions. Learners become more employable. Organisations become more resilient. Communities prosper.
-          </p>
+          <p className="text-lg sm:text-xl font-light italic text-[#B89047] mt-2 mb-6">"People Create Performance"</p>
+          <div className="text-xs sm:text-sm text-white leading-relaxed max-w-2xl mx-auto mb-8 font-light space-y-4">
+            <p>
+              When people develop, an incredible transformation begins. Teams become stronger, leaders make better decisions, and learners become more employable. Organisations become more resilient, and communities prosper.
+            </p>
+            <p>
+              This simple belief shapes every single programme we deliver, because investing in people is one of the most valuable investments any organisation can make.
+            </p>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-[9px] font-bold uppercase tracking-wider text-[#B89047]">
-            {['Teams Perform', 'Leaders Excel', 'Resilient Orgs', 'Learners Thrive', 'Communities Prosper'].map((item) => (
+            {['Stronger Teams', 'Leaders Excel', 'Resilient Organisations', 'Learners Thrive', 'Prosperous Communities'].map((item) => (
               <div key={item} className="border border-slate-800 bg-slate-900/40 py-3 px-1 rounded-lg">
                 {item}
               </div>
@@ -249,16 +322,47 @@ export default function AboutPage() {
       </section>
 
       {/* Why This Matters */}
-      <section className="max-w-4xl mx-auto px-6 text-center mb-20 space-y-4">
-        <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block mb-1">THE BIG PICTURE</span>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0B1B3D] uppercase tracking-tight">
-          Preparing Organisations for What's Next
-        </h2>
-        <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed max-w-2xl mx-auto font-light">
-          The organisations that will lead tomorrow are those preparing today.
-          Whether your priority is developing executive capability, equipping future professionals, embracing Artificial Intelligence or maximising Erasmus+ opportunities, our role is the same:
-          To help your people perform with greater confidence, capability and impact.
-        </p>
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 mb-20 relative font-sans">
+        
+        {/* Centered Header Block */}
+        <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-10 lg:mb-12 space-y-3 relative z-10">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-[#B89047] uppercase block">WHY THIS MATTERS</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none whitespace-normal lg:whitespace-nowrap">
+            Preparing Organisations for What's Next
+          </h2>
+          <div className="h-1 w-12 bg-[#B89047] mx-auto mt-3 rounded" />
+        </div>
+
+        {/* Symmetric Columns Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch relative z-10">
+          
+          {/* Left Column (7 Cols): The Narrative Text Content */}
+          <div className="lg:col-span-7 space-y-5 text-left flex flex-col justify-center">
+            <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-4 font-normal">
+              <p>
+                The organisations that will lead tomorrow are those preparing today. In a business world defined by constant change, standing still is not an option. We partner with you to proactively build the vision and systems needed to thrive.
+              </p>
+              <p>
+                Whether your immediate priority is developing executive capability, equipping future professionals, embracing Artificial Intelligence securely, or maximising Erasmus opportunities, our role remains the same. We help your people perform with greater confidence, capability, and long term impact.
+              </p>
+              <p>
+                By tailoring every curriculum around measurable outcomes, PGT transforms standard training into a strategic asset. Our consultants work directly with your stakeholders to verify that knowledge transfers smoothly into daily workflows, elevating collective efficiency and ensuring your institution is prepared to lead.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column (5 Cols): Image */}
+          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[260px] lg:h-auto lg:min-h-[340px] border border-[#E2E8F0]/80 shadow-md">
+            <Image
+              src="/research.jpg"
+              alt="Strategic planning research session"
+              fill
+              className="object-cover select-none"
+              sizes="(max-width: 1024px) 100vw, 30vw"
+            />
+          </div>
+
+        </div>
       </section>
 
       {/* Final Call to Action */}

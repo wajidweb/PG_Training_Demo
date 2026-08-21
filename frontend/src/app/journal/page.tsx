@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { 
   Check, 
   ArrowRight, 
@@ -21,37 +22,37 @@ const TOPICS = [
   { 
     id: 'executive', 
     title: 'Executive Success', 
-    desc: 'Insights on leadership, executive decision-making, organisational strategy and sustainable growth.',
+    desc: 'Strategic insights on leadership, executive decision making, corporate strategy, and sustainable growth.',
     icon: Compass 
   },
   { 
     id: 'academic', 
     title: 'Academic & Workforce Excellence', 
-    desc: 'New thinking on education, employability, professional development and future skills.',
+    desc: 'Advanced research on modern education, youth employability, professional development, and core skills.',
     icon: GraduationCap 
   },
   { 
     id: 'ai', 
     title: 'Artificial Intelligence', 
-    desc: 'Practical applications of AI in education, business and organisational development.',
+    desc: 'Practical applications of Artificial Intelligence across educational, business, and corporate spaces.',
     icon: Cpu 
   },
   { 
     id: 'erasmus', 
     title: 'Erasmus+', 
-    desc: 'Funding opportunities, mobility trends, international collaboration and programme design.',
+    desc: 'Core funding opportunities, mobility trends, international collaboration, and modern program design.',
     icon: Globe 
   },
   { 
     id: 'workforce', 
     title: 'Workforce Development', 
-    desc: 'Building capable teams, developing talent and strengthening organisational performance.',
+    desc: 'Techniques for building capable teams, developing talent, and elevating overall corporate performance.',
     icon: Users 
   },
   { 
     id: 'innovation', 
     title: 'Innovation & Future Trends', 
-    desc: 'Understanding the forces shaping tomorrow\'s workplace.',
+    desc: 'Comprehensive analysis of the key technological forces shaping the future of the global workplace.',
     icon: BookOpen 
   }
 ]
@@ -59,8 +60,8 @@ const TOPICS = [
 const TRENDING_ARTICLES = [
   'The Future Skills Every Organisation Needs by 2030',
   'How Artificial Intelligence Is Transforming Professional Learning',
-  'Five Characteristics of High-Performing Executive Teams',
-  'Designing Erasmus+ Mobilities That Create Lasting Impact',
+  'Five Characteristics of High Performing Executive Teams',
+  'Designing Erasmus Plus Mobilities That Create Lasting Impact',
   'Why Continuous Learning Is Becoming Every Organisation\'s Competitive Advantage',
   'From Knowledge to Capability: The Next Evolution of Professional Development'
 ]
@@ -98,71 +99,77 @@ export default function JournalPage() {
   }
 
   return (
-    <main className="pt-2 pb-16 bg-[#FAF9F6] text-[#0B1B3D] min-h-screen font-sans selection:bg-[#B89047]/30 selection:text-[#0B1B3D]">
+    <main className="pt-2 pb-20 bg-[#FAF9F6] text-[#0B1B3D] min-h-screen font-sans selection:bg-[#B89047]/30 selection:text-[#0B1B3D]">
       
-      {/* HERO SECTION (Compact Premium Split-Editorial Column Redesign) */}
-      <section className="relative pt-12 pb-12 lg:pt-16 lg:pb-16 border-b border-[#E2E8F0]/40 overflow-hidden bg-white">
+      {/* Intro section */}
+      <section className="relative pt-10 pb-16 sm:pb-20 border-b border-[#E2E8F0]/40 overflow-hidden bg-white">
         {/* Soft luxury background glow */}
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#B89047]/5 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 font-sans">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          
+          {/* Centered Header Block */}
+          <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 lg:mb-16 space-y-4">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase bg-[#B89047]/10 border border-[#B89047]/20 px-4 py-1.5 rounded-full inline-block">
+              THE PGT JOURNAL
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1B3D] leading-tight max-w-5xl mx-auto">
+              Ideas That Inspire Better Decisions
+            </h1>
+            <div className="h-1 w-12 bg-[#B89047] mx-auto mt-4 rounded" />
+          </div>
+
+          {/* Symmetric Columns Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
             
-            {/* Left Column (4 cols): Title & Quick CTAs */}
-            <div className="lg:col-span-4 flex flex-col justify-between space-y-6 lg:border-r lg:border-[#E2E8F0]/60 lg:pr-8">
+            {/* Left Column (7 Cols): Editorial Text Content & CTAs */}
+            <div className="lg:col-span-7 space-y-6 text-left flex flex-col justify-center">
               <div className="space-y-4">
-                <span className="text-[9px] font-bold tracking-[0.25em] text-[#B89047] uppercase bg-[#B89047]/10 border border-[#B89047]/20 px-3 py-1 rounded-full inline-block">
-                  THE PGT JOURNAL
+                <span className="text-[9px] font-mono text-[#B89047] font-bold tracking-widest uppercase block">
+                  OUR MANIFESTO
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0B1B3D] leading-tight uppercase">
-                  Ideas That Inspire Better Decisions
-                </h1>
+                <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-4 font-normal">
+                  <p>
+                    The world of work is evolving constantly as leadership expectations change to embrace digital capabilities. Artificial Intelligence is restructuring entire industries, and traditional education is actively being reimagined. The organisations that succeed tomorrow are those that continue learning today, ensuring their human capital performs with absolute confidence.
+                  </p>
+                  <p>
+                    The PGT Journal brings together expert perspectives, practical guidance, and emerging trends to help leaders, educators, and organisations navigate change with confidence.
+                  </p>
+                </div>
               </div>
 
-              {/* Elegant, clean stack of button actions */}
-              <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 pt-2">
+              {/* Clean layout of button actions */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#E2E8F0]/80">
                 <button
                   onClick={() => handleScrollToSection('topics')}
-                  className="group inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-[#0B1B3D] text-white font-bold tracking-wider rounded-lg uppercase text-[10px] shadow-sm hover:bg-[#0B1B3D]/95 transition-colors"
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0B1B3D] hover:bg-[#0B1B3D]/95 text-white font-bold uppercase tracking-wider text-[10px] sm:text-xs rounded-xl shadow-sm transition-all"
                 >
                   <span>Explore the Latest Articles</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#B89047] group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-4 h-4 text-[#B89047] group-hover:translate-x-0.5 transition-transform" />
                 </button>
                 <button
                   onClick={() => handleScrollToSection('subscribe')}
-                  className="inline-flex items-center justify-center px-5 py-3 bg-white border border-[#E2E8F0] hover:border-[#B89047]/40 text-[#0B1B3D] font-bold tracking-wider rounded-lg uppercase text-[10px] shadow-sm hover:bg-[#FAF9F6] transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3.5 bg-white border border-[#E2E8F0] hover:border-[#B89047]/40 text-[#0B1B3D] font-bold uppercase tracking-wider text-[10px] sm:text-xs rounded-xl shadow-sm hover:bg-[#FAF9F6] transition-all"
                 >
                   Subscribe to the Journal
                 </button>
               </div>
             </div>
 
-            {/* Right Column (8 cols): Manifesto List & Summary Paragraph */}
-            <div className="lg:col-span-8 flex flex-col justify-between space-y-6 lg:pl-4">
-              {/* Manifesto Bullet Stack */}
-              <div className="border-l-2 border-[#B89047] pl-6 space-y-3 py-0.5">
-                {[
-                  'The world of work is evolving.',
-                  'Leadership is changing.',
-                  'Artificial Intelligence is transforming industries.',
-                  'Education is being reimagined.',
-                  'The organisations that succeed tomorrow are those that continue learning today.'
-                ].map((sentence, idx) => (
-                  <p key={idx} className="text-xs sm:text-sm text-[#0B1B3D] font-bold tracking-wide leading-relaxed uppercase">
-                    {sentence}
-                  </p>
-                ))}
-              </div>
-
-              {/* Curated Summary Paragraph */}
-              <div className="pt-4 border-t border-[#E2E8F0]/60">
-                <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed font-light">
-                  The PGT Journal brings together expert perspectives, practical guidance and emerging trends to help leaders, educators and organisations navigate change with confidence.
-                </p>
-              </div>
+            {/* Right Column (5 Cols): Cover Image */}
+            <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[260px] lg:h-auto lg:min-h-[340px] border border-[#E2E8F0]/80 shadow-md">
+              <Image
+                src="/research.jpg"
+                alt="Strategic thinking and research planning"
+                fill
+                className="object-cover select-none"
+                sizes="(max-width: 1024px) 100vw, 30vw"
+                priority
+              />
             </div>
 
           </div>
+
         </div>
       </section>
 
@@ -187,21 +194,18 @@ export default function JournalPage() {
 
           {/* Copy block */}
           <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between bg-slate-900/60">
-            <div className="text-slate-300 text-xs sm:text-sm space-y-4 leading-relaxed mb-8 font-light">
+            <div className="text-slate-200 text-xs sm:text-sm space-y-4 leading-relaxed mb-8 font-light">
               <p className="font-bold text-white text-base">
-                Every generation of leaders faces change.
+                Every generation of leaders faces change, but modern executives face transformation at unprecedented speed.
               </p>
               <p>
-                Today's leaders face transformation at unprecedented speed.
+                Today, Artificial Intelligence, shifting workforce expectations, international collaboration, and rapid technological innovation are actively reshaping how modern organisations operate and scale.
               </p>
               <p>
-                Artificial Intelligence, shifting workforce expectations, international collaboration and rapid technological innovation are reshaping how organisations operate.
-              </p>
-              <p>
-                The question is no longer whether change will happen.
+                In this volatile environment, the core question is no longer whether industrial change will happen, but whether your teams possess the strategic adaptability needed to thrive.
               </p>
               <p className="font-semibold text-white">
-                The question is whether your organisation is prepared for it.
+                The ultimate question is whether your organisation is fully prepared to lead.
               </p>
             </div>
             <button 
@@ -235,7 +239,7 @@ export default function JournalPage() {
                     <Icon className="w-4 h-4" />
                   </div>
                   <h3 className="font-bold text-[#0B1B3D] text-sm uppercase tracking-wide leading-snug">{topic.title}</h3>
-                  <p className="text-xs text-[#64748B] leading-relaxed mt-2 mb-6 font-light">{topic.desc}</p>
+                  <p className="text-xs text-[#0B1B3D] leading-relaxed mt-2 mb-6 font-normal">{topic.desc}</p>
                 </div>
                 <button 
                   onClick={() => alert(`Filtering Journal by: ${topic.title}`)}
@@ -250,13 +254,20 @@ export default function JournalPage() {
         </div>
       </section>
 
-      {/* TRENDING ARTICLES */}
-      <section className="bg-white py-16 mb-16 border-y border-[#E2E8F0]/60">
+      {/* TRENDING ARTICLES (Centered Header & Full Width Grid) */}
+      <section className="bg-white py-16 mb-16 border-y border-[#E2E8F0]/60 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="mb-10 text-center sm:text-left">
-            <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block mb-0.5">POPULAR READS</span>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#0B1B3D] uppercase tracking-tight">TRENDING ARTICLES</h2>
-            <p className="text-xs text-[#64748B] font-light mt-1">Display these as visual article cards.</p>
+          
+          {/* Centered Header Block */}
+          <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 lg:mb-16 space-y-3 relative z-10">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">POPULAR READS</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none whitespace-normal lg:whitespace-nowrap">
+              Trending Articles
+            </h2>
+            <div className="h-1 w-12 bg-[#B89047] mx-auto mt-3 rounded" />
+            <p className="text-xs sm:text-sm text-[#0B1B3D] max-w-2xl mx-auto font-normal">
+              Explore the most widely read publications and expert opinions from our specialized Schools of Thought.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -283,41 +294,55 @@ export default function JournalPage() {
         </div>
       </section>
 
-      {/* FEATURED SERIES */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-4 mb-16">
-        <div className="bg-[#0B1B3D] text-white rounded-2xl p-6 sm:p-10 border border-slate-900 shadow-md relative overflow-hidden">
+      {/* FEATURED SERIES (Centered & Symmetrical Grid) */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-4 mb-16 relative z-10 font-sans">
+        <div className="bg-[#0B1B3D] text-white rounded-2xl p-8 sm:p-12 border border-slate-900 shadow-lg text-center relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#B89047]/5 rounded-full blur-[90px] pointer-events-none" />
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-4">
-              <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase bg-[#B89047]/15 px-3 py-1 rounded-full border border-[#B89047]/25 inline-block">
-                IN-DEPTH FOCUS
+          <div className="max-w-4xl mx-auto space-y-6 relative z-10">
+            {/* Centered Header Block */}
+            <div className="space-y-3">
+              <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase bg-[#B89047]/10 border border-[#B89047]/20 px-4 py-1.5 rounded-full inline-block">
+                IN DEPTH FOCUS
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 uppercase tracking-wide">
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-white uppercase tracking-tight leading-none">
                 The Future of Learning Series
               </h2>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-light">
-                A collection of in-depth articles exploring how organisations can prepare people for an increasingly digital, international and AI-enabled future.
+              <div className="h-1 w-12 bg-[#B89047] mx-auto mt-4 rounded" />
+              <p className="text-xs sm:text-sm text-slate-100 max-w-2xl mx-auto leading-relaxed font-normal">
+                A collection of in depth articles exploring how organisations can prepare people for an increasingly digital, international, and AI enabled future.
               </p>
-              <button 
-                onClick={() => alert('Loading the Future of Learning Series collection...')}
-                className="px-5 py-3 bg-[#B89047] hover:bg-[#B89047]/95 text-white font-bold uppercase tracking-wider text-[10px] rounded-lg transition-all shadow-sm"
-              >
-                Explore the Series
-              </button>
             </div>
 
-            <div className="lg:col-span-6 border-t lg:border-t-0 lg:border-l border-slate-800 pt-6 lg:pt-0 lg:pl-8">
-              <h3 className="font-bold text-white text-xs tracking-wider uppercase mb-3">Topics include:</h3>
-              <div className="grid grid-cols-2 gap-3 text-xs text-slate-300 font-light uppercase tracking-wider">
-                {['Future Skills', 'AI', 'Leadership', 'Organisational Development', 'Internationalisation', 'Innovation'].map((item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0" />
-                    <span>{item}</span>
+            {/* Centered Topics Grid (6 Columns on desktop, 3 on tablet, 2 on mobile) */}
+            <div className="pt-6 border-t border-slate-800/80">
+              <h3 className="font-extrabold text-white text-[10px] tracking-widest uppercase mb-6">Topics include:</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+                {['Future Skills', 'AI Technology', 'Board Leadership', 'Organisational Change', 'Global Networks', 'Modern Innovation'].map((item) => (
+                  <div 
+                    key={item} 
+                    className="bg-slate-900/40 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:border-[#B89047]/30 transition-all duration-300"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                      <Check className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-200">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Centered CTA Button */}
+            <div className="pt-6">
+              <button
+                onClick={() => alert('Loading the Future of Learning Series collection...')}
+                className="inline-flex items-center justify-center gap-2 px-12 sm:px-16 py-3.5 bg-[#B89047] hover:bg-[#B89047]/90 text-white font-bold uppercase tracking-wider text-[10px] sm:text-xs rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all w-full sm:w-auto"
+              >
+                <span>Explore the Series</span>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </button>
+            </div>
+
           </div>
         </div>
       </section>
@@ -380,89 +405,145 @@ export default function JournalPage() {
         </div>
       </section>
 
-      {/* FROM PGT TEAM */}
-      <section className="bg-white py-12 mb-16 text-center border-y border-[#E2E8F0]/60">
-        <div className="max-w-2xl mx-auto px-6 space-y-2">
-          <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block">FROM THE PGT TEAM</span>
-          <h2 className="text-lg sm:text-xl font-bold text-[#0B1B3D] uppercase tracking-wide">Experience Meets Practical Insight</h2>
-          <p className="text-xs text-[#64748B] leading-relaxed font-light">
-            Every article published by PGT is grounded in real-world experience. Our contributors work closely with executives, educational institutions, employers and public organisations across Europe, ensuring that every insight is practical, relevant and focused on measurable outcomes. Rather than commenting on trends, we help organisations understand how to respond to them.
-          </p>
-        </div>
-      </section>
-
-      {/* JOIN OUR COMMUNITY */}
-      <section id="subscribe" className="max-w-4xl mx-auto px-6 mb-16">
-        <div className="bg-[#0B1B3D] text-white rounded-2xl p-6 sm:p-10 border border-slate-800 shadow-xl text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#B89047]/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* FROM THE PGT TEAM (Centered & Symmetrical Grid with Image) */}
+      <section className="bg-white py-16 mb-16 border-y border-[#E2E8F0]/60 relative">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
-          <span className="text-[10px] font-bold tracking-[0.2em] text-[#B89047] uppercase block mb-2">JOIN OUR COMMUNITY</span>
-          <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 uppercase tracking-tight">Stay Ahead of What's Next</h2>
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-lg mx-auto mb-6 font-light">
-            Receive the latest articles, research, practical guides and invitations to exclusive webinars directly in your inbox. Subscribers receive:
-          </p>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-left max-w-md mx-auto mb-6 text-[10px] font-semibold text-slate-300 uppercase tracking-wider">
-            {[
-              'New Journal Articles',
-              'Research Reports',
-              'Practical Resources',
-              'AI Updates',
-              'Erasmus+ News',
-              'Invitations to Executive Briefings'
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-[#B89047]" />
-                <span>{item}</span>
-              </div>
-            ))}
+          {/* Centered Header Block */}
+          <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-10 lg:mb-12 space-y-3 relative z-10">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">FROM THE PGT TEAM</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-none whitespace-normal lg:whitespace-nowrap">
+              Experience Meets Practical Insight
+            </h2>
+            <div className="h-1 w-12 bg-[#B89047] mx-auto mt-3 rounded" />
           </div>
 
-          {!subscribed ? (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
-              <input
-                type="email"
-                required
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-slate-900/60 border border-slate-800 text-white placeholder-slate-500 rounded-lg px-3 py-2 text-xs w-full focus:outline-none focus:border-[#B89047]"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2 bg-[#B89047] hover:bg-[#B89047]/90 text-white font-bold uppercase tracking-wider text-[10px] rounded-lg transition-colors whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
-          ) : (
-            <div className="bg-[#B89047]/10 border border-[#B89047]/20 rounded-xl p-3 max-w-sm mx-auto text-[#B89047] text-xs font-bold">
-              ✓ Welcome. You are subscribed!
+          {/* Symmetric Columns Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch relative z-10">
+            
+            {/* Left Column (7 Cols): The Narrative Text Content */}
+            <div className="lg:col-span-7 space-y-5 text-left flex flex-col justify-center">
+              <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed space-y-4 font-normal">
+                <p>
+                  Every article published by PGT is grounded in real world experience. Our contributors work closely with executives, educational institutions, employers, and public organisations across Europe, ensuring that every insight is practical, relevant, and focused on measurable outcomes.
+                </p>
+                <p>
+                  Rather than simply commenting on general trends, we actively guide organisations on how to respond to them strategically. We translate complex industrial transformations into actionable pathways that empower teams to excel and build sustainable value.
+                </p>
+                <p>
+                  Our goal is to foster an elite learning community where knowledge is collaboratively created and shared. Through deep collaboration, we continue to bridge the gap between academic theory and practical enterprise execution, ensuring your teams remain future ready.
+                </p>
+              </div>
             </div>
-          )}
+
+            {/* Right Column (5 Cols): Image */}
+            <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[260px] lg:h-auto lg:min-h-[340px] border border-[#E2E8F0]/80 shadow-md">
+              <Image
+                src="/development.png"
+                alt="Practical insights and executive coaching workshops"
+                fill
+                className="object-cover select-none"
+                sizes="(max-width: 1024px) 100vw, 30vw"
+              />
+            </div>
+
+          </div>
+
         </div>
       </section>
 
-      {/* FINAL CALL TO ACTION */}
-      <section className="max-w-5xl mx-auto px-6 text-center font-sans">
-        <span className="text-[10px] font-bold tracking-widest text-[#B89047] uppercase block mb-1">THE PGT JOURNAL</span>
-        <h2 className="text-xl sm:text-2xl font-bold text-[#0B1B3D] mb-3 uppercase tracking-tight">Knowledge Shapes Better Decisions</h2>
-        <p className="text-[#64748B] max-w-md mx-auto leading-relaxed mb-6 text-xs font-light">
-          Whether you're leading an organisation, designing learning experiences or preparing your workforce for the future, the right ideas can create lasting impact. Explore the PGT Journal and discover practical perspectives that help you lead with confidence.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="px-6 py-3 bg-[#0B1B3D] text-white font-bold text-[10px] uppercase tracking-widest hover:bg-[#0B1B3D]/95 transition-all rounded-lg shadow-sm"
-          >
-            Read the Latest Articles
-          </button>
-          <Link
-            href="/contact"
-            className="px-6 py-3 bg-white border border-[#E2E8F0] text-[#0B1B3D] font-bold text-[10px] uppercase tracking-widest hover:bg-[#FAF9F6] transition-all rounded-lg shadow-sm"
-          >
-            Book a Consultation
-          </Link>
+      {/* JOIN OUR COMMUNITY (Centered Newsletter Card) */}
+      <section id="subscribe" className="max-w-4xl mx-auto px-6 mb-16 relative z-10 font-sans">
+        <div className="bg-[#0B1B3D] text-white rounded-2xl p-8 sm:p-12 border border-slate-900 shadow-xl text-center relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#B89047]/5 rounded-full blur-[100px] pointer-events-none" />
+          
+          <div className="max-w-2xl mx-auto space-y-6 relative z-10">
+            {/* Centered Header Block */}
+            <div className="space-y-3">
+              <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">
+                JOIN OUR COMMUNITY
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-white uppercase tracking-tight leading-none">
+                Stay Ahead of What's Next
+              </h2>
+              <div className="h-1 w-12 bg-[#B89047] mx-auto mt-4 rounded" />
+              <p className="text-xs sm:text-sm text-slate-100 max-w-xl mx-auto leading-relaxed font-normal">
+                Receive the latest in depth articles, strategic research, practical guides, and exclusive invitations to webinars directly in your inbox. Partner with PGT and prepare your organisation to lead.
+              </p>
+            </div>
+
+            {/* Symmetrical Curated List Grid */}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-left max-w-lg mx-auto mb-4 text-[10px] font-bold text-slate-200 uppercase tracking-wider">
+              {[
+                'New Journal Articles',
+                'Accredited Research Reports',
+                'Practical Study Resources',
+                'Artificial Intelligence Updates',
+                'Erasmus Plus Program News',
+                'Executive Briefing Invitations'
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-[#B89047] flex-shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Widened Centered Form Elements */}
+            {!subscribed ? (
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+                <input
+                  type="email"
+                  required
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-slate-900/60 border border-slate-800 text-white placeholder-slate-500 rounded-xl px-4 py-3 text-xs w-full focus:outline-none focus:border-[#B89047] font-normal"
+                />
+                <button
+                  type="submit"
+                  className="px-8 py-3 bg-[#B89047] hover:bg-[#B89047]/90 text-white font-extrabold uppercase tracking-wider text-[10px] sm:text-xs rounded-xl transition-all whitespace-nowrap shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] w-full sm:w-auto"
+                >
+                  Subscribe
+                </button>
+              </form>
+            ) : (
+              <div className="bg-[#B89047]/10 border border-[#B89047]/20 rounded-xl p-4 max-w-md mx-auto text-[#B89047] text-xs font-bold">
+                ✓ Welcome! You are now subscribed to the PGT community.
+              </div>
+            )}
+
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CALL TO ACTION (Premium Soft-Beige Card) */}
+      <section className="max-w-5xl mx-auto px-6 mb-16 relative z-10 font-sans">
+        <div className="bg-[#FAF9F6] border border-[#E2E8F0]/80 rounded-2xl p-8 sm:p-12 shadow-md text-center relative overflow-hidden">
+          <div className="absolute top-3 left-3 right-3 bottom-3 border border-[#B89047]/10 rounded-xl pointer-events-none" />
+          
+          <span className="text-[10px] font-bold tracking-[0.25em] text-[#B89047] uppercase block mb-1">THE PGT JOURNAL</span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B1B3D] uppercase tracking-tight mb-3">
+            Knowledge Shapes Better Decisions
+          </h2>
+          <p className="text-[#0B1B3D] max-w-xl mx-auto leading-relaxed mb-8 text-xs font-normal">
+            Whether you are leading an organisation, designing learning experiences, or preparing your workforce for the future, the right ideas can create lasting impact. Explore the PGT Journal and discover practical perspectives that help you lead with confidence.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-3 justify-center relative z-10">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="px-6 py-3 bg-[#0B1B3D] hover:bg-[#0B1B3D]/95 text-white font-bold text-[10px] uppercase tracking-widest transition-all rounded-lg shadow-sm"
+            >
+              Read the Latest Articles
+            </button>
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-white border border-[#E2E8F0] text-[#0B1B3D] font-bold text-[10px] uppercase tracking-widest hover:bg-[#FAF9F6] transition-all rounded-lg shadow-sm"
+            >
+              Book a Consultation
+            </Link>
+          </div>
         </div>
       </section>
 

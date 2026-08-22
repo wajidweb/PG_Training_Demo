@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
 import { Order } from '../models/Order'
+import { User } from '../models/User'
 import Stripe from 'stripe'
 import { sendOrderConfirmationEmail } from '../lib/email'
 
@@ -100,24 +101,47 @@ router.post('/webhook', async (req: Request, res: Response) => {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as any
     
-    // Update order status to paid
-    try {
-      const updatedOrder = await Order.findOneAndUpdate(
-        { stripeSessionId: session.id },
-        { 
-          status: 'paid',
-          stripePaymentIntentId: session.payment_intent as string
-        },
-        { new: true } // Return the updated document
-      )
-      console.log(`Order paid: ${session.id}`)
-
-      // Send the confirmation email
-      if (updatedOrder) {
-        await sendOrderConfirmationEmail(updatedOrder)
+    // Check if this is a premium resource library purchase
+    if (session.metadata && session.metadata.resourceId) {
+      const { resourceId, userId } = session.metadata
+      try {
+        if (userId) {
+          await User.findByIdAndUpdate(
+            userId,
+            { $addToSet: { purchasedResources: resourceId } }
+          )
+          console.log(`Resource ${resourceId} added to user ${userId} library`)
+        } else if (session.customer_email) {
+          // If guest purchase, lookup user by email
+          await User.findOneAndUpdate(
+            { email: session.customer_email.toLowerCase() },
+            { $addToSet: { purchasedResources: resourceId } }
+          )
+          console.log(`Resource ${resourceId} added to user email ${session.customer_email} library`)
+        }
+      } catch (dbErr) {
+        console.error('Database update error for resource purchase in webhook:', dbErr)
       }
-    } catch (dbErr) {
-      console.error('Database update or email error in webhook:', dbErr)
+    } else {
+      // Standard Course Booking Order
+      try {
+        const updatedOrder = await Order.findOneAndUpdate(
+          { stripeSessionId: session.id },
+          { 
+            status: 'paid',
+            stripePaymentIntentId: session.payment_intent as string
+          },
+          { new: true } // Return the updated document
+        )
+        console.log(`Order paid: ${session.id}`)
+
+        // Send the confirmation email
+        if (updatedOrder) {
+          await sendOrderConfirmationEmail(updatedOrder)
+        }
+      } catch (dbErr) {
+        console.error('Database update or email error in webhook:', dbErr)
+      }
     }
   }
 

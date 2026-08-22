@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { 
@@ -13,57 +13,59 @@ import {
   Compass,
   Users,
   Award,
-  FileText
+  FileText,
+  Lock,
+  Unlock,
+  Loader2,
+  X,
+  AlertCircle
 } from 'lucide-react'
-
-const RESOURCES = [
-  {
-    id: 1,
-    title: 'The Successful CEO Guide',
-    desc: 'Practical strategies for building resilient organisations and high-performing executive teams in volatile markets.',
-    category: 'executive',
-    type: 'guide',
-    link: '/ebook-placeholder.pdf'
-  },
-  {
-    id: 2,
-    title: 'The Erasmus+ Planning Guide',
-    desc: 'A practical handbook for planning impactful mobilities, learning agreements, and professional development programs.',
-    category: 'erasmus',
-    type: 'guide',
-    link: '/ebook-placeholder.pdf'
-  },
-  {
-    id: 3,
-    title: 'Artificial Intelligence for Organisations',
-    desc: 'A practical introduction to AI implementation, prompt engineering, and policy formulation for leaders and corporate teams.',
-    category: 'ai',
-    type: 'guide',
-    link: '/ebook-placeholder.pdf'
-  },
-  {
-    id: 4,
-    title: 'Building Future-Ready Workforces',
-    desc: 'A comprehensive capability framework helping HR leaders and executives prepare people for rapidly changing workplaces.',
-    category: 'workforce',
-    type: 'guide',
-    link: '/ebook-placeholder.pdf'
-  },
-  {
-    id: 5,
-    title: 'The Future of Learning',
-    desc: 'An in-depth study of how artificial intelligence, international collaboration, and global trends are transforming professional education.',
-    category: 'academic',
-    type: 'guide',
-    link: '/ebook-placeholder.pdf'
-  }
-]
+import { purchaseResource, logFreeDownload, fetchResources, fetchCurrentUserMe } from '@/lib/api'
 
 export default function KnowledgeHubPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const [downloadingId, setDownloadingId] = useState<number | null>(null)
+  
+  // Scoping dynamic states
+  const [memberToken, setMemberToken] = useState<string | null>(null)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [downloadingId, setDownloadingId] = useState<string | null>(null)
+  const [purchasingId, setPurchasingId] = useState<string | null>(null)
+  
+  // Live Database resources state
+  const [resources, setResources] = useState<any[]>([])
+  const [loadingResources, setLoadingResources] = useState(true)
+  const [purchasedResourceIds, setPurchasedResourceIds] = useState<string[]>([])
+
+  useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('member_auth_token')
+    if (token) {
+      setMemberToken(token)
+      // Retrieve purchased resources list
+      fetchCurrentUserMe(token)
+        .then(profile => {
+          if (profile && profile.purchasedResources) {
+            setPurchasedResourceIds(profile.purchasedResources)
+          }
+        })
+        .catch(err => console.error('Failed to load user purchases:', err))
+    }
+
+    const loadLiveResources = async () => {
+      try {
+        const data = await fetchResources()
+        setResources(data)
+      } catch (err) {
+        console.error('Failed to load dynamic resources from DB:', err)
+      } finally {
+        setLoadingResources(false)
+      }
+    }
+
+    loadLiveResources()
+  }, [])
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,17 +75,66 @@ export default function KnowledgeHubPage() {
     }
   }
 
-  const handleDownload = (id: number) => {
+  const handleDownload = async (id: string, fileLink: string) => {
+    // Lead generation gating logic
+    if (!memberToken) {
+      setShowAuthModal(true)
+      return
+    }
+
     setDownloadingId(id)
+    try {
+      // Record the download dynamically in the database
+      await logFreeDownload(id, memberToken)
+    } catch (err) {
+      console.error('Failed to log free download:', err)
+    }
+
     setTimeout(() => {
       setDownloadingId(null)
-      alert('Your download has started. (Using placeholder guide)')
-    }, 1200)
+      // Open placeholder file
+      window.open(fileLink, '_blank')
+    }, 1000)
+  }
+
+  const handlePurchase = async (resourceId: string) => {
+    setPurchasingId(resourceId)
+    try {
+      // Decode JWT token payload safely in browser using standard atob
+      let payload = null
+      if (memberToken) {
+        try {
+          const base64Url = memberToken.split('.')[1]
+          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+          payload = JSON.parse(window.atob(base64))
+        } catch (jwtErr) {
+          console.error('JWT Decode Error:', jwtErr)
+        }
+      }
+      
+      const res = await purchaseResource({
+        resourceId,
+        userId: payload?.id || undefined,
+        email: payload?.email || undefined
+      })
+
+      if (res.success && res.url) {
+        // Redirect to secure Stripe checkout session page
+        window.location.href = res.url
+      } else {
+        alert('Failed to initiate checkout. Please try again.')
+      }
+    } catch (err: any) {
+      console.error(err)
+      alert(err.message || 'Payment initiation failed. Please try again.')
+    } finally {
+      setPurchasingId(null)
+    }
   }
 
   const filteredResources = activeCategory === 'all' 
-    ? RESOURCES 
-    : RESOURCES.filter(r => r.category === activeCategory)
+    ? resources 
+    : resources.filter(r => r.category === activeCategory)
 
   return (
     <main className="pt-20 pb-20 bg-[#FAF9F6] text-[#0B1B3D] min-h-screen font-sans selection:bg-[#B89047]/30 selection:text-[#0B1B3D]">
@@ -268,27 +319,96 @@ export default function KnowledgeHubPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredResources.map((res) => (
-            <div key={res.id} className="bg-white border border-[#E2E8F0]/80 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#B89047]/15 transition-all">
-              <div>
-                <div className="text-2xl text-[#B89047] mb-4 font-bold">📘</div>
-                <h3 className="text-sm font-bold text-[#0B1B3D] mb-2 uppercase tracking-wide leading-tight">{res.title}</h3>
-                <p className="text-[11px] text-[#64748B] leading-relaxed mb-5 font-light">{res.desc}</p>
-              </div>
-
-              <div className="pt-4 border-t border-[#E2E8F0]/40 flex items-center justify-between">
-                <span className="text-[9px] font-bold text-[#B89047] uppercase tracking-widest">{res.category} Collection</span>
-                <button
-                  onClick={() => handleDownload(res.id)}
-                  disabled={downloadingId !== null}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0B1B3D] hover:bg-[#0B1B3D]/95 text-white text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors"
-                >
-                  <span>{downloadingId === res.id ? 'Starting...' : 'Download'}</span>
-                </button>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          {loadingResources ? (
+            <div className="col-span-full py-20 flex flex-col items-center justify-center gap-3">
+              <Loader2 className="w-8 h-8 animate-spin text-[#B89047]" />
+              <p className="text-xs text-muted-foreground font-mono">Syncing Catalog Shelf...</p>
             </div>
-          ))}
+          ) : filteredResources.length === 0 ? (
+            <div className="col-span-full py-16 text-center text-muted-foreground text-xs">
+              No published resources found in this collection track.
+            </div>
+          ) : (
+            filteredResources.map((res) => {
+              const isPremium = res.tier === 'premium'
+              const isPurchasedPremium = isPremium && (purchasedResourceIds.includes(res._id) || purchasedResourceIds.includes(res.id))
+              const isDownloading = downloadingId === res._id
+              const isPurchasing = purchasingId === res._id
+
+              return (
+                <div key={res._id} className="bg-white border border-[#E2E8F0]/80 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#B89047]/15 transition-all text-left">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-mono font-bold text-[#B89047] uppercase tracking-wider bg-[#B89047]/10 px-2.5 py-1 rounded">
+                        {res.type}
+                      </span>
+                      {isPremium ? (
+                        isPurchasedPremium ? (
+                          <span className="text-xs font-bold text-green-700 font-mono bg-green-50 border border-green-200 px-2.5 py-1 rounded flex items-center gap-1">
+                            <Unlock className="w-3.5 h-3.5" />
+                            <span>UNLOCKED</span>
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold text-[#B89047] font-mono bg-amber-50 border border-amber-200 px-2.5 py-1 rounded flex items-center gap-1">
+                            <Lock className="w-3.5 h-3.5" />
+                            <span>${res.price.toFixed(2)}</span>
+                          </span>
+                        )
+                      ) : (
+                        <span className="text-xs font-bold text-green-700 font-mono bg-green-50 border border-green-200 px-2.5 py-1 rounded">
+                          FREE
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-sm font-extrabold text-[#0B1B3D] mb-2 uppercase tracking-wide leading-tight">{res.title}</h3>
+                    <p className="text-[11px] text-[#0B1B3D] leading-relaxed mb-6 font-normal">{res.description}</p>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#E2E8F0]/40 flex items-center justify-between">
+                    <span className="text-[9px] font-bold text-[#B89047] uppercase tracking-widest">{res.category} Collection</span>
+                    {isPremium && !isPurchasedPremium ? (
+                      <button
+                        onClick={() => handlePurchase(res._id)}
+                        disabled={purchasingId !== null}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#B89047] hover:bg-[#B89047]/90 text-white text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+                      >
+                        {isPurchasing ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Preparing...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Lock className="w-3.5 h-3.5 text-white" />
+                            <span>Purchase</span>
+                          </>
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleDownload(res._id, res.fileUrl)}
+                        disabled={downloadingId !== null}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0B1B3D] hover:bg-[#0B1B3D]/95 text-white text-[10px] font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+                      >
+                        {isDownloading ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Starting...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-3.5 h-3.5 text-white" />
+                            <span>Download</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )
+            })
+          )}
         </div>
       </section>
 
@@ -336,7 +456,7 @@ export default function KnowledgeHubPage() {
                 </div>
               </div>
               <Link
-                href="/contact?reason=templates"
+                href="/members"
                 className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 bg-[#B89047] hover:bg-[#B89047]/90 text-white font-extrabold uppercase tracking-wider text-[10px] sm:text-xs rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all text-center"
               >
                 Access Complete Download Centre
@@ -495,6 +615,49 @@ export default function KnowledgeHubPage() {
           </div>
         </div>
       </section>
+      {/* Gated Auth Modal Overlay Dialog */}
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden border border-[#E2E8F0] shadow-2xl relative p-6 sm:p-8 text-center space-y-6">
+            <button 
+              onClick={() => setShowAuthModal(false)}
+              className="absolute right-4 top-4 p-1.5 text-slate-400 hover:text-[#0B1B3D] hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <div className="space-y-2">
+              <span className="text-[9px] font-bold tracking-[0.25em] text-[#B89047] uppercase block">JOIN THE PGT COMMUNITY</span>
+              <h3 className="text-xl font-extrabold text-[#0B1B3D] uppercase tracking-tight leading-tight">Gated Free Download</h3>
+              <div className="h-0.5 w-12 bg-[#B89047] mx-auto mt-2 rounded" />
+            </div>
+
+            <p className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed font-normal">
+              To download this free professional resource, please create a free members account or log in. Every partnership with PGT provides access to our growing ecosystem of practical planning tools, checklists, and guides.
+            </p>
+
+            <div className="flex flex-col gap-2.5 pt-2">
+              <Link
+                href="/members/register"
+                className="w-full py-3 bg-[#0B1B3D] hover:bg-[#0B1B3D]/95 text-white font-extrabold text-xs uppercase tracking-widest rounded-xl shadow-sm hover:shadow-md transition-all text-center"
+              >
+                Create Free Account
+              </Link>
+              <Link
+                href="/members/login"
+                className="w-full py-3 border border-[#E2E8F0] hover:border-[#B89047]/40 text-[#0B1B3D] font-extrabold text-xs uppercase tracking-widest rounded-xl hover:bg-[#FAF9F6] transition-all text-center"
+              >
+                Log In to Member Hub
+              </Link>
+            </div>
+            
+            <p className="text-[9px] text-slate-500 uppercase font-mono">
+              (Takes less than 10 seconds to unlock your library)
+            </p>
+          </div>
+        </div>
+      )}
+
     </main>
   )
 }

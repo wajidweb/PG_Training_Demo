@@ -13,15 +13,22 @@ import {
   X,
   ChevronRight,
   GraduationCap,
-  MessageSquare
+  MessageSquare,
+  FileText,
+  FolderDown,
+  ShoppingCart
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
+  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Courses', href: '/admin/courses', icon: BookOpen },
   { name: 'Campaign Emails', href: '/admin/emails', icon: Mail },
-  { name: 'Orders', href: '/admin/orders', icon: Users },
+  { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
   { name: 'Enquiries', href: '/admin/enquiries', icon: MessageSquare },
+  { name: 'Articles', href: '/admin/articles', icon: FileText },
+  { name: 'Resources', href: '/admin/resources', icon: FolderDown },
+  { name: 'Members', href: '/admin/users', icon: Users },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -45,10 +52,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       router.push('/admin/login')
     } else {
       setIsAuthenticated(true)
-      // Redirect from dashboard to courses if dashboard is removed
-      if (pathname === '/admin/dashboard') {
-        router.push('/admin/courses')
-      }
     }
     setIsLoading(false)
   }, [pathname, router])

@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import { Course } from '../models/Course'
 import { TrainingPath } from '../models/TrainingPath'
 import { Testimonial } from '../models/Testimonial'
+import { Article } from '../models/Article'
+import { Resource } from '../models/Resource'
 
 dotenv.config()
 
@@ -477,6 +479,161 @@ const testimonials = [
   },
 ]
 
+const seedArticles = [
+  {
+    title: 'Leading Through Change: Why Adaptability Is the New Competitive Advantage',
+    slug: 'leading-through-change',
+    excerpt: 'Every generation of leaders faces change, but modern executives face transformation at unprecedented speed.',
+    content: 'Leadership in the 21st century is defined not by static structures, but by dynamic adaptability. Organizations must configure professional learning as an active continuous capability rather than a passive annual training event. This briefing details core techniques to prepare boards and directors for rapid global integration and digital turbulence.',
+    author: 'PGT Contributors',
+    series: 'CEO Briefing',
+    tags: ['Leadership', 'Adaptability'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'The Future Skills Every Organisation Needs by 2030',
+    slug: 'future-skills-2030',
+    excerpt: 'Comprehensive analysis of the key technological forces shaping the future of the global workplace.',
+    content: 'By 2030, workforce intelligence will hinge on digital capability, strategic prompt engineering, and intercultural fluency. Institutional coordinators must establish clear curriculum lines supporting lifelong learning and global academic excellence.',
+    author: 'PGT Contributors',
+    series: 'Future Learning Review',
+    tags: ['Skills', 'Future'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'How Artificial Intelligence Is Transforming Professional Learning',
+    slug: 'ai-transforming-learning',
+    excerpt: 'Practical applications of Artificial Intelligence across educational, business, and corporate spaces.',
+    content: 'Artificial Intelligence is shifting from a speculative novelty to an active workplace catalyst. This paper outlines bespoke policies and productivity benchmarks for integrating LLM networks into educational and enterprise environments safely.',
+    author: 'PGT Contributors',
+    series: 'AI in Practice',
+    tags: ['AI', 'Education'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'Five Characteristics of High Performing Executive Teams',
+    slug: 'high-performing-executive-teams',
+    excerpt: 'Strategic insights on leadership, executive decision making, corporate strategy, and sustainable growth.',
+    content: 'Successful enterprise leadership requires five pillars: psychological safety, rigorous role clarity, deep structural alignment, absolute execution integrity, and continuous capability reinforcement.',
+    author: 'PGT Contributors',
+    series: 'CEO Briefing',
+    tags: ['Executive', 'Teams'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'Designing Erasmus Plus Mobilities That Create Lasting Impact',
+    slug: 'designing-erasmus-plus-mobilities',
+    excerpt: 'Core funding opportunities, mobility trends, international collaboration, and modern program design.',
+    content: 'VET mobility programs must be structurally aligned with European quality standards and learning outcomes. Planning with professional partners ensures bulletproof compliance and maximum institutional reputation.',
+    author: 'PGT Contributors',
+    series: 'Mobility Matters',
+    tags: ['Erasmus', 'Mobility'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'Why Continuous Learning Is Becoming Every Organisation\'s Competitive Advantage',
+    slug: 'continuous-learning-advantage',
+    excerpt: 'Techniques for building capable teams, developing talent, and elevating overall corporate performance.',
+    content: 'When markets are volatile, static knowledge depreciates instantly. True corporate value is maintained through persistent workforce development and collective capability quarterlies.',
+    author: 'PGT Contributors',
+    series: 'Capability Quarterly',
+    tags: ['Learning', 'Advantage'],
+    publishedAt: new Date(),
+    isPublished: true
+  },
+  {
+    title: 'From Knowledge to Capability: The Next Evolution of Professional Development',
+    slug: 'knowledge-to-capability',
+    excerpt: 'New thinking on education, employability, professional development and future skills.',
+    content: 'Traditional credentials provide facts, but modern professional training must deliver actionable capability. This review explores case studies of PGT graduates applying frameworks live inside major European enterprises.',
+    author: 'PGT Contributors',
+    series: 'Capability Quarterly',
+    tags: ['Knowledge', 'Capability'],
+    publishedAt: new Date(),
+    isPublished: true
+  }
+]
+
+const seedResources = [
+  {
+    title: 'The Successful CEO Guide',
+    slug: 'successful-ceo-guide',
+    description: 'Practical strategies for building resilient organisations and high-performing executive teams in volatile markets.',
+    coverImage: '/development.png',
+    type: 'guide',
+    category: 'executive',
+    tier: 'free',
+    price: 0,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  },
+  {
+    title: 'The Erasmus+ Planning Guide',
+    slug: 'erasmus-planning-guide',
+    description: 'A practical handbook for planning impactful mobilities, learning agreements, and professional development programs.',
+    coverImage: '/development.png',
+    type: 'guide',
+    category: 'erasmus',
+    tier: 'free',
+    price: 0,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  },
+  {
+    title: 'Artificial Intelligence for Organisations',
+    slug: 'ai-for-organisations',
+    description: 'A practical introduction to AI implementation, prompt engineering, and policy formulation for leaders and corporate teams.',
+    coverImage: '/development.png',
+    type: 'guide',
+    category: 'ai',
+    tier: 'free',
+    price: 0,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  },
+  {
+    title: 'CEO Success Playbook & Toolkit',
+    slug: 'ceo-success-playbook',
+    description: 'A comprehensive kit containing editable strategic matrices, assessment scorecards, and board slide templates.',
+    coverImage: '/development.png',
+    type: 'toolkit',
+    category: 'executive',
+    tier: 'premium',
+    price: 49.00,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  },
+  {
+    title: 'Erasmus+ Proposal Toolkit',
+    slug: 'erasmus-proposal-toolkit',
+    description: 'Exhaustive mobility worksheets, QA checklists, learning outcomes plans, and successful proposal copy guidelines.',
+    coverImage: '/development.png',
+    type: 'toolkit',
+    category: 'erasmus',
+    tier: 'premium',
+    price: 129.00,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  },
+  {
+    title: 'AI Education Blueprint & Planner',
+    slug: 'ai-education-blueprint',
+    description: 'Bespoke templates, prompt libraries, classroom integration policies, and teacher productivity checklists.',
+    coverImage: '/development.png',
+    type: 'toolkit',
+    category: 'ai',
+    tier: 'premium',
+    price: 89.00,
+    fileUrl: '/ebook-placeholder.pdf',
+    isPublished: true
+  }
+]
+
 async function seed() {
   try {
     const uri = process.env.MONGODB_URI
@@ -487,6 +644,8 @@ async function seed() {
     await Course.deleteMany({})
     await TrainingPath.deleteMany({})
     await Testimonial.deleteMany({})
+    await Article.deleteMany({})
+    await Resource.deleteMany({})
     console.log('Cleared existing data')
 
     await TrainingPath.insertMany(trainingPaths)
@@ -497,6 +656,12 @@ async function seed() {
 
     await Testimonial.insertMany(testimonials)
     console.log(`Seeded ${testimonials.length} testimonials`)
+
+    await Article.insertMany(seedArticles)
+    console.log(`Seeded ${seedArticles.length} dynamic articles`)
+
+    await Resource.insertMany(seedResources)
+    console.log(`Seeded ${seedResources.length} dynamic resources`)
 
     console.log('\nDatabase seeded successfully!')
     await mongoose.disconnect()

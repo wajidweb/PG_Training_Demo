@@ -424,8 +424,8 @@ export default function AcademicExcellencePage() {
         </div>
       </section>
 
-      {/* Beyond the Classroom section (Centered Header & Symmetrical Grid) */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20 border-b border-[#E2E8F0]/40 font-sans relative">
+      {/* Beyond the Classroom section (Centered Header & Symmetrical Grid with Image) */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 border-b border-[#E2E8F0]/40 font-sans relative">
         
         {/* Centered Header Block */}
         <div className="text-center max-w-3xl lg:max-w-none mx-auto mb-12 lg:mb-16 space-y-3 relative z-10">
@@ -434,40 +434,59 @@ export default function AcademicExcellencePage() {
             Supporting Continuous Professional Growth
           </h2>
           <div className="h-1 w-12 bg-[#B89047] mx-auto mt-3 rounded" />
-          <div className="text-xs sm:text-sm text-[#0B1B3D] max-w-3xl mx-auto leading-relaxed font-normal space-y-4 pt-2">
-            <p>
-              Learning does not end when a professional development programme finishes. Every partnership with PGT provides access to a growing ecosystem of practical resources, strategic insights, and professional development tools designed to support continuous improvement.
-            </p>
-            <p className="font-bold text-[#B89047] uppercase tracking-wide text-xs">
-              Everything is created specifically to help your organisation sustain capability long after the learning experience has ended.
-            </p>
-          </div>
         </div>
 
-        {/* Symmetrical 7-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10">
-          {[
-            { title: 'Practical Guides', icon: BookOpen, detail: 'Detailed publications covering modern pedagogical guidelines.' },
-            { title: 'Video Learning', icon: PlayCircle, detail: 'Compact micro learning briefings delivered by field experts.' },
-            { title: 'Toolkits & Templates', icon: FileText, detail: 'Practical spreadsheets to optimize academic administration.' },
-            { title: 'AI Resources', icon: Cpu, detail: 'Comprehensive prompt libraries for secure classroom integrations.' },
-            { title: 'Erasmus Plus Planners', icon: Globe, detail: 'Exhaustive planning documents to streamline credit mobility.' },
-            { title: 'Research & Insights', icon: TrendingUp, detail: 'Empirical research reports covering modern industry trends.' },
-            { title: 'Webinars & Masterclasses', icon: Users, detail: 'High impact interactive sessions with our managing partners.' }
-          ].map((resource, idx) => {
-            const Icon = resource.icon
-            return (
-              <div key={idx} className="bg-white border border-[#E2E8F0] p-6 rounded-xl flex flex-col justify-between shadow-sm h-36 hover:border-[#B89047]/20 transition-all duration-300 text-left">
-                <div className="w-7 h-7 rounded-lg bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-extrabold text-[#0B1B3D] text-xs uppercase tracking-wide leading-tight mt-3">{resource.title}</h4>
-                  <p className="text-[11px] text-[#0B1B3D] mt-1.5 font-normal leading-relaxed">{resource.detail}</p>
-                </div>
-              </div>
-            )
-          })}
+        {/* Symmetric Columns Grid - Text/Cards on Left, Image on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch relative z-10">
+          
+          {/* Left Column (7 Cols): Narrative and Symmetrical 7-Card Grid */}
+          <div className="lg:col-span-7 space-y-6 text-left flex flex-col justify-center">
+            <div className="text-xs sm:text-sm text-[#0B1B3D] leading-relaxed font-normal space-y-4">
+              <p>
+                Learning does not end when a professional development programme finishes. Every partnership with PGT provides access to a growing ecosystem of practical resources, strategic insights, and professional development tools designed to support continuous improvement.
+              </p>
+              <p className="font-bold text-[#B89047] uppercase tracking-wide text-xs">
+                Everything is created specifically to help your organisation sustain capability long after the learning experience has ended.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2 border-t border-[#E2E8F0]/80">
+              {[
+                { title: 'Practical Guides', icon: BookOpen, detail: 'Detailed publications covering modern pedagogical guidelines.' },
+                { title: 'Video Learning', icon: PlayCircle, detail: 'Compact micro learning briefings delivered by field experts.' },
+                { title: 'Toolkits & Templates', icon: FileText, detail: 'Practical spreadsheets to optimize academic administration.' },
+                { title: 'AI Resources', icon: Cpu, detail: 'Comprehensive prompt libraries for secure classroom integrations.' },
+                { title: 'Erasmus Plus Planners', icon: Globe, detail: 'Exhaustive planning documents to streamline credit mobility.' },
+                { title: 'Research & Insights', icon: TrendingUp, detail: 'Empirical research reports covering modern industry trends.' },
+                { title: 'Webinars & Masterclasses', icon: Users, detail: 'High impact interactive sessions with our managing partners.' }
+              ].map((resource, idx) => {
+                const Icon = resource.icon
+                return (
+                  <div key={idx} className={`bg-[#FAF9F6] border border-[#E2E8F0] p-4 rounded-xl flex flex-col justify-between shadow-sm h-32 hover:border-[#B89047]/20 transition-all duration-300 text-left ${idx === 6 ? 'sm:col-span-2' : ''}`}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-[#B89047]/10 flex items-center justify-center text-[#B89047] flex-shrink-0">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <h4 className="font-extrabold text-[#0B1B3D] text-xs uppercase tracking-wide leading-tight">{resource.title}</h4>
+                    </div>
+                    <p className="text-[11px] text-[#0B1B3D] font-normal leading-relaxed">{resource.detail}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Right Column (5 Cols): Cover Image */}
+          <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[260px] lg:h-auto lg:min-h-[340px] border border-[#E2E8F0]/80 shadow-md">
+            <Image
+              src="/development.png"
+              alt="Practical resources and professional development scoping"
+              fill
+              className="object-cover select-none"
+              sizes="(max-width: 1024px) 100vw, 30vw"
+            />
+          </div>
+
         </div>
       </section>
 

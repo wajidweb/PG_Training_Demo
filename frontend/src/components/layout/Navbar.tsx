@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCart, Menu, X, BookOpen, ChevronDown, Compass, Award, Cpu, ShieldCheck } from 'lucide-react'
+import { ShoppingCart, Menu, X, BookOpen, ChevronDown, Compass, Award, Cpu, ShieldCheck, User } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useCartStore } from '@/store/cart'
 import { TrainingPath } from '@/types'
@@ -10,6 +10,7 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileSchoolsOpen, setMobileSchoolsOpen] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [isMember, setIsMember] = useState(false)
   const [mounted, setMounted] = useState(false)
   
   const { totalItems, toggleCart } = useCartStore()
@@ -19,10 +20,12 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
     setTimeout(() => {
       setMounted(true)
       setIsAdmin(localStorage.getItem('admin_auth') === 'true')
+      setIsMember(localStorage.getItem('member_auth_token') !== null)
     }, 0)
     
     const handleStorageChange = () => {
       setIsAdmin(localStorage.getItem('admin_auth') === 'true')
+      setIsMember(localStorage.getItem('member_auth_token') !== null)
     }
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
@@ -155,7 +158,17 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
               )}
             </button>
 
-            {mounted && (
+            {mounted && !isAdmin && (
+              <Link
+                href="/members"
+                className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold tracking-wider text-white bg-[#0B1B3D] hover:bg-[#0B1B3D]/90 transition-colors uppercase"
+              >
+                <User className="h-4 w-4 text-[#B89047]" />
+                Members Hub
+              </Link>
+            )}
+
+            {mounted && !isMember && (
               <Link
                 href={isAdmin ? '/admin/dashboard' : '/admin/login'}
                 className="hidden lg:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold tracking-wider text-primary bg-secondary hover:bg-secondary/80 transition-colors border border-border uppercase"
@@ -268,7 +281,18 @@ export default function Navbar({}: { paths?: TrainingPath[] }) {
           </Link>
           
           <div className="pt-2 flex flex-col gap-2">
-            {mounted && (
+            {mounted && !isAdmin && (
+              <Link
+                href="/members"
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-xs font-bold tracking-wider text-white bg-[#0B1B3D] w-full uppercase"
+                onClick={() => setMenuOpen(false)}
+              >
+                <User className="h-4 w-4 text-[#B89047]" />
+                Members Hub
+              </Link>
+            )}
+
+            {mounted && !isMember && (
               <Link
                 href={isAdmin ? '/admin/dashboard' : '/admin/login'}
                 className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-xs font-bold tracking-wider text-primary bg-secondary border border-border w-full uppercase"

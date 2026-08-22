@@ -143,3 +143,189 @@ export async function fetchEnquiries(): Promise<any[]> {
   const data = await res.json()
   return data.data || []
 }
+
+export async function fetchArticles(includeUnpublished = false): Promise<any[]> {
+  const res = await fetch(`${API_URL}/api/articles?includeUnpublished=${includeUnpublished}`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch articles')
+  const data = await res.json()
+  return data.data || []
+}
+
+export async function fetchArticleBySlug(slug: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/articles/${slug}`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch article')
+  const data = await res.json()
+  return data.data || null
+}
+
+export async function fetchResources(params?: { category?: string, type?: string, tier?: string, includeUnpublished?: boolean }): Promise<any[]> {
+  const queryParams = new URLSearchParams(params as any).toString()
+  const url = `${API_URL}/api/resources${queryParams ? `?${queryParams}` : ''}`
+  const res = await fetch(url, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch resources')
+  const data = await res.json()
+  return data.data || []
+}
+
+export async function updateResource(id: string, resourceData: any): Promise<any> {
+  const res = await fetch(`${API_URL}/api/resources/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(resourceData)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to update resource')
+  }
+  return res.json()
+}
+
+export async function deleteResource(id: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/resources/${id}`, {
+    method: 'DELETE'
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to delete resource')
+  }
+  return res.json()
+}
+
+export async function fetchResourceBySlug(slug: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/resources/${slug}`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch resource')
+  const data = await res.json()
+  return data.data || null
+}
+
+export async function registerUser(userData: { firstName: string, lastName: string, email: string, password: string }): Promise<any> {
+  const res = await fetch(`${API_URL}/api/auth/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Registration failed')
+  }
+  return res.json()
+}
+
+export async function loginUser(credentials: { email: string, password: string }): Promise<any> {
+  const res = await fetch(`${API_URL}/api/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(credentials)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Login failed')
+  }
+  return res.json()
+}
+
+export async function fetchCurrentUserMe(token: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/auth/me`, {
+    headers: { 'Authorization': `Bearer ${token}` },
+    cache: 'no-store'
+  })
+  if (!res.ok) throw new Error('Session verification failed')
+  const data = await res.json()
+  return data.data || null
+}
+
+export async function purchaseResource(purchaseData: { resourceId: string, userId?: string, email?: string }): Promise<{ success: boolean, url: string }> {
+  const res = await fetch(`${API_URL}/api/resources/purchase`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(purchaseData)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Checkout creation failed')
+  }
+  return res.json()
+}
+
+export async function fetchUsers(): Promise<any[]> {
+  const res = await fetch(`${API_URL}/api/auth/users`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch users')
+  const data = await res.json()
+  return data.data || []
+}
+
+export async function logFreeDownload(resourceId: string, token: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/auth/log-download`, {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ resourceId })
+  })
+  if (!res.ok) throw new Error('Failed to record free download')
+  return res.json()
+}
+
+export async function uploadFile(fileName: string, fileData: string): Promise<{ success: boolean, fileUrl: string }> {
+  const res = await fetch(`${API_URL}/api/resources/upload`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileName, fileData })
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'File upload failed')
+  }
+  return res.json()
+}
+
+export async function unlockPurchaseDirectly(resourceId: string, token: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/resources/unlock-purchase`, {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ resourceId })
+  })
+  if (!res.ok) throw new Error('Failed to unlock purchase on client sync')
+  return res.json()
+}
+
+export async function createArticle(articleData: any): Promise<any> {
+  const res = await fetch(`${API_URL}/api/articles`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(articleData)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to create article')
+  }
+  return res.json()
+}
+
+export async function updateArticle(id: string, articleData: any): Promise<any> {
+  const res = await fetch(`${API_URL}/api/articles/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(articleData)
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to update article')
+  }
+  return res.json()
+}
+
+export async function deleteArticle(id: string): Promise<any> {
+  const res = await fetch(`${API_URL}/api/articles/${id}`, {
+    method: 'DELETE'
+  })
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message || 'Failed to delete article')
+  }
+  return res.json()
+}

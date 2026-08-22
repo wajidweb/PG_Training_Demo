@@ -10,6 +10,9 @@ import chatRouter from './routes/chat'
 import testimonialsRouter from './routes/testimonials'
 import campaignRouter from './routes/campaign'
 import enquiriesRouter from './routes/enquiries'
+import articlesRouter from './routes/articles'
+import resourcesRouter from './routes/resources'
+import authRouter from './routes/auth'
 
 const app = express()
 
@@ -21,7 +24,8 @@ app.use(cors({
 // Use raw body for Stripe webhook before express.json()
 app.use('/api/orders/webhook', express.raw({ type: 'application/json' }))
 
-app.use(express.json())
+app.use(express.json({ limit: '200mb' }))
+app.use(express.urlencoded({ limit: '200mb', extended: true }))
 
 app.get('/', (_req, res) => {
   res.json({
@@ -57,6 +61,9 @@ app.use('/api/chat', chatRouter)
 app.use('/api/testimonials', testimonialsRouter)
 app.use('/api/campaign', campaignRouter)
 app.use('/api/enquiries', enquiriesRouter)
+app.use('/api/articles', articlesRouter)
+app.use('/api/resources', resourcesRouter)
+app.use('/api/auth', authRouter)
 
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Server error:', err)
